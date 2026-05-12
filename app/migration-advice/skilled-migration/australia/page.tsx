@@ -3,6 +3,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import HexagonBackground from '@/components/HexagonBackground'
+import ShowcaseCard from '@/components/ShowcaseCard'
 
 export default function AustraliaSkilledMigrationPage() {
   return (
@@ -80,65 +81,30 @@ export default function AustraliaSkilledMigrationPage() {
 
           {/* Key Features with Symbols */}
           <div className="grid md:grid-cols-3 gap-6 mb-12">
-            <div className="rounded-2xl overflow-hidden border border-gold-metallic/40 bg-black/70 backdrop-blur-sm shadow-xl">
-              <div className="relative w-full h-48">
-                <Image src="/migration-advice/australia-feature1.jpg" alt="Points System" fill className="object-cover" />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/20 to-transparent" />
-              </div>
-              <div className="p-6">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-12 h-12 rounded-full bg-gold-metallic/20 flex items-center justify-center border-2 border-gold-metallic/50">
-                    <svg className="w-6 h-6 text-gold-metallic" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-                    </svg>
-                  </div>
-                  <h3 className="text-xl font-bold text-gold-metallic">Points-Based System</h3>
-                </div>
-                <p className="text-white text-sm leading-relaxed font-medium">
-                  Transparent points system evaluating age, skills, experience, and language proficiency for fair assessment.
-                </p>
-              </div>
-            </div>
-
-            <div className="rounded-2xl overflow-hidden border border-gold-metallic/40 bg-black/70 backdrop-blur-sm shadow-xl">
-              <div className="relative w-full h-48">
-                <Image src="/migration-advice/australia-feature2.jpg" alt="Multiple Pathways" fill className="object-cover" />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/20 to-transparent" />
-              </div>
-              <div className="p-6">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-12 h-12 rounded-full bg-gold-metallic/20 flex items-center justify-center border-2 border-gold-metallic/50">
-                    <svg className="w-6 h-6 text-gold-metallic" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
-                    </svg>
-                  </div>
-                  <h3 className="text-xl font-bold text-gold-metallic">Multiple Pathways</h3>
-                </div>
-                <p className="text-white text-sm leading-relaxed font-medium">
-                  Various visa subclasses including 189, 190, and 491 to suit different circumstances and state nominations.
-                </p>
-              </div>
-            </div>
-
-            <div className="rounded-2xl overflow-hidden border border-gold-metallic/40 bg-black/70 backdrop-blur-sm shadow-xl">
-              <div className="relative w-full h-48">
-                <Image src="/migration-advice/australia-feature3.jpg" alt="Quality of Life" fill className="object-cover" />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/20 to-transparent" />
-              </div>
-              <div className="p-6">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-12 h-12 rounded-full bg-gold-metallic/20 flex items-center justify-center border-2 border-gold-metallic/50">
-                    <svg className="w-6 h-6 text-gold-metallic" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-                    </svg>
-                  </div>
-                  <h3 className="text-xl font-bold text-gold-metallic">Quality of Life</h3>
-                </div>
-                <p className="text-white text-sm leading-relaxed font-medium">
-                  World-class healthcare, education, and social services ensuring a high standard of living for you and your family.
-                </p>
-              </div>
-            </div>
+            <ShowcaseCard
+              imageSrc="/migration-advice/australia-feature1.jpg"
+              imageAlt="Points System"
+              eyebrow="Australia Skilled Migration"
+              title="Points-Based System"
+              description="Transparent points system evaluating age, skills, experience, and language proficiency for fair assessment."
+              ctaHref="/contact"
+            />
+            <ShowcaseCard
+              imageSrc="/migration-advice/australia-feature2.jpg"
+              imageAlt="Multiple Pathways"
+              eyebrow="Australia Skilled Migration"
+              title="Multiple Pathways"
+              description="Various visa subclasses including 189, 190, and 491 to suit different circumstances and state nominations."
+              ctaHref="/contact"
+            />
+            <ShowcaseCard
+              imageSrc="/migration-advice/australia-feature3.jpg"
+              imageAlt="Quality of Life"
+              eyebrow="Australia Skilled Migration"
+              title="Quality of Life"
+              description="World-class healthcare, education, and social services ensuring a high standard of living for you and your family."
+              ctaHref="/contact"
+            />
           </div>
 
           {/* Detailed Information Section */}
@@ -210,3 +176,4 @@ export default function AustraliaSkilledMigrationPage() {
     </main>
   )
 }
+

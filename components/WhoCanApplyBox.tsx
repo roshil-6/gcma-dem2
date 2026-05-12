@@ -9,7 +9,7 @@ export type WhoCanApplyItem = {
 
 export default function WhoCanApplyBox({
   country,
-  imageSrc = '/nursing/photos/1559757148-5c350d0d3c56.jpg',
+  imageSrc = '/nursing/photos/australia-who.jpg',
   items,
 }: {
   country: string
@@ -21,11 +21,11 @@ export default function WhoCanApplyBox({
       <div className="mb-5 flex flex-col md:flex-row md:items-end md:justify-between gap-2">
         <div>
           <h2 className="text-2xl md:text-3xl font-bold text-gold-metallic">Who can apply?</h2>
-          <p className="text-sm md:text-base text-[#1f1b2d]">
-            Eligibility guidance for {country}. Submit your profile and we’ll contact you with the next steps.
+          <p className="text-sm md:text-base text-black">
+            Eligibility guidance for {country}. Submit your profile and we'll contact you with the next steps.
           </p>
         </div>
-        <span className="inline-flex w-fit rounded-full bg-[#f9f2e7] border border-gold-metallic/50 px-4 py-2 text-sm font-semibold text-[#1f1b2d] shadow-sm">
+        <span className="inline-flex w-fit rounded-full bg-[#f9f2e7] border border-gold-metallic/50 px-4 py-2 text-sm font-semibold text-black shadow-sm">
           {country}
         </span>
       </div>
@@ -38,7 +38,7 @@ export default function WhoCanApplyBox({
             <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-black/0 to-transparent" />
           </div>
           <div className="p-5">
-            <p className="text-sm text-[#1f1b2d]">
+            <p className="text-sm text-black">
               Quick check: meet the basics below, then apply with your CV and documents.
             </p>
           </div>
@@ -48,13 +48,13 @@ export default function WhoCanApplyBox({
         <div className="lg:col-span-8 grid sm:grid-cols-2 gap-4">
           {items.map((it) => (
             <div key={it.title} className="rounded-2xl border border-gold-metallic/35 bg-[#f9f2e7] shadow-xl p-5">
-              <h3 className="text-base md:text-lg font-extrabold text-[#1f1b2d] mb-1">{it.title}</h3>
-              <p className="text-sm md:text-base text-[#1f1b2d] leading-relaxed">{it.detail}</p>
+              <h3 className="text-base md:text-lg font-extrabold text-black mb-1">{it.title}</h3>
+              <p className="text-sm md:text-base text-black leading-relaxed">{it.detail}</p>
             </div>
           ))}
 
           <div className="sm:col-span-2 rounded-2xl border border-gold-metallic/35 bg-[#f9f2e7] shadow-xl p-5">
-            <p className="text-xs md:text-sm text-[#1f1b2d]">
+            <p className="text-xs md:text-sm text-black">
               Note: Requirements vary by regulator and pathway. Submitting this form does not guarantee registration
               or employment; it allows our admin team to review your profile and contact you with guidance.
             </p>

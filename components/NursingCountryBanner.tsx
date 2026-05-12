@@ -28,7 +28,7 @@ export default function NursingCountryBanner({
               <Image src={flagSrc} alt={`${country} flag`} fill className="object-contain" />
             </div>
             <div className="space-y-1">
-              <h1 className="text-3xl md:text-5xl font-extrabold text-[#1f1b2d]">
+              <h1 className="text-3xl md:text-5xl font-extrabold text-black">
                 Nursing in {country}
               </h1>
               <p className="text-sm md:text-lg text-gold-metallic font-semibold">

@@ -113,7 +113,7 @@ export default function ImmigrationFraudSection() {
           <h2 className="text-4xl md:text-5xl font-bold mb-4 text-gold-metallic">
             Immigration Fraud Complaint Portal
           </h2>
-          <p className="text-lg text-gray-300 max-w-2xl mx-auto">
+          <p className="page-intro mx-auto text-lg max-w-2xl">
             A secure platform for victims of fraudulent immigration agencies to
             submit verified complaints. Your information is protected and will
             be used solely for legal and investigative purposes.
@@ -137,14 +137,10 @@ export default function ImmigrationFraudSection() {
           >
             <div className="relative h-64 md:h-96">
               <img
-                src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=1600&h=900&fit=crop&q=80"
+                src="/about/immigration-fraud.jpg"
                 alt="Legal Protection & Justice - Immigration Fraud Complaint"
                 className="absolute inset-0 w-full h-full object-cover"
                 loading="lazy"
-                onError={(e) => {
-                  const target = e.target as HTMLImageElement
-                  target.src = 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=1600&h=900&fit=crop&q=80'
-                }}
               />
               <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
                 <div className="text-center p-8">
@@ -161,7 +157,7 @@ export default function ImmigrationFraudSection() {
                       onToggle={setShowExplanation}
                     />
                   </div>
-                  <p className="text-gray-300">Secure complaint submission for immigration fraud victims</p>
+                  <p className="text-white">Secure complaint submission for immigration fraud victims</p>
                 </div>
               </div>
             </div>
@@ -178,7 +174,7 @@ export default function ImmigrationFraudSection() {
 
         {!showForm ? (
           <div className="glass-card rounded-2xl p-8 md:p-12 text-center">
-            <p className="text-gray-300 mb-6 text-lg">
+            <p className="text-white mb-6 text-lg">
               Report fraudulent immigration agencies and help protect others from scams.
             </p>
             <button
@@ -335,7 +331,7 @@ export default function ImmigrationFraudSection() {
               </p>
             </div>
 
-            <div className="bg-black/30 border border-gold-metallic/30 rounded-lg p-4 text-sm text-gray-300">
+            <div className="bg-black/30 border border-gold-metallic/30 rounded-lg p-4 text-sm text-white">
               <p className="font-semibold text-gold-metallic mb-2">Disclaimer:</p>
               <p>
                 By submitting this complaint, you confirm that all information

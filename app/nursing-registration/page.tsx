@@ -15,7 +15,7 @@ export default function NursingRegistrationPage() {
           >
             Back to Home
           </Link>
-          <span className="text-xs md:text-sm text-gray-300">
+          <span className="text-xs md:text-sm text-white">
             Global Nursing Registration
           </span>
         </div>

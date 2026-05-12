@@ -3,60 +3,68 @@
 import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 
+const heroImageCandidates = [
+  '/logo_statue.png',
+  '/home/belief-statement.jpg',
+  '/hero-background.jpeg',
+]
+
+const primaryLinks = [
+  { href: '/', label: 'Home' },
+  { href: '/about', label: 'About Us' },
+  { href: '/calculators/pr-calculator', label: 'PR Calculator' },
+  { href: '/calculators/canada-points', label: 'Canada Points Calculator' },
+  { href: '/contact', label: 'Contact Us' },
+]
+
+const serviceLinks = [
+  { href: '/charity-support', label: 'Charity Support' },
+  { href: '/services#immigration-fraud', label: 'Report Immigration Fraud' },
+  { href: '/study-abroad', label: 'Study Abroad Advice' },
+  { href: '/migration-advice', label: 'Migration Advice' },
+  { href: '/visit-visa', label: 'Visit Visa' },
+  { href: '/travel', label: 'Travel' },
+  { href: '/english-classes/govt-students', label: 'English Speaking Classes - Govt School Students' },
+  { href: '/english-classes/private-students', label: 'English Speaking Classes - Private School Students' },
+  { href: '/english-classes/adults', label: 'English Academy' },
+  { href: '/tutors', label: 'Serve society with GCMA - Tutors' },
+]
+
+const nursingLinks = [
+  { href: '/nurses/australia', label: 'Australia' },
+  { href: '/nurses/canada', label: 'Canada' },
+  { href: '/nurses/new-zealand', label: 'New Zealand' },
+  { href: '/nurses/germany', label: 'Germany' },
+  { href: '/nurses/malta', label: 'Malta' },
+  { href: '/nurses/denmark', label: 'Denmark' },
+  { href: '/nurses/united-kingdom', label: 'United Kingdom' },
+  { href: '/nurses/uae', label: 'UAE' },
+  { href: '/nurses/usa', label: 'USA' },
+]
+
+const navLinkClass =
+  'shrink-0 whitespace-nowrap px-3 py-2 text-xs font-semibold text-gold-metallic drop-shadow-md transition-colors hover:text-gold-bright sm:px-4 sm:text-sm md:text-base'
+
+const mobileNavLinkClass =
+  'block rounded-lg border border-gold-metallic/25 px-4 py-3 text-sm font-semibold text-gold-metallic transition-colors hover:bg-gold-metallic/10'
+
 export default function Hero() {
   const heroRef = useRef<HTMLDivElement>(null)
-  const [bgImage, setBgImage] = useState<string | null>(null)
+  const [heroImageIndex, setHeroImageIndex] = useState(0)
   const [showServicesMenu, setShowServicesMenu] = useState(false)
   const [showNursingMenu, setShowNursingMenu] = useState(false)
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [mobileServicesOpen, setMobileServicesOpen] = useState(false)
+  const [mobileNursingOpen, setMobileNursingOpen] = useState(false)
 
-  useEffect(() => {
-    // Check for the new hero image with all text details
-    const imageNames = [
-      '/logo_statue.png', // Primary hero image
-      '/lolo_statue.png',
-      '/logo_statue.png.png',
-      '/new-hero.jpg',
-      '/new-hero.png',
-      '/new-hero.jpeg',
-      '/hero-new.jpg',
-      '/hero-new.png',
-      '/hero-new.jpeg',
-      '/hero-main.jpg',
-      '/hero-main.png',
-      '/hero-main.jpeg',
-      '/main-hero.jpg',
-      '/main-hero.png',
-      '/main-hero.jpeg',
-      '/hero-image.jpg',
-      '/hero-image.png',
-      '/hero-image.jpeg',
-      '/hero.jpg',
-      '/hero.png',
-      '/hero.jpeg',
-      '/hero-background.jpeg',
-    ]
+  const heroImage = heroImageCandidates[heroImageIndex]
+  const hasHeroImage = heroImageIndex < heroImageCandidates.length
 
-    const checkImage = (src: string): Promise<boolean> => {
-      return new Promise((resolve) => {
-        const img = new Image()
-        img.onload = () => resolve(true)
-        img.onerror = () => resolve(false)
-        img.src = src
-      })
-    }
-
-    const findImage = async () => {
-      for (const imgName of imageNames) {
-        const exists = await checkImage(imgName)
-        if (exists) {
-          setBgImage(imgName)
-          break
-        }
-      }
-    }
-
-    findImage()
-  }, [])
+  const closeMobileMenu = () => {
+    setMobileMenuOpen(false)
+    setMobileServicesOpen(false)
+    setMobileNursingOpen(false)
+  }
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -77,252 +85,171 @@ export default function Hero() {
     return () => observer.disconnect()
   }, [])
 
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId)
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' })
+  useEffect(() => {
+    document.body.style.overflow = mobileMenuOpen ? 'hidden' : ''
+    return () => {
+      document.body.style.overflow = ''
     }
-  }
+  }, [mobileMenuOpen])
 
   return (
     <section
       ref={heroRef}
-      className="min-h-screen h-screen relative z-10 hero-background overflow-hidden"
+      className="relative z-10 min-h-[100dvh] overflow-hidden hero-background md:h-screen md:min-h-screen"
     >
-      {/* Navigation Menu */}
-      <nav className="absolute top-4 md:top-6 left-0 right-0 z-30 px-4 md:px-8">
-        <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-center gap-4 md:gap-6">
-          {/* Home Tagline */}
-          <Link 
-            href="/"
-            className="text-gold-metallic hover:text-gold-bright font-semibold text-sm md:text-base transition-colors px-4 py-2"
-          >
-            Home
+      <div className="absolute left-0 right-0 top-0 z-40 border-b border-gold-metallic/25 bg-[#f9f2e7]/95 px-3 py-3 backdrop-blur md:hidden">
+        <div className="flex items-center justify-between gap-3">
+          <Link href="/" className="text-sm font-bold text-gold-metallic" onClick={closeMobileMenu}>
+            GCMA
           </Link>
-
-          {/* About Us Tagline - goes to dedicated About page */}
-          <Link
-            href="/about"
-            className="text-gold-metallic hover:text-gold-bright font-semibold text-sm md:text-base transition-colors px-4 py-2"
+          <button
+            type="button"
+            className="rounded-lg border border-gold-metallic/40 px-3 py-2 text-xs font-semibold uppercase tracking-[0.12em] text-gold-metallic"
+            aria-expanded={mobileMenuOpen}
+            aria-controls="hero-mobile-menu"
+            onClick={() => setMobileMenuOpen((open) => !open)}
           >
-            About Us
-          </Link>
+            {mobileMenuOpen ? 'Close' : 'Menu'}
+          </button>
+        </div>
+      </div>
 
-          {/* PR Calculator Tagline */}
-          <Link
-            href="/calculators/pr-calculator"
-            className="text-gold-metallic hover:text-gold-bright font-semibold text-sm md:text-base transition-colors px-4 py-2"
-          >
-            PR Calculator
-          </Link>
+      {mobileMenuOpen ? (
+        <div
+          id="hero-mobile-menu"
+          className="fixed inset-0 z-50 overflow-y-auto bg-[#f9f2e7] px-4 pb-8 pt-16 md:hidden"
+        >
+          <nav aria-label="Mobile primary navigation" className="space-y-2">
+            {primaryLinks.map((link) => (
+              <Link key={link.href} href={link.href} className={mobileNavLinkClass} onClick={closeMobileMenu}>
+                {link.label}
+              </Link>
+            ))}
 
-          {/* Canada Points Calculator Tagline */}
-          <Link
-            href="/calculators/canada-points"
-            className="text-gold-metallic hover:text-gold-bright font-semibold text-sm md:text-base transition-colors px-4 py-2"
-          >
-            Canada Points Calculator
-          </Link>
-
-          {/* Services Tagline with Dropdown */}
-          <div className="relative">
             <button
-              onClick={() => setShowServicesMenu(!showServicesMenu)}
-              className="text-gold-metallic hover:text-gold-bright font-semibold text-sm md:text-base transition-colors px-4 py-2 flex items-center gap-2"
+              type="button"
+              className={`${mobileNavLinkClass} w-full text-left`}
+              aria-expanded={mobileServicesOpen}
+              onClick={() => setMobileServicesOpen((open) => !open)}
             >
               Services
-              <svg 
-                className={`w-4 h-4 transition-transform ${showServicesMenu ? 'rotate-180' : ''}`} 
-                fill="none" 
-                stroke="currentColor" 
-                viewBox="0 0 24 24"
-              >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-              </svg>
             </button>
-
-            {/* Services Dropdown Menu */}
-            {showServicesMenu && (
-              <div className="absolute top-full left-0 mt-2 w-56 bg-white border border-gold-metallic/50 rounded-lg shadow-xl z-40">
-                <div className="py-2">
-                  <Link
-                    href="/charity-support"
-                    onClick={() => setShowServicesMenu(false)}
-                    className="block px-4 py-2 text-gold-metallic hover:text-gold-bright hover:bg-gold-metallic/10 transition-colors text-sm font-medium"
-                  >
-                    Charity Support
+            {mobileServicesOpen ? (
+              <div className="space-y-2 pl-3">
+                {serviceLinks.map((link) => (
+                  <Link key={link.href} href={link.href} className={mobileNavLinkClass} onClick={closeMobileMenu}>
+                    {link.label}
                   </Link>
-                  <Link
-                    href="/services#immigration-fraud"
-                    onClick={() => setShowServicesMenu(false)}
-                    className="block px-4 py-2 text-gold-metallic hover:text-gold-bright hover:bg-gold-metallic/10 transition-colors text-sm font-medium"
-                  >
-                    Report Immigration Fraud
-                  </Link>
-                  <Link
-                    href="/study-abroad"
-                    onClick={() => setShowServicesMenu(false)}
-                    className="block px-4 py-2 text-gold-metallic hover:text-gold-bright hover:bg-gold-metallic/10 transition-colors text-sm font-medium"
-                  >
-                    Study Abroad Advice
-                  </Link>
-                  <Link
-                    href="/migration-advice"
-                    onClick={() => setShowServicesMenu(false)}
-                    className="block px-4 py-2 text-gold-metallic hover:text-gold-bright hover:bg-gold-metallic/10 transition-colors text-sm font-medium"
-                  >
-                    Migration Advice
-                  </Link>
-                  <Link
-                    href="/visit-visa"
-                    onClick={() => setShowServicesMenu(false)}
-                    className="block px-4 py-2 text-gold-metallic hover:text-gold-bright hover:bg-gold-metallic/10 transition-colors text-sm font-medium"
-                  >
-                    Visit Visa
-                  </Link>
-                  <Link
-                    href="/travel"
-                    onClick={() => setShowServicesMenu(false)}
-                    className="block px-4 py-2 text-gold-metallic hover:text-gold-bright hover:bg-gold-metallic/10 transition-colors text-sm font-medium"
-                  >
-                    Travel
-                  </Link>
-                  <Link
-                    href="/english-classes/govt-students"
-                    onClick={() => setShowServicesMenu(false)}
-                    className="block px-4 py-2 text-gold-metallic hover:text-gold-bright hover:bg-gold-metallic/10 transition-colors text-sm font-medium"
-                  >
-                    English Speaking Classes - Govt School Students
-                  </Link>
-                  <Link
-                    href="/english-classes/private-students"
-                    onClick={() => setShowServicesMenu(false)}
-                    className="block px-4 py-2 text-gold-metallic hover:text-gold-bright hover:bg-gold-metallic/10 transition-colors text-sm font-medium"
-                  >
-                    English Speaking Classes - Private School Students
-                  </Link>
-                  <Link
-                    href="/english-classes/adults"
-                    onClick={() => setShowServicesMenu(false)}
-                    className="block px-4 py-2 text-gold-metallic hover:text-gold-bright hover:bg-gold-metallic/10 transition-colors text-sm font-medium"
-                  >
-                    English Academy
-                  </Link>
-                  <Link
-                    href="/tutors"
-                    onClick={() => setShowServicesMenu(false)}
-                    className="block px-4 py-2 text-gold-metallic hover:text-gold-bright hover:bg-gold-metallic/10 transition-colors text-sm font-medium"
-                  >
-                    Serve society with GCMA - Tutors
-                  </Link>
-                </div>
+                ))}
               </div>
-            )}
-          </div>
+            ) : null}
 
-          {/* Global Nursing Registration Tagline with Dropdown */}
-          <div className="relative">
             <button
-              onClick={() => setShowNursingMenu(!showNursingMenu)}
-              className="text-gold-metallic hover:text-gold-bright font-semibold text-sm md:text-base transition-colors px-4 py-2 flex items-center gap-2"
+              type="button"
+              className={`${mobileNavLinkClass} w-full text-left`}
+              aria-expanded={mobileNursingOpen}
+              onClick={() => setMobileNursingOpen((open) => !open)}
             >
               Global nursing registration
-              <svg 
-                className={`w-4 h-4 transition-transform ${showNursingMenu ? 'rotate-180' : ''}`} 
-                fill="none" 
-                stroke="currentColor" 
+            </button>
+            {mobileNursingOpen ? (
+              <div className="space-y-2 pl-3">
+                {nursingLinks.map((link) => (
+                  <Link key={link.href} href={link.href} className={mobileNavLinkClass} onClick={closeMobileMenu}>
+                    {link.label}
+                  </Link>
+                ))}
+              </div>
+            ) : null}
+          </nav>
+        </div>
+      ) : null}
+
+      <nav className="absolute left-0 right-0 top-6 z-30 hidden px-8 md:block">
+        <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-center gap-6">
+          {primaryLinks.map((link) => (
+            <Link key={link.href} href={link.href} className={navLinkClass}>
+              {link.label}
+            </Link>
+          ))}
+
+          <div className="relative">
+            <button
+              type="button"
+              onClick={() => setShowServicesMenu(!showServicesMenu)}
+              className={`${navLinkClass} flex items-center gap-2`}
+            >
+              Services
+              <svg
+                className={`h-4 w-4 transition-transform ${showServicesMenu ? 'rotate-180' : ''}`}
+                fill="none"
+                stroke="currentColor"
                 viewBox="0 0 24 24"
+                aria-hidden="true"
               >
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
               </svg>
             </button>
 
-            {/* Global Nursing Registration Dropdown Menu */}
-            {showNursingMenu && (
-              <div className="absolute top-full left-0 mt-2 w-56 bg-white border border-gold-metallic/50 rounded-lg shadow-xl z-40">
+            {showServicesMenu ? (
+              <div className="absolute left-0 top-full z-40 mt-2 w-56 rounded-lg border border-gold-metallic/50 bg-white shadow-xl">
                 <div className="py-2">
-                  <Link
-                    href="/nurses/australia"
-                    onClick={() => setShowNursingMenu(false)}
-                    className="block px-4 py-2 text-gold-metallic hover:text-gold-bright hover:bg-gold-metallic/10 transition-colors text-sm font-medium"
-                  >
-                    Australia
-                  </Link>
-                  <Link
-                    href="/nurses/canada"
-                    onClick={() => setShowNursingMenu(false)}
-                    className="block px-4 py-2 text-gold-metallic hover:text-gold-bright hover:bg-gold-metallic/10 transition-colors text-sm font-medium"
-                  >
-                    Canada
-                  </Link>
-                  <Link
-                    href="/nurses/new-zealand"
-                    onClick={() => setShowNursingMenu(false)}
-                    className="block px-4 py-2 text-gold-metallic hover:text-gold-bright hover:bg-gold-metallic/10 transition-colors text-sm font-medium"
-                  >
-                    New Zealand
-                  </Link>
-                  <Link
-                    href="/nurses/germany"
-                    onClick={() => setShowNursingMenu(false)}
-                    className="block px-4 py-2 text-gold-metallic hover:text-gold-bright hover:bg-gold-metallic/10 transition-colors text-sm font-medium"
-                  >
-                    Germany
-                  </Link>
-                  <Link
-                    href="/nurses/malta"
-                    onClick={() => setShowNursingMenu(false)}
-                    className="block px-4 py-2 text-gold-metallic hover:text-gold-bright hover:bg-gold-metallic/10 transition-colors text-sm font-medium"
-                  >
-                    Malta
-                  </Link>
-                  <Link
-                    href="/nurses/denmark"
-                    onClick={() => setShowNursingMenu(false)}
-                    className="block px-4 py-2 text-gold-metallic hover:text-gold-bright hover:bg-gold-metallic/10 transition-colors text-sm font-medium"
-                  >
-                    Denmark
-                  </Link>
-                  <Link
-                    href="/nurses/united-kingdom"
-                    onClick={() => setShowNursingMenu(false)}
-                    className="block px-4 py-2 text-gold-metallic hover:text-gold-bright hover:bg-gold-metallic/10 transition-colors text-sm font-medium"
-                  >
-                    United Kingdom
-                  </Link>
-                  <Link
-                    href="/nurses/uae"
-                    onClick={() => setShowNursingMenu(false)}
-                    className="block px-4 py-2 text-gold-metallic hover:text-gold-bright hover:bg-gold-metallic/10 transition-colors text-sm font-medium"
-                  >
-                    UAE
-                  </Link>
-                  <Link
-                    href="/nurses/usa"
-                    onClick={() => setShowNursingMenu(false)}
-                    className="block px-4 py-2 text-gold-metallic hover:text-gold-bright hover:bg-gold-metallic/10 transition-colors text-sm font-medium"
-                  >
-                    USA
-                  </Link>
+                  {serviceLinks.map((link) => (
+                    <Link
+                      key={link.href}
+                      href={link.href}
+                      onClick={() => setShowServicesMenu(false)}
+                      className="block px-4 py-2 text-sm font-medium text-gold-metallic transition-colors hover:bg-gold-metallic/10 hover:text-gold-bright"
+                    >
+                      {link.label}
+                    </Link>
+                  ))}
                 </div>
               </div>
-            )}
+            ) : null}
           </div>
 
-          {/* Contact Us Tagline */}
-          <Link
-            href="/contact"
-            className="text-gold-metallic hover:text-gold-bright font-semibold text-sm md:text-base transition-colors px-4 py-2"
-          >
-            Contact Us
-          </Link>
+          <div className="relative">
+            <button
+              type="button"
+              onClick={() => setShowNursingMenu(!showNursingMenu)}
+              className={`${navLinkClass} flex items-center gap-2`}
+            >
+              Global nursing registration
+              <svg
+                className={`h-4 w-4 transition-transform ${showNursingMenu ? 'rotate-180' : ''}`}
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+
+            {showNursingMenu ? (
+              <div className="absolute left-0 top-full z-40 mt-2 w-56 rounded-lg border border-gold-metallic/50 bg-white shadow-xl">
+                <div className="py-2">
+                  {nursingLinks.map((link) => (
+                    <Link
+                      key={link.href}
+                      href={link.href}
+                      onClick={() => setShowNursingMenu(false)}
+                      className="block px-4 py-2 text-sm font-medium text-gold-metallic transition-colors hover:bg-gold-metallic/10 hover:text-gold-bright"
+                    >
+                      {link.label}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            ) : null}
+          </div>
         </div>
       </nav>
 
-      {/* Close dropdown when clicking outside */}
       {(showServicesMenu || showNursingMenu) && (
-        <div 
-          className="fixed inset-0 z-20" 
+        <div
+          className="fixed inset-0 z-20 hidden md:block"
           onClick={() => {
             setShowServicesMenu(false)
             setShowNursingMenu(false)
@@ -330,24 +257,84 @@ export default function Hero() {
         />
       )}
 
-      {/* Hero Image with all text details */}
-      {bgImage ? (
-        <div className="absolute inset-0 w-full h-full">
-          <img 
-            src={bgImage} 
-            alt="GCMA Hero" 
-            className="w-full h-full object-cover object-center"
-          />
-          {/* Report Scam Button */}
-          <div className="absolute bottom-8 md:bottom-12 left-1/2 transform -translate-x-1/2 z-20">
-            <Link href="/services#immigration-fraud" className="btn-gold text-lg px-8 py-4">
-              Report scam
-            </Link>
+      {hasHeroImage ? (
+        <>
+          <div className="absolute inset-0 hidden md:block">
+            <img
+              src={heroImage}
+              alt="GCMA Hero"
+              className="h-full w-full object-cover object-center"
+              loading="eager"
+              fetchPriority="high"
+              decoding="async"
+              onError={() => {
+                setHeroImageIndex((current) => current + 1)
+              }}
+            />
+            <div className="absolute bottom-12 left-1/2 z-20 w-[min(100%,20rem)] -translate-x-1/2 px-4">
+              <Link href="/services#immigration-fraud" className="btn-gold block w-full px-8 py-4 text-center text-lg">
+                Report scam
+              </Link>
+            </div>
           </div>
-        </div>
+
+          <div className="flex min-h-[100dvh] flex-col bg-[#f9f2e7] md:hidden">
+            <div className="h-14 shrink-0" aria-hidden="true" />
+
+            <div className="flex flex-1 flex-col px-4 pb-28 pt-4">
+              <div className="mx-auto flex w-full max-w-md justify-center">
+                <img
+                  src={heroImageCandidates[0]}
+                  alt="GCMA emblem"
+                  className="max-h-[38vh] w-full object-contain"
+                  loading="eager"
+                  fetchPriority="high"
+                  decoding="async"
+                  onError={(event) => {
+                    const target = event.currentTarget
+                    if (target.dataset.fallbackApplied === 'true') {
+                      target.classList.add('hidden')
+                      return
+                    }
+                    target.dataset.fallbackApplied = 'true'
+                    target.src = heroImageCandidates[1] ?? heroImageCandidates[2]
+                  }}
+                />
+              </div>
+
+              <div className="mx-auto mt-6 w-full max-w-md space-y-4 text-center">
+                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-gold-metallic/85">
+                  Migration awareness and social welfare
+                </p>
+                <h1 className="hero-main-title text-[1.75rem] font-bold leading-tight sm:text-3xl">
+                  Global Council for Migration Awareness and Social Welfare
+                </h1>
+                <p className="hero-subtitle-color text-sm font-semibold sm:text-base">GCMA</p>
+                <p className="text-sm italic leading-relaxed text-[#35063e]/90">
+                  Human rights are not optional. If you can smile while another suffers, you have forgotten what
+                  compassion means.
+                </p>
+                <p className="text-sm leading-relaxed text-[#35063e]/90">
+                  Justice, protection, and ethical guidance for students, nurses, families, and skilled professionals
+                  planning life abroad.
+                </p>
+              </div>
+            </div>
+
+            <div className="fixed bottom-0 left-0 right-0 z-30 border-t border-gold-metallic/20 bg-[#f9f2e7]/95 px-4 py-3 backdrop-blur">
+              <Link
+                href="/services#immigration-fraud"
+                className="btn-gold block w-full px-6 py-3 text-center text-base"
+                onClick={closeMobileMenu}
+              >
+                Report scam
+              </Link>
+            </div>
+          </div>
+        </>
       ) : (
-        <div className="flex items-center justify-center min-h-screen">
-          <Link href="/services" className="btn-gold text-lg px-8 py-4">
+        <div className="flex min-h-screen items-center justify-center px-4">
+          <Link href="/services" className="btn-gold px-8 py-4 text-lg">
             Get Started
           </Link>
         </div>

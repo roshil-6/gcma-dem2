@@ -16,6 +16,10 @@
   --light-placeholder: rgba(53, 6, 62, 0.5);
 }
 
+.text-shadow-strong {
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8), 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -23,7 +27,13 @@
 }
 
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 }
 
 body {
@@ -50,14 +60,17 @@ body.theme-dark {
 .hero-bg {
   filter: brightness(1.1) opacity(0.95);
 }
+
 body.theme-dark .hero-bg {
   filter: brightness(1.05) opacity(0.92);
 }
+
 .hero-overlay {
-  background: linear-gradient(180deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.12) 60%, rgba(255,255,255,0.15) 100%);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.12) 60%, rgba(255, 255, 255, 0.15) 100%);
 }
+
 body.theme-dark .hero-overlay {
-  background: linear-gradient(180deg, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0.35) 60%, rgba(0,0,0,0.40) 100%);
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.4) 60%, rgba(0, 0, 0, 0.2) 100%);
 }
 
 /* Hero text readability without dimming the background image */
@@ -77,6 +90,7 @@ body.theme-light .hero-main-title {
 .hero-main-title {
   color: #35063e;
 }
+
 body.theme-light .hero-main-title {
   color: #35063e;
 }
@@ -84,19 +98,24 @@ body.theme-light .hero-main-title {
 .hero-subtitle-color {
   color: var(--gold-metallic);
 }
+
 body.theme-dark .hero-subtitle-color {
   color: var(--gold-metallic);
 }
+
 body.theme-light .hero-subtitle-color {
   color: #35063e;
 }
 
 /* Topline + justice symbol: dark-gold in light theme, gold in dark theme */
 .hero-justice-symbol {
-  color: #b7903a; /* darker gold */
+  color: #b7903a;
+  /* darker gold */
 }
+
 body.theme-light .hero-justice-symbol {
-  color: #6f5317; /* even darker gold for light theme */
+  color: #6f5317;
+  /* even darker gold for light theme */
 }
 
 body.theme-light .hero-topline {
@@ -107,6 +126,7 @@ body.theme-light .hero-topline {
 .hero-topline {
   color: #35063e;
 }
+
 body.theme-dark .hero-topline {
   color: var(--gold-metallic);
   text-shadow: 0 2px 12px rgba(0, 0, 0, 0.55);
@@ -130,51 +150,269 @@ body.theme-light .hero-subtitle {
     0 2px 14px rgba(53, 6, 62, 0.25);
 }
 
-/* Light theme text visibility overrides */
-body.theme-light .text-gray-200 { color: #35063e !important; }
-body.theme-light .text-gray-300 { color: #35063e !important; }
-body.theme-light .text-gray-400 { color: #35063e !important; }
-body.theme-light .text-gray-500 { color: #35063e !important; }
-body.theme-light .text-gray-600 { color: #35063e !important; }
-body.theme-light .text-white { color: #35063e !important; }
-body.theme-light .text-gold-metallic { color: #9b7b2a !important; }
-body.theme-light .text-gold-metallic\/90 { color: rgba(155, 123, 42, 0.9) !important; }
-body.theme-light .text-gold-metallic\/70 { color: rgba(155, 123, 42, 0.7) !important; }
-body.theme-light .text-gold-metallic\/80 { color: rgba(155, 123, 42, 0.8) !important; }
+/* Light theme text visibility overrides - NO VIOLET TEXT */
+body.theme-light .text-gray-200 {
+  color: #1a1a1a !important;
+}
+
+body.theme-light .text-gray-300 {
+  color: #1a1a1a !important;
+}
+
+body.theme-light .text-gray-400 {
+  color: #1a1a1a !important;
+}
+
+body.theme-light .text-gray-500 {
+  color: #1a1a1a !important;
+}
+
+body.theme-light .text-gray-600 {
+  color: #1a1a1a !important;
+}
+
+body.theme-light .text-gold-metallic {
+  color: #9b7b2a !important;
+}
+
+body.theme-light .text-gold-metallic\/90 {
+  color: rgba(155, 123, 42, 0.9) !important;
+}
+
+body.theme-light .text-gold-metallic\/70 {
+  color: rgba(155, 123, 42, 0.7) !important;
+}
+
+body.theme-light .text-gold-metallic\/80 {
+  color: rgba(155, 123, 42, 0.8) !important;
+}
 
 /* Fix dark backgrounds in light theme */
-body.theme-light .bg-black\/30 { 
-  background: rgba(243, 239, 230, 0.5) !important; 
+body.theme-light .bg-black\/30 {
+  background: rgba(243, 239, 230, 0.5) !important;
   border-color: rgba(201, 169, 97, 0.3) !important;
 }
 
-/* Keep white text on dark cards - override light theme violet text */
+/* Keep white text on dark cards - override light theme violet text - COMPREHENSIVE */
 body.theme-light .bg-black\/70 .text-white,
 body.theme-light .bg-black\/70 h3.text-white,
 body.theme-light .bg-black\/70 p.text-white,
 body.theme-light .bg-black\/70 h4.text-white,
 body.theme-light .bg-black\/70 h2.text-white,
 body.theme-light .bg-black\/70 h1.text-white,
-body.theme-light [class*="bg-black"] .text-white,
+body.theme-light .bg-black\/70 span.text-white,
+body.theme-light .bg-black\/70 div.text-white,
+body.theme-light .bg-black\/70 li.text-white,
+body.theme-light [class*='bg-black'] .text-white,
+body.theme-light [class*='bg-black'] .text-gray-300,
+body.theme-light [class*='bg-black'] .text-gray-200,
+body.theme-light [class*='bg-black'] .text-gray-400,
 body.theme-light .rounded-2xl.bg-black\/70 .text-white,
 body.theme-light .rounded-2xl.bg-black\/70 h3,
-body.theme-light .rounded-2xl.bg-black\/70 p {
+body.theme-light .rounded-2xl.bg-black\/70 p,
+body.theme-light .rounded-2xl.bg-black\/70 span,
+body.theme-light .glass-card .text-white,
+body.theme-light .glass-card .text-gray-300,
+body.theme-light .glass-card .text-gray-200,
+body.theme-light .glass-card .text-gray-400,
+body.theme-light .glass-card p,
+body.theme-light .glass-card span,
+body.theme-light .glass-card div,
+body.theme-light .glass-card h1,
+body.theme-light .glass-card h2,
+body.theme-light .glass-card h3,
+body.theme-light .glass-card h4 {
   color: #ffffff !important;
 }
-body.theme-light .bg-black\/80 { 
-  background: rgba(243, 239, 230, 0.9) !important; 
+
+/* Ensure ALL text on glass cards is visible (white) - COMPREHENSIVE FIX */
+.glass-card .text-gray-300,
+.glass-card .text-gray-200,
+.glass-card .text-gray-400,
+.glass-card .text-gray-500,
+.glass-card p,
+.glass-card span,
+.glass-card div,
+.glass-card li,
+.glass-card h1,
+.glass-card h2,
+.glass-card h3,
+.glass-card h4,
+.glass-card h5,
+.glass-card h6 {
+  color: #ffffff !important;
 }
-body.theme-light .bg-black\/30 p { 
+
+/* Force white text on ALL dark backgrounds */
+.bg-black\/70 .text-gray-300,
+.bg-black\/70 .text-gray-200,
+.bg-black\/70 .text-gray-400,
+.bg-black\/80 .text-gray-300,
+.bg-black\/80 .text-gray-200,
+.bg-black\/80 .text-gray-400,
+[class*='bg-black'] .text-gray-300,
+[class*='bg-black'] .text-gray-200,
+[class*='bg-black'] .text-gray-400 {
+  color: #ffffff !important;
+}
+
+/* Ensure normal boxes (cream/light backgrounds) have black text, not white or violet */
+body.theme-light .bg-\[#f9f2e7\] .text-white,
+body.theme-light .bg-\[#f9f2e7\] p.text-white,
+body.theme-light .bg-\[#f9f2e7\] h3.text-white,
+body.theme-light .bg-\[#f9f2e7\] h2.text-white,
+body.theme-light .bg-\[#f9f2e7\] h1.text-white {
+  color: #1a1a1a !important;
+}
+
+/* Force black text on light backgrounds - NO VIOLET */
+.bg-\[#f9f2e7\] .text-\[#1f1b2d\],
+.bg-\[#f9f2e7\] p,
+.bg-\[#f9f2e7\] h1,
+.bg-\[#f9f2e7\] h2,
+.bg-\[#f9f2e7\] h3,
+.bg-\[#f9f2e7\] h4,
+.bg-\[#f9f2e7\] span,
+.bg-\[#f9f2e7\] li {
+  color: #1a1a1a !important;
+}
+
+/* Dark theme: white text on dark cards, black text on light cards - COMPREHENSIVE */
+.bg-black\/70 .text-white,
+.bg-black\/70 p.text-white,
+.bg-black\/70 h3.text-white,
+.bg-black\/70 h2.text-white,
+.bg-black\/70 h1.text-white,
+.bg-black\/70 span.text-white,
+.bg-black\/70 div.text-white,
+.bg-black\/70 li.text-white,
+.bg-black\/70 .text-white,
+.bg-black\/80 .text-white,
+.bg-black\/80 p,
+.bg-black\/80 span,
+.bg-black\/80 h1,
+.bg-black\/80 h2,
+.bg-black\/80 h3,
+.bg-black\/80 h4,
+[class*='bg-black'] .text-white,
+[class*='bg-black'] p,
+[class*='bg-black'] span {
+  color: #ffffff !important;
+}
+
+.bg-\[#f9f2e7\] .text-white,
+.bg-\[#f9f2e7\] p.text-white,
+.bg-\[#f9f2e7\] h3.text-white,
+.bg-\[#f9f2e7\] h2.text-white,
+.bg-\[#f9f2e7\] h1.text-white {
+  color: #1f1b2d !important;
+}
+
+/* REMOVED - These were causing visibility issues */
+/* body.theme-light .bg-black\/80 { 
+  background: rgba(243, 239, 230, 0.9) !important; 
+} */
+/* body.theme-light .bg-black\/30 p { 
   color: #35063e !important; 
+} */
+
+/* Force white text on bg-black/80 and bg-black/30 in light theme */
+body.theme-light .bg-black\/80 .text-white,
+body.theme-light .bg-black\/80 .text-gray-300,
+body.theme-light .bg-black\/80 .text-gray-200,
+body.theme-light .bg-black\/80 p,
+body.theme-light .bg-black\/80 span,
+body.theme-light .bg-black\/30 .text-white,
+body.theme-light .bg-black\/30 .text-gray-300,
+body.theme-light .bg-black\/30 .text-gray-200,
+body.theme-light .bg-black\/30 p,
+body.theme-light .bg-black\/30 span {
+  color: #ffffff !important;
 }
 
 /* Glassmorphism utility classes */
 .glass-card {
-  background: rgba(10, 10, 10, 0.6);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  background: rgba(10, 10, 10, 0.78);
   border: 1px solid rgba(201, 169, 97, 0.3);
   box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+@supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  @media (min-width: 1024px) and (prefers-reduced-motion: no-preference) {
+    .glass-card {
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+    }
+  }
+}
+
+/* DEFAULT: Glass cards have dark background, so text should be WHITE (for dark theme) */
+body.theme-dark .glass-card p,
+body.theme-dark .glass-card span,
+body.theme-dark .glass-card div,
+body.theme-dark .glass-card h1,
+body.theme-dark .glass-card h2,
+body.theme-dark .glass-card h3,
+body.theme-dark .glass-card h4,
+body.theme-dark .glass-card h5,
+body.theme-dark .glass-card h6,
+body.theme-dark .glass-card li,
+body.theme-dark .glass-card .text-white,
+body.theme-dark .glass-card .text-gray-300,
+body.theme-dark .glass-card .text-gray-200,
+.glass-card p,
+.glass-card span,
+.glass-card div,
+.glass-card h1,
+.glass-card h2,
+.glass-card h3,
+.glass-card h4,
+.glass-card h5,
+.glass-card h6,
+.glass-card li,
+.glass-card .text-white,
+.glass-card .text-gray-300,
+.glass-card .text-gray-200 {
+  color: #ffffff !important;
+}
+
+/* Exception: gold text should stay gold */
+.glass-card .text-gold-metallic,
+.glass-card [class*='text-gold'] {
+  color: var(--gold-metallic) !important;
+}
+
+/* CRITICAL: Text NOT in cards on light/cream backgrounds MUST be black */
+/* Simplified selectors to avoid syntax issues */
+
+/* CRITICAL FIX: Text on light/cream background (NOT in dark cards) must be BLACK */
+/* BUT: Keep white text inside dark cards/containers - HIGHER SPECIFICITY FIRST */
+body.theme-light [class*='bg-black'] .text-white,
+body.theme-light [class*='bg-black'] p,
+body.theme-light [class*='bg-black'] span,
+body.theme-light [class*='bg-black'] div,
+body.theme-light [class*='bg-black'] h1,
+body.theme-light [class*='bg-black'] h2,
+body.theme-light [class*='bg-black'] h3,
+body.theme-light [class*='bg-black'] h4,
+body.theme-light [class*='rounded-2xl'][class*='bg-black'] .text-white,
+body.theme-light [class*='rounded-xl'][class*='bg-black'] .text-white,
+body.theme-light [class*='backdrop-blur'] .text-white,
+body.theme-light [class*='backdrop-blur'] p,
+body.theme-light div[class*='bg-black'] .text-white,
+body.theme-light section[class*='bg-black'] .text-white {
+  color: #ffffff !important;
+  /* White inside dark containers */
+}
+
+/* Default: text-white on light theme background (NOT in dark containers) = BLACK */
+body.theme-light .text-white {
+  color: #1a1a1a !important;
+}
+
+/* Also for dark theme - ensure proper contrast */
+body.theme-dark .text-white {
+  color: #ffffff !important;
 }
 
 body.theme-light .glass-card {
@@ -182,6 +420,23 @@ body.theme-light .glass-card {
   border: 1px solid var(--light-card-border);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
   color: var(--light-text);
+}
+
+/* Light theme: only non-dark glass cards use dark copy */
+body.theme-light .glass-card:not(.dark-container) p,
+body.theme-light .glass-card:not(.dark-container) span,
+body.theme-light .glass-card:not(.dark-container) div,
+body.theme-light .glass-card:not(.dark-container) h1,
+body.theme-light .glass-card:not(.dark-container) h2,
+body.theme-light .glass-card:not(.dark-container) h3,
+body.theme-light .glass-card:not(.dark-container) h4,
+body.theme-light .glass-card:not(.dark-container) h5,
+body.theme-light .glass-card:not(.dark-container) h6,
+body.theme-light .glass-card:not(.dark-container) li,
+body.theme-light .glass-card:not(.dark-container) .text-white,
+body.theme-light .glass-card:not(.dark-container) .text-gray-300,
+body.theme-light .glass-card:not(.dark-container) .text-gray-200 {
+  color: #1a1a1a !important;
 }
 
 .glass-card:hover {
@@ -298,6 +553,7 @@ select.form-input:focus {
     opacity: 0;
     transform: translateY(30px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -305,7 +561,34 @@ select.form-input:focus {
 }
 
 .section-reveal {
-  animation: fadeInUp 0.8s ease-out;
+  animation: fadeInUp 0.28s ease-out;
+}
+
+main > section {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 640px;
+}
+
+@media (max-width: 768px) {
+  .section-reveal {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  .btn-gold-outline {
+    padding: 0.625rem 1rem;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .section-reveal {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
 }
 
 /* Tooltip fade-in animation */
@@ -314,6 +597,7 @@ select.form-input:focus {
     opacity: 0;
     transform: translateY(-5px) scale(0.95);
   }
+
   to {
     opacity: 1;
     transform: translateY(0) scale(1);
@@ -361,7 +645,7 @@ select.form-input:focus {
    
    Alternatively, if the background is a solid color, we can use CSS to make it transparent:
 */
-.statue-image[style*="background"] {
+.statue-image[style*='background'] {
   background: transparent !important;
 }
 
@@ -381,4 +665,255 @@ select.form-input:focus {
 
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(201, 169, 97, 0.7);
+}
+
+/* Fix for white text on white background issues in light mode */
+body.theme-light h1:not([class*='text-']):not(.text-gold-metallic),
+body.theme-light h2:not([class*='text-']):not(.text-gold-metallic),
+body.theme-light h3:not([class*='text-']):not(.text-gold-metallic),
+body.theme-light h4:not([class*='text-']):not(.text-gold-metallic),
+body.theme-light p:not([class*='text-']):not(.text-gold-metallic),
+body.theme-light span:not([class*='text-']):not(.text-gold-metallic),
+body.theme-light li:not([class*='text-']):not(.text-gold-metallic),
+body.theme-light div:not([class*='text-']):not([class*='glass-card']):not(.text-gold-metallic) {
+  color: #1a1a1a;
+}
+
+/* Ensure text inside dark containers remains white AND background stays dark */
+body.theme-light .dark-container {
+  background: rgba(10, 10, 10, 0.85) !important;
+  border-color: rgba(201, 169, 97, 0.3) !important;
+}
+
+body.theme-light .dark-container h1,
+body.theme-light .dark-container h2,
+body.theme-light .dark-container h3,
+body.theme-light .dark-container h4,
+body.theme-light .dark-container p,
+body.theme-light .dark-container span,
+body.theme-light .dark-container li,
+body.theme-light .dark-container div,
+body.theme-light .dark-container label,
+body.theme-light .dark-container .text-white,
+body.theme-light .dark-container .text-gray-200,
+body.theme-light .dark-container .text-gray-300,
+body.theme-light .dark-container .text-gray-400,
+body.theme-light .glass-card.dark-container p,
+body.theme-light .glass-card.dark-container span,
+body.theme-light .glass-card.dark-container div,
+body.theme-light .glass-card.dark-container li,
+body.theme-light .glass-card.dark-container label,
+body.theme-light .glass-card.dark-container .text-white,
+body.theme-light .glass-card.dark-container .text-gray-200,
+body.theme-light .glass-card.dark-container .text-gray-300,
+body.theme-light .glass-card.dark-container .text-gray-400,
+body.theme-light [class*='bg-black'] .text-white,
+body.theme-light [class*='from-black'] .text-white,
+body.theme-light [class*='to-black'] .text-white,
+body.theme-light [class*='bg-black'] p,
+body.theme-light [class*='from-black'] p,
+body.theme-light [class*='to-black'] p,
+body.theme-light [class*='bg-black'] span,
+body.theme-light [class*='from-black'] span,
+body.theme-light [class*='to-black'] span,
+body.theme-light [class*='bg-black'] li,
+body.theme-light [class*='from-black'] li,
+body.theme-light [class*='to-black'] li,
+body.theme-light [class*='bg-black'] label,
+body.theme-light [class*='from-black'] label,
+body.theme-light [class*='to-black'] label,
+body.theme-light [class*='bg-black'] .text-gray-200,
+body.theme-light [class*='from-black'] .text-gray-200,
+body.theme-light [class*='to-black'] .text-gray-200,
+body.theme-light [class*='bg-black'] .text-gray-300,
+body.theme-light [class*='from-black'] .text-gray-300,
+body.theme-light [class*='to-black'] .text-gray-300,
+body.theme-light [class*='bg-black'] .text-gray-400,
+body.theme-light [class*='from-black'] .text-gray-400,
+body.theme-light [class*='to-black'] .text-gray-400,
+body.theme-light [class*='bg-black'] .text-on-dark,
+body.theme-light [class*='from-black'] .text-on-dark,
+body.theme-light [class*='to-black'] .text-on-dark {
+  color: rgba(255, 255, 255, 0.92) !important;
+}
+
+body.theme-light .dark-container .text-gold-metallic,
+body.theme-light .glass-card.dark-container .text-gold-metallic,
+body.theme-light [class*='bg-black'] .text-gold-metallic,
+body.theme-light .dark-container [class*='text-gold'],
+body.theme-light .glass-card.dark-container [class*='text-gold'],
+body.theme-light [class*='bg-black'] [class*='text-gold'] {
+  color: var(--gold-bright) !important;
+}
+
+body.theme-light .dark-container .form-input,
+body.theme-light .glass-card.dark-container .form-input,
+body.theme-light .form-sheet.dark-container .form-input,
+body.theme-light [class*='bg-black'] .form-input {
+  background: rgba(255, 255, 255, 0.08) !important;
+  border-color: rgba(201, 169, 97, 0.35) !important;
+  color: #ffffff !important;
+}
+
+body.theme-light .dark-container .form-input::placeholder,
+body.theme-light .glass-card.dark-container .form-input::placeholder,
+body.theme-light .form-sheet.dark-container .form-input::placeholder,
+body.theme-light [class*='bg-black'] .form-input::placeholder {
+  color: rgba(255, 255, 255, 0.55) !important;
+}
+
+body.theme-light .dark-container select.form-input,
+body.theme-light .glass-card.dark-container select.form-input,
+body.theme-light .form-sheet.dark-container select.form-input,
+body.theme-light [class*='bg-black'] select.form-input {
+  background-color: rgba(0, 0, 0, 0.75) !important;
+  color: #ffffff !important;
+}
+
+body.theme-light .dark-container select.form-input option,
+body.theme-light .glass-card.dark-container select.form-input option,
+body.theme-light .form-sheet.dark-container select.form-input option,
+body.theme-light [class*='bg-black'] select.form-input option {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+}
+
+.text-on-dark,
+body.theme-light .text-on-dark,
+body.theme-light .dark-container .text-on-dark,
+body.theme-light [class*='bg-black'] .text-on-dark,
+body.theme-light .glass-card.dark-container .text-on-dark {
+  color: rgba(255, 255, 255, 0.92) !important;
+}
+
+.text-on-light {
+  color: var(--light-text);
+}
+
+body.theme-dark .text-on-light {
+  color: #f5f5f5;
+}
+
+.page-intro {
+  color: var(--light-text);
+  max-width: 48rem;
+}
+
+body.theme-dark .page-intro {
+  color: rgba(255, 255, 255, 0.92);
+}
+
+body.theme-light main > section .page-intro {
+  color: var(--light-text) !important;
+}
+
+.form-sheet {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-sheet-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(201, 169, 97, 0.22);
+}
+
+.form-sheet-description {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.88);
+}
+
+body.theme-light .form-sheet.dark-container .form-sheet-description {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.form-grid {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.form-grid-two {
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 768px) {
+  .form-grid-two {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.form-grid-one {
+  grid-template-columns: 1fr;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+
+.form-label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--gold-bright);
+}
+
+.form-required {
+  color: #f5d56a;
+}
+
+.form-hint {
+  font-size: 0.75rem;
+  line-height: 1.45;
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.form-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid rgba(201, 169, 97, 0.22);
+}
+
+.form-feedback {
+  border-radius: 0.75rem;
+  padding: 0.875rem 1rem;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.form-feedback-success {
+  color: #86efac;
+  background: rgba(34, 197, 94, 0.12);
+  border: 1px solid rgba(34, 197, 94, 0.35);
+}
+
+.form-feedback-error {
+  color: #fca5a5;
+  background: rgba(239, 68, 68, 0.12);
+  border: 1px solid rgba(239, 68, 68, 0.35);
+}
+
+.form-input,
+.form-textarea,
+.form-file {
+  width: 100%;
+}
+
+.form-textarea {
+  min-height: 7rem;
+  resize: vertical;
+}
+
+.form-file {
+  padding-top: 0.55rem;
+  padding-bottom: 0.55rem;
 }

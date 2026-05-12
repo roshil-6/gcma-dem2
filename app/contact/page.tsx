@@ -4,6 +4,7 @@ import { useState } from 'react'
 import HexagonBackground from '@/components/HexagonBackground'
 import GetInTouchSection from '@/components/GetInTouchSection'
 import Link from 'next/link'
+import { FormActions, FormField, FormGrid, FormSheet } from '@/components/FormSheet'
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -78,7 +79,7 @@ export default function ContactPage() {
           >
             Back to Home
           </Link>
-          <span className="text-xs md:text-sm text-gray-300">
+          <span className="text-xs md:text-sm text-white">
             Contact Us
           </span>
         </div>
@@ -90,13 +91,9 @@ export default function ContactPage() {
       {/* Contact Form Section */}
       <section className="py-12 md:py-16 px-4 relative z-10">
         <div className="max-w-4xl mx-auto">
-          <div className="glass-card rounded-2xl p-8 md:p-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-gold-metallic mb-8 text-center">
-              Contact Form
-            </h2>
-            
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="grid md:grid-cols-2 gap-6">
+          <FormSheet title="Contact Form" description="Share your details and our team will get back to you.">
+            <form onSubmit={handleSubmit} className="form-sheet">
+              <div className="form-grid form-grid-two">
                 {/* Your Name */}
                 <div>
                   <label htmlFor="name" className="block text-gold-metallic font-semibold mb-2">
@@ -241,7 +238,7 @@ export default function ContactPage() {
               </div>
 
               {/* Submit Button */}
-              <div className="flex justify-center pt-4">
+              <FormActions>
                 <button
                   type="submit"
                   disabled={isSubmitting}
@@ -249,20 +246,21 @@ export default function ContactPage() {
                 >
                   {isSubmitting ? 'Submitting...' : 'Submit'}
                 </button>
-              </div>
+              </FormActions>
 
-              {/* Submit Message */}
-              {submitMessage && (
-                <div className={`text-center p-4 rounded-lg ${
-                  submitMessage.includes('successfully') 
-                    ? 'bg-green-500/20 text-green-400 border border-green-500/30' 
-                    : 'bg-red-500/20 text-red-400 border border-red-500/30'
-                }`}>
+              {submitMessage ? (
+                <div
+                  className={`form-feedback ${
+                    submitMessage.includes('successfully')
+                      ? 'form-feedback-success'
+                      : 'form-feedback-error'
+                  }`}
+                >
                   {submitMessage}
                 </div>
-              )}
+              ) : null}
             </form>
-          </div>
+          </FormSheet>
         </div>
       </section>
     </main>

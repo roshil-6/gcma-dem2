@@ -395,7 +395,7 @@ export default function PRCalculatorPage() {
                 <div className="mt-6 p-6 rounded-lg bg-gold-metallic/10 border border-gold-metallic/40 text-center">
                   <p className="text-gold-metallic font-semibold mb-2">Your CRS Score</p>
                   <p className="text-4xl font-bold text-white">{result} points</p>
-                  <p className="text-sm text-gray-300 mt-4">
+                  <p className="text-sm text-white mt-4">
                     {result >= 470 ? 'Excellent! You have a strong chance of receiving an ITA.' : 
                      result >= 400 ? 'Good score! Consider improving language skills or gaining more experience.' :
                      'Consider improving your profile to increase your CRS score.'}

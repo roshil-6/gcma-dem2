@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect, useRef } from 'react'
+import { FormActions, FormField, FormSheet } from '@/components/FormSheet'
 
 export default function MigrationScamReportForm() {
   const [formData, setFormData] = useState({
@@ -57,14 +58,14 @@ export default function MigrationScamReportForm() {
           <h2 className="text-4xl md:text-5xl font-bold mb-4 text-gold-metallic">
             Migration Scam Report Form
           </h2>
-          <p className="text-lg text-gray-300 max-w-2xl mx-auto">
+          <p className="page-intro mx-auto text-lg max-w-2xl">
             Report immigration fraud or unethical practices. All information is confidential 
             and used solely for legal and investigative purposes.
           </p>
         </div>
 
-        <div className="glass-card rounded-2xl p-8 md:p-12">
-          <form onSubmit={handleSubmit} className="space-y-6">
+        <FormSheet title="Report Details" description="Provide as much detail as you can. Fields marked with * are required.">
+          <form onSubmit={handleSubmit} className="form-sheet">
             <div>
               <label
                 htmlFor="name"
@@ -178,7 +179,7 @@ export default function MigrationScamReportForm() {
               />
             </div>
 
-            <div className="bg-black/30 border border-gold-metallic/30 rounded-lg p-4 text-sm text-gray-300">
+            <div className="bg-black/30 border border-gold-metallic/30 rounded-lg p-4 text-sm text-white">
               <p className="font-semibold text-gold-metallic mb-2">Confidentiality Notice:</p>
               <p>
                 All information provided is strictly confidential and will be used only for 
@@ -187,11 +188,13 @@ export default function MigrationScamReportForm() {
               </p>
             </div>
 
-            <button type="submit" className="btn-gold w-full">
-              Register
-            </button>
+            <FormActions>
+              <button type="submit" className="btn-gold w-full md:w-auto md:min-w-[12rem]">
+                Register
+              </button>
+            </FormActions>
           </form>
-        </div>
+        </FormSheet>
       </div>
     </section>
   )

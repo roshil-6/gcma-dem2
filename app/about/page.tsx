@@ -1,4 +1,4 @@
-﻿import HexagonBackground from '@/components/HexagonBackground'
+import HexagonBackground from '@/components/HexagonBackground'
 import AboutGCMSection from '@/components/AboutGCMSection'
 import VisionMissionSection from '@/components/VisionMissionSection'
 import Link from 'next/link'
@@ -16,7 +16,7 @@ export default function AboutPage() {
           >
             Back to Home
           </Link>
-          <span className="text-xs md:text-sm text-gray-300">About GCMA</span>
+          <span className="text-xs md:text-sm text-white">About GCMA</span>
         </div>
       </nav>
 

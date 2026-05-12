@@ -1,35 +1,39 @@
 'use client'
 
-import { useEffect, useRef, useState, useCallback } from 'react'
+import { useEffect, useRef } from 'react'
 
 interface Hexagon {
+  baseX: number
+  baseY: number
+  size: number
+  opacity: number
+  rotation: number
+  phase: number
+}
+
+interface Spark {
   x: number
   y: number
   size: number
   opacity: number
-  rotation: number
-  baseX?: number
-  baseY?: number
+  drift: number
 }
 
 export default function HexagonBackground() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
-  const mousePosRef = useRef({ x: 0, y: 0 })
-  const scrollPosRef = useRef({ x: 0, y: 0 })
+  const mousePosRef = useRef({ x: -1000, y: -1000 })
   const hexagonsRef = useRef<Hexagon[]>([])
-  const animationFrameRef = useRef<number>()
-  const lastTimeRef = useRef<number>(0)
+  const sparksRef = useRef<Spark[]>([])
   const isMobileRef = useRef(false)
   const isLightThemeRef = useRef(true)
+  const reduceMotionRef = useRef(false)
+  const isVisibleRef = useRef(true)
+  const isScrollingRef = useRef(false)
+  const frameRef = useRef(0)
+  const scrollTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const animationFrameRef = useRef<number | null>(null)
+  const lastFrameTimeRef = useRef(0)
 
-  // Detect mobile device
-  useEffect(() => {
-    isMobileRef.current = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-      navigator.userAgent
-    ) || window.innerWidth < 768
-  }, [])
-
-  // Track theme changes (light vs dark) so particles stay visible in light theme
   useEffect(() => {
     const updateTheme = () => {
       isLightThemeRef.current = document.body.classList.contains('theme-light')
@@ -41,11 +45,6 @@ export default function HexagonBackground() {
     return () => observer.disconnect()
   }, [])
 
-  // Throttled mouse/touch handler
-  const handlePointerMove = useCallback((x: number, y: number) => {
-    mousePosRef.current = { x, y }
-  }, [])
-
   useEffect(() => {
     const canvas = canvasRef.current
     if (!canvas) return
@@ -53,63 +52,65 @@ export default function HexagonBackground() {
     const ctx = canvas.getContext('2d', { alpha: true })
     if (!ctx) return
 
-    const initializeHexagons = () => {
+    isMobileRef.current =
+      /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
+      window.innerWidth < 768
+    reduceMotionRef.current = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
+    let pointerThrottle: ReturnType<typeof setTimeout> | null = null
+
+    const initializeField = () => {
       const width = window.innerWidth
       const height = window.innerHeight
-      
-      // Initialize hexagons - more particles for richer background
-      const hexCount = isMobileRef.current ? 30 : 60
-      const baseSize = isMobileRef.current ? 25 : 35
-      const sizeRange = isMobileRef.current ? 35 : 50
-
-      // Better distribution - use grid-like spacing to avoid clustering
+      const hexCount = isMobileRef.current ? 18 : 34
+      const sparkCount = isMobileRef.current ? 24 : 48
+      const baseSize = isMobileRef.current ? 18 : 24
+      const sizeRange = isMobileRef.current ? 20 : 32
       const cols = Math.ceil(Math.sqrt(hexCount * (width / height)))
       const rows = Math.ceil(hexCount / cols)
       const cellWidth = width / cols
       const cellHeight = height / rows
 
-      hexagonsRef.current = Array.from({ length: hexCount }, (_, i) => {
-        // Grid-based positioning with random offset to avoid perfect grid
-        const col = i % cols
-        const row = Math.floor(i / cols)
+      hexagonsRef.current = Array.from({ length: hexCount }, (_, index) => {
+        const col = index % cols
+        const row = Math.floor(index / cols)
         const baseX = col * cellWidth + cellWidth / 2
         const baseY = row * cellHeight + cellHeight / 2
-        
-        // Add random offset within cell (max 40% of cell size)
-        const offsetX = (Math.random() - 0.5) * cellWidth * 0.4
-        const offsetY = (Math.random() - 0.5) * cellHeight * 0.4
-        
+        const offsetX = (Math.random() - 0.5) * cellWidth * 0.45
+        const offsetY = (Math.random() - 0.5) * cellHeight * 0.45
+
         return {
-          x: baseX + offsetX,
-          y: baseY + offsetY,
+          baseX: baseX + offsetX,
+          baseY: baseY + offsetY,
           size: baseSize + Math.random() * sizeRange,
-          opacity: 0.05 + Math.random() * 0.1,
+          opacity: 0.06 + Math.random() * 0.12,
           rotation: Math.random() * Math.PI * 2,
-          baseX: baseX, // Store original position for floating effect
-          baseY: baseY,
+          phase: Math.random() * Math.PI * 2,
         }
       })
+
+      sparksRef.current = Array.from({ length: sparkCount }, () => ({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        size: 1 + Math.random() * 2.2,
+        opacity: 0.12 + Math.random() * 0.28,
+        drift: Math.random() * Math.PI * 2,
+      }))
     }
 
     const resizeCanvas = () => {
-      const dpr = window.devicePixelRatio || 1
+      const dpr = Math.min(window.devicePixelRatio || 1, 1.5)
       const width = window.innerWidth
       const height = window.innerHeight
-      
+
       canvas.width = width * dpr
       canvas.height = height * dpr
-      ctx.scale(dpr, dpr)
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
       canvas.style.width = `${width}px`
       canvas.style.height = `${height}px`
-      
-      // Reinitialize hexagons on resize to distribute them properly
-      initializeHexagons()
+      initializeField()
     }
 
-    resizeCanvas()
-    window.addEventListener('resize', resizeCanvas)
-
-    // Optimized draw function - cache calculations
     const drawHexagon = (
       x: number,
       y: number,
@@ -121,71 +122,71 @@ export default function HexagonBackground() {
       ctx.translate(x, y)
       ctx.rotate(rotation)
       ctx.beginPath()
-      
-      // Pre-calculate hexagon points
-      for (let i = 0; i < 6; i++) {
+
+      for (let i = 0; i < 6; i += 1) {
         const angle = (Math.PI / 3) * i
         const hx = size * Math.cos(angle)
         const hy = size * Math.sin(angle)
         if (i === 0) ctx.moveTo(hx, hy)
         else ctx.lineTo(hx, hy)
       }
+
       ctx.closePath()
       const isLight = isLightThemeRef.current
-      const strokeOpacity = isLight ? Math.min(1, opacity * 2.2) : opacity
-      // Slightly deeper gold in light theme for contrast on cream backgrounds
+      const strokeOpacity = isLight ? Math.min(1, opacity * 2.4) : opacity
       const strokeRgb = isLight ? '164, 119, 35' : '201, 169, 97'
       ctx.strokeStyle = `rgba(${strokeRgb}, ${strokeOpacity})`
-      ctx.lineWidth = isLight ? 1.25 : 1
+      ctx.lineWidth = isLight ? 1.2 : 1
       ctx.stroke()
       ctx.restore()
     }
 
-    let lastUpdate = 0
-    const animationThrottleDelay = 50 // Same responsiveness on mobile and desktop
+    const drawSpark = (x: number, y: number, size: number, opacity: number) => {
+      const isLight = isLightThemeRef.current
+      const fillRgb = isLight ? '184, 134, 45' : '212, 175, 55'
+      ctx.beginPath()
+      ctx.arc(x, y, size, 0, Math.PI * 2)
+      ctx.fillStyle = `rgba(${fillRgb}, ${opacity})`
+      ctx.fill()
+    }
 
-    const animate = (currentTime: number) => {
-      // Throttle updates
-      if (currentTime - lastUpdate < animationThrottleDelay) {
-        animationFrameRef.current = requestAnimationFrame(animate)
+    const render = (timestamp: number) => {
+      animationFrameRef.current = window.requestAnimationFrame(render)
+
+      if (!isVisibleRef.current) return
+
+      const minFrameGap = reduceMotionRef.current
+        ? 0
+        : isMobileRef.current
+          ? 48
+          : 32
+
+      if (minFrameGap > 0 && timestamp - lastFrameTimeRef.current < minFrameGap) {
         return
       }
-      lastUpdate = currentTime
+      lastFrameTimeRef.current = timestamp
 
       const width = window.innerWidth
       const height = window.innerHeight
       ctx.clearRect(0, 0, width, height)
 
-      const time = currentTime * 0.001
+      if (isScrollingRef.current) return
+
+      frameRef.current += 1
+      const time = frameRef.current * 0.06
       const mouseX = mousePosRef.current.x
       const mouseY = mousePosRef.current.y
-      const scrollX = scrollPosRef.current.x
-      const scrollY = scrollPosRef.current.y
-      
-      // Increased interaction radius and intensity for mobile
-      const maxDistance = isMobileRef.current ? 350 : 400
-      const parallaxIntensity = isMobileRef.current ? 35 : 40
-      const repulsionStrength = isMobileRef.current ? 45 : 50
+      const maxDistance = isMobileRef.current ? 240 : 320
+      const maxDistanceSq = maxDistance * maxDistance
+      const parallaxIntensity = isMobileRef.current ? 18 : 28
+      const repulsionStrength = isMobileRef.current ? 26 : 36
+      const animateFloat = !reduceMotionRef.current
 
       hexagonsRef.current.forEach((hex, index) => {
-        // Calculate interaction point - combine mouse/touch and scroll on mobile
-        let interactionX = mouseX
-        let interactionY = mouseY
-        
-        if (isMobileRef.current && (scrollX !== 0 || scrollY !== 0)) {
-          // On mobile, blend touch position with scroll influence
-          const scrollInfluence = 0.3 // 30% influence from scroll
-          const touchInfluence = 0.7 // 70% influence from touch
-          interactionX = mouseX * touchInfluence + scrollX * scrollInfluence
-          interactionY = mouseY * touchInfluence + scrollY * scrollInfluence
-        }
-        
-        // Optimized distance calculation
-        const dx = interactionX - hex.x
-        const dy = interactionY - hex.y
+        const dx = mouseX - hex.baseX
+        const dy = mouseY - hex.baseY
         const distanceSq = dx * dx + dy * dy
-        const maxDistanceSq = maxDistance * maxDistance
-        
+
         let offsetX = 0
         let offsetY = 0
         let glowOpacity = hex.opacity
@@ -193,137 +194,118 @@ export default function HexagonBackground() {
         if (distanceSq < maxDistanceSq && distanceSq > 0) {
           const distance = Math.sqrt(distanceSq)
           const influence = 1 - distance / maxDistance
-          
-          // Repulsion effect - particles move away from mouse/touch/scroll
           const repulsionFactor = Math.min(1, repulsionStrength / distance)
           offsetX = -(dx / distance) * parallaxIntensity * influence * repulsionFactor
           offsetY = -(dy / distance) * parallaxIntensity * influence * repulsionFactor
 
-          // Glow effect - reduced calculation
-          if (distance < 150) {
-            glowOpacity = hex.opacity + (1 - distance / 150) * 0.15
+          if (distance < 140) {
+            glowOpacity = hex.opacity + (1 - distance / 140) * 0.22
           }
         }
 
-        // Enhanced floating animation - particles float around their base position
-        const floatX = Math.sin(time * 0.3 + index * 0.7) * 3
-        const floatY = Math.cos(time * 0.4 + index * 0.6) * 3
-        
-        // Use base position if available, otherwise use current position
-        const baseX = hex.baseX !== undefined ? hex.baseX : hex.x
-        const baseY = hex.baseY !== undefined ? hex.baseY : hex.y
+        const floatX = animateFloat ? Math.sin(time * 0.45 + hex.phase + index * 0.35) * 3.5 : 0
+        const floatY = animateFloat ? Math.cos(time * 0.5 + hex.phase + index * 0.28) * 3.5 : 0
+        const rotation = animateFloat ? hex.rotation + time * 0.03 : hex.rotation
 
         drawHexagon(
-          baseX + offsetX + floatX,
-          baseY + offsetY + floatY,
+          hex.baseX + offsetX + floatX,
+          hex.baseY + offsetY + floatY,
           hex.size,
           glowOpacity,
-          hex.rotation + time * 0.05
+          rotation
         )
       })
 
-      animationFrameRef.current = requestAnimationFrame(animate)
-    }
+      sparksRef.current.forEach((spark, index) => {
+        const dx = mouseX - spark.x
+        const dy = mouseY - spark.y
+        const distanceSq = dx * dx + dy * dy
+        let x = spark.x
+        let y = spark.y
+        let opacity = spark.opacity
 
-    animationFrameRef.current = requestAnimationFrame(animate)
-
-    // Mouse and touch event handlers with optimized throttling
-    let mouseThrottle: NodeJS.Timeout | null = null
-    const eventThrottleDelay = 16 // ~60fps for smooth interactions
-    
-    const handleMouseMove = (e: MouseEvent) => {
-      if (!mouseThrottle) {
-        handlePointerMove(e.clientX, e.clientY)
-        mouseThrottle = setTimeout(() => {
-          mouseThrottle = null
-        }, eventThrottleDelay)
-      }
-    }
-
-    const handleTouchStart = (e: TouchEvent) => {
-      if (e.touches.length > 0) {
-        const touch = e.touches[0]
-        handlePointerMove(touch.clientX, touch.clientY)
-      }
-    }
-
-    const handleTouchMove = (e: TouchEvent) => {
-      if (e.touches.length > 0) {
-        const touch = e.touches[0]
-        if (!mouseThrottle) {
-          handlePointerMove(touch.clientX, touch.clientY)
-          mouseThrottle = setTimeout(() => {
-            mouseThrottle = null
-          }, eventThrottleDelay)
+        if (distanceSq < maxDistanceSq && distanceSq > 0) {
+          const distance = Math.sqrt(distanceSq)
+          const influence = 1 - distance / maxDistance
+          const push = influence * 0.35
+          x -= (dx / distance) * push * 18
+          y -= (dy / distance) * push * 18
+          opacity = Math.min(0.85, spark.opacity + influence * 0.35)
         }
-      }
+
+        if (animateFloat) {
+          x += Math.cos(time * 0.8 + spark.drift + index) * 0.8
+          y += Math.sin(time * 0.7 + spark.drift + index) * 0.8
+        }
+
+        drawSpark(x, y, spark.size, opacity)
+      })
     }
 
-    const handleTouchEnd = () => {
-      // Keep last touch position for smooth transition
-      // Don't reset immediately to allow particles to settle
+    const handleVisibility = () => {
+      isVisibleRef.current = document.visibilityState === 'visible'
     }
 
-    // Scroll handler for mobile - particles react to scroll position
+    const handlePointerEvent = (x: number, y: number) => {
+      if (pointerThrottle) return
+      mousePosRef.current = { x, y }
+      pointerThrottle = setTimeout(() => {
+        pointerThrottle = null
+      }, 24)
+    }
+
     const handleScroll = () => {
-      if (isMobileRef.current) {
-        const scrollY = window.scrollY
-        const scrollX = window.scrollX
-        const centerX = window.innerWidth / 2
-        const centerY = window.innerHeight / 2
-        
-        // Create dynamic interaction point based on scroll
-        // Particles react to scroll position relative to viewport center
-        const scrollInfluenceX = (scrollX / window.innerWidth) * 200 // Max 200px offset
-        const scrollInfluenceY = (scrollY / window.innerHeight) * 200 // Max 200px offset
-        
-        scrollPosRef.current = {
-          x: centerX + scrollInfluenceX,
-          y: centerY + scrollInfluenceY
-        }
+      isScrollingRef.current = true
+      if (scrollTimeoutRef.current) {
+        clearTimeout(scrollTimeoutRef.current)
+      }
+      scrollTimeoutRef.current = setTimeout(() => {
+        isScrollingRef.current = false
+      }, 90)
+    }
+
+    resizeCanvas()
+
+    if (!reduceMotionRef.current) {
+      animationFrameRef.current = window.requestAnimationFrame(render)
+    } else {
+      render(performance.now())
+    }
+
+    const onResize = () => resizeCanvas()
+    const onPointerMove = (event: PointerEvent) => handlePointerEvent(event.clientX, event.clientY)
+    const onTouchMove = (event: TouchEvent) => {
+      if (event.touches.length > 0) {
+        handlePointerEvent(event.touches[0].clientX, event.touches[0].clientY)
       }
     }
 
-    // Use pointer events for better cross-device support
-    const handlePointerEvent = (e: PointerEvent) => {
-      if (!mouseThrottle) {
-        handlePointerMove(e.clientX, e.clientY)
-        mouseThrottle = setTimeout(() => {
-          mouseThrottle = null
-        }, eventThrottleDelay)
-      }
-    }
-
-    // Add all event listeners for maximum compatibility
-    window.addEventListener('mousemove', handleMouseMove, { passive: true })
-    window.addEventListener('touchstart', handleTouchStart, { passive: true })
-    window.addEventListener('touchmove', handleTouchMove, { passive: true })
-    window.addEventListener('touchend', handleTouchEnd, { passive: true })
-    window.addEventListener('pointermove', handlePointerEvent, { passive: true })
+    window.addEventListener('resize', onResize)
+    window.addEventListener('pointermove', onPointerMove, { passive: true })
+    window.addEventListener('touchmove', onTouchMove, { passive: true })
     window.addEventListener('scroll', handleScroll, { passive: true })
+    document.addEventListener('visibilitychange', handleVisibility)
 
     return () => {
-      window.removeEventListener('resize', resizeCanvas)
-      window.removeEventListener('mousemove', handleMouseMove)
-      window.removeEventListener('touchstart', handleTouchStart)
-      window.removeEventListener('touchmove', handleTouchMove)
-      window.removeEventListener('touchend', handleTouchEnd)
-      window.removeEventListener('pointermove', handlePointerEvent)
+      window.removeEventListener('resize', onResize)
+      window.removeEventListener('pointermove', onPointerMove)
+      window.removeEventListener('touchmove', onTouchMove)
       window.removeEventListener('scroll', handleScroll)
+      document.removeEventListener('visibilitychange', handleVisibility)
       if (animationFrameRef.current) {
-        cancelAnimationFrame(animationFrameRef.current)
+        window.cancelAnimationFrame(animationFrameRef.current)
       }
-      if (mouseThrottle) {
-        clearTimeout(mouseThrottle)
-      }
+      if (pointerThrottle) clearTimeout(pointerThrottle)
+      if (scrollTimeoutRef.current) clearTimeout(scrollTimeoutRef.current)
     }
-  }, [handlePointerMove])
+  }, [])
 
   return (
     <canvas
       ref={canvasRef}
       className="fixed inset-0 pointer-events-none z-0"
       style={{ background: 'transparent' }}
+      aria-hidden="true"
     />
   )
 }

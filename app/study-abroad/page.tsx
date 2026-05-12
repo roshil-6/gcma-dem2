@@ -1,67 +1,234 @@
 'use client'
 
 import { useState } from 'react'
+import dynamic from 'next/dynamic'
 import Image from 'next/image'
 import Link from 'next/link'
-import HexagonBackground from '@/components/HexagonBackground'
+import ShowcaseCard from '@/components/ShowcaseCard'
+
+const HexagonBackground = dynamic(() => import('@/components/HexagonBackground'), {
+  ssr: false,
+})
 
 const studyCountries = [
   {
     name: 'Australia',
-    description: 'Top-ranked universities with world-class education',
-    features: ['Work while studying', 'Post-study work visa', 'PR pathway'],
-    image: '/study-abroad/australia.jpg'
+    tagline: 'World-class education with recognized post-study opportunities',
+    description: 'Study at globally ranked institutions with pathways to professional development',
+    features: [
+      'Part-time work rights during studies',
+      'Post-study work visa options available',
+      'Pathways to skilled migration programs'
+    ],
+    image: '/study-abroad/flags/australia.png',
+    altTagline: 'Excellence in education with international recognition'
   },
   {
     name: 'Germany',
-    description: 'Fully funded programs available. Fly to Germany via Dubai',
-    features: ['100% Funded Programs', 'Low tuition fees', 'Strong job market'],
-    image: '/study-abroad/germany.jpg'
+    tagline: 'Affordable excellence with strong career prospects',
+    description: 'Access quality education with low or no tuition fees at public universities',
+    features: [
+      'Public universities with minimal tuition fees',
+      'Strong demand for skilled professionals',
+      'EU residence permit pathways for graduates'
+    ],
+    image: '/study-abroad/flags/germany.png',
+    altTagline: 'Quality education without financial burden'
   },
   {
     name: 'Denmark',
-    description: 'Engineers top choice. Spouse & kid visa friendly',
-    features: ['Engineering programs', 'Family-friendly', 'High quality of life'],
-    image: '/study-abroad/denmark.jpg'
+    tagline: 'Engineering excellence in a family-friendly environment',
+    description: 'Ideal destination for technical programs with spouse and dependent visa options',
+    features: [
+      'Family visa options for spouses and children',
+      'Strong engineering and technical programs',
+      'High standard of living and work-life balance'
+    ],
+    image: '/study-abroad/flags/denmark.png',
+    altTagline: 'Technical education with family support'
   },
   {
     name: 'Sweden',
-    description: 'Management programs. Spouse & kid visa friendly',
-    features: ['Business programs', 'Family-friendly', 'Innovation hub'],
-    image: '/study-abroad/sweden.jpg'
+    tagline: 'Innovation-focused education in a progressive society',
+    description: 'Business and management programs in one of Europe\'s most innovative economies',
+    features: [
+      'Family-friendly visa policies',
+      'Strong business and management programs',
+      'Innovation-driven economy with career opportunities'
+    ],
+    image: '/study-abroad/flags/sweden.png',
+    altTagline: 'Business excellence in a progressive environment'
   },
   {
     name: 'France',
-    description: 'Paris - Perfect destination for fashion lovers',
-    features: ['Fashion & design', 'Rich culture', 'EU opportunities'],
-    image: '/study-abroad/france.jpg'
+    tagline: 'Cultural richness meets academic excellence',
+    description: 'Study in Paris and across France with access to European opportunities',
+    features: [
+      'Renowned programs in arts, fashion, and design',
+      'Rich cultural and historical heritage',
+      'Access to broader European Union opportunities'
+    ],
+    image: '/study-abroad/flags/france.png',
+    altTagline: 'Academic excellence in the heart of Europe'
   },
   {
     name: 'Malta',
-    description: 'Ideal for nursing. Up to 70% tuition fee refund',
-    features: ['Nursing programs', 'Tuition refund', 'English speaking'],
-    image: '/study-abroad/malta.jpg'
+    tagline: 'English-speaking gateway with healthcare focus',
+    description: 'Ideal for healthcare professionals with potential tuition support programs',
+    features: [
+      'English as the primary language of instruction',
+      'Strong healthcare and nursing programs',
+      'Potential tuition refund schemes for eligible students'
+    ],
+    image: '/study-abroad/flags/malta.png',
+    altTagline: 'Healthcare education in an English-speaking EU country'
   },
   {
     name: 'Latvia',
-    description: 'Easy entry to Schengen Zone. Lowest tuition fee',
-    features: ['Affordable fees', 'Schengen access', 'EU gateway'],
-    image: '/study-abroad/latvia.jpg'
+    tagline: 'Affordable European education with Schengen access',
+    description: 'Cost-effective study option with access to the broader European region',
+    features: [
+      'Competitive tuition fees',
+      'Schengen visa access for travel',
+      'Gateway to European Union opportunities'
+    ],
+    image: '/study-abroad/flags/latvia.png',
+    altTagline: 'European education at accessible costs'
   }
+]
+
+const studyAbroadProcessSteps = [
+  {
+    step: '01',
+    title: 'Initial Consultation',
+    description:
+      'We begin with a detailed consultation to understand your academic background, career goals, and study preferences. Our experts assess your profile and recommend the best-fit countries and programs.',
+    image: '/study-abroad/consultation.jpg',
+  },
+  {
+    step: '02',
+    title: 'Program Selection',
+    description:
+      'Based on your profile, we help you identify suitable universities and programs. We provide detailed information about course structures, admission requirements, and career prospects for each option.',
+    image: '/study-abroad/program-selection.jpg',
+  },
+  {
+    step: '03',
+    title: 'Application Preparation',
+    description:
+      'Our team assists with document preparation, including transcripts, recommendation letters, and personal statements. We ensure all requirements are met and applications are submitted on time.',
+    image: '/study-abroad/application-prep.jpg',
+  },
+  {
+    step: '04',
+    title: 'Visa & Documentation',
+    description:
+      'We guide you through the visa application process, helping with documentation, financial proof, and interview preparation. Our support continues until your visa is approved.',
+    image: '/study-abroad/visa-docs.jpg',
+  },
+  {
+    step: '05',
+    title: 'Pre-Departure Support',
+    description:
+      "Before you leave, we provide orientation sessions, accommodation assistance, and travel arrangements. We ensure you're fully prepared for your new academic journey abroad.",
+    image: '/study-abroad/pre-departure.jpg',
+  },
+  {
+    step: '06',
+    title: 'Ongoing Assistance',
+    description:
+      "Even after you arrive, we maintain contact to help with any challenges. From academic support to cultural integration, we're here to ensure your success throughout your studies.",
+    image: '/study-abroad/ongoing-support.jpg',
+  },
+]
+
+const studyAbroadServiceBenefits = [
+  {
+    title: 'Personalized Guidance',
+    description:
+      "Every student receives customized advice based on their unique profile, goals, and preferences. We don't believe in one-size-fits-all solutions.",
+    image: '/study-abroad/personalized-guidance.jpg',
+  },
+  {
+    title: 'Scholarship Assistance',
+    description:
+      'We help identify and apply for scholarships, grants, and funding opportunities to make your education affordable and accessible.',
+    image: '/study-abroad/scholarship.jpg',
+  },
+  {
+    title: 'University Partnerships',
+    description:
+      'Our established relationships with universities worldwide give you access to exclusive programs and streamlined admission processes.',
+    image: '/study-abroad/partnerships.jpg',
+  },
+  {
+    title: 'Multi-Country Options',
+    description:
+      'We offer programs across 7+ countries, allowing you to explore the best fit for your academic and career aspirations.',
+    image: '/study-abroad/multi-country-options.jpg',
+  },
+  {
+    title: 'Document Support',
+    description:
+      'From transcript evaluation to visa documentation, we handle all paperwork to ensure accuracy and timely submission.',
+    image: '/study-abroad/document-support.jpg',
+  },
+  {
+    title: 'Career Counseling',
+    description:
+      'Our career advisors help you choose programs that align with your professional goals and provide insights into job markets abroad.',
+    image: '/study-abroad/career-counseling.jpg',
+  },
+  {
+    title: 'Accommodation Help',
+    description:
+      'We assist with finding suitable housing options, from university dormitories to private accommodations in your destination country.',
+    image: '/study-abroad/accommodation-help.jpg',
+  },
+  {
+    title: 'Travel Arrangements',
+    description:
+      'We help coordinate flights, airport transfers, and initial orientation to ensure a smooth transition to your new academic environment.',
+    image: '/study-abroad/travel-arrangements.jpg',
+  },
+  {
+    title: '24/7 Support',
+    description:
+      'Our support team is available to answer questions and provide assistance whenever you need help, even after you arrive at your destination.',
+    image: '/study-abroad/support-247.jpg',
+  },
 ]
 
 export default function StudyAbroadPage() {
   const [showConsultationForm, setShowConsultationForm] = useState(false)
+  const [openFAQ, setOpenFAQ] = useState<number | null>(null)
+  const whyStudyCards = [
+    {
+      title: 'To Study',
+      image: '/study-abroad/to-study-new.jpg',
+      description: 'World-class education at top-ranked universities',
+    },
+    {
+      title: 'To Work',
+      image: '/study-abroad/to-work-new.jpg',
+      description: 'Work opportunities while studying and after graduation',
+    },
+    {
+      title: 'To Gain PR',
+      image: '/study-abroad/to-gain-pr-new.jpg',
+      description: 'Permanent residency pathways through education',
+    },
+  ]
 
   return (
     <main className="relative min-h-screen">
       <HexagonBackground />
-      
+
       {/* Navigation back to home */}
       <nav className="relative z-20 pt-6 px-4">
         <div className="max-w-7xl mx-auto">
-          <Link 
-            href="/" 
+          <Link
+            href="/"
             className="inline-flex items-center text-gold-metallic hover:text-gold-bright transition-colors"
           >
             ← Back to Home
@@ -69,27 +236,68 @@ export default function StudyAbroadPage() {
         </div>
       </nav>
 
-      {/* Header Section with Call-to-Action */}
-      <section className="relative z-10 py-8 px-4">
+      {/* Header Section - Premium Design */}
+      <section className="relative z-10 py-12 md:py-16 px-4">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-8">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gold-metallic mb-4">
-              Study Abroad Programs
-            </h1>
-            <p className="text-xl md:text-2xl text-white mb-4 max-w-3xl mx-auto font-medium">
-              "We promise not to make your Study Abroad Dream a Financial Burden."
-            </p>
-            <p className="text-lg text-white mb-8 max-w-3xl mx-auto">
-              Affordable Study Options—No Debt, No Stress
-            </p>
-            
-            {/* Large Call-to-Action Button */}
-            <Link href="/contact" className="inline-flex items-center bg-gold-metallic hover:bg-gold-bright text-black font-semibold text-lg px-8 py-4 rounded-lg gap-3 mx-auto transition-all shadow-lg hover:shadow-xl">
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-              </svg>
-              <span>Talk to our Experts to know more</span>
-            </Link>
+          {/* Main Banner Card */}
+          <div className="relative rounded-3xl overflow-hidden border border-gold-metallic/40 shadow-2xl mb-12 dark-container">
+            {/* Background Image */}
+            <div className="absolute inset-0">
+              <Image
+                src="/study-abroad/classroom-banner.jpg"
+                alt="Classroom background"
+                fill
+                className="object-cover"
+                priority
+              />
+              {/* Dark overlay for text readability */}
+              <div className="absolute inset-0 bg-black/80" />
+              {/* Gold accent overlay */}
+              <div className="absolute inset-0 bg-gradient-to-r from-gold-metallic/10 via-transparent to-gold-metallic/10" />
+            </div>
+            <div className="relative px-8 md:px-16 py-12 md:py-16 z-10">
+              <div className="max-w-4xl mx-auto text-center">
+                {/* Main Title */}
+                <div className="mb-6">
+                  <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-gold-metallic mb-4 tracking-tight drop-shadow-lg">
+                    Study Abroad Programs
+                  </h1>
+                  <div className="w-24 h-1 bg-gold-metallic mx-auto rounded-full"></div>
+                </div>
+
+                {/* Professional Subtitle */}
+                <div className="mb-8 space-y-4">
+                  <p className="text-xl md:text-2xl text-white font-light leading-relaxed max-w-3xl mx-auto drop-shadow-md">
+                    Transform your academic aspirations into global opportunities through world-class education pathways
+                  </p>
+                  <p className="text-base md:text-lg text-white/80 font-normal leading-relaxed max-w-2xl mx-auto">
+                    Access quality education across premier destinations with comprehensive guidance and financial planning support
+                  </p>
+                </div>
+
+                {/* CTA Section */}
+                <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-10">
+                  <Link
+                    href="/contact"
+                    className="inline-flex items-center bg-gold-metallic hover:bg-gold-bright text-black font-semibold text-base px-8 py-3.5 rounded-lg gap-2 transition-all shadow-lg hover:shadow-xl transform hover:scale-105"
+                  >
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                    </svg>
+                    <span>Schedule Consultation</span>
+                  </Link>
+                  <Link
+                    href="#countries"
+                    className="inline-flex items-center border-2 border-gold-metallic/50 hover:border-gold-metallic text-gold-metallic hover:text-gold-bright font-semibold text-base px-8 py-3.5 rounded-lg gap-2 transition-all backdrop-blur-sm bg-black/30"
+                  >
+                    <span>Explore Programs</span>
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </Link>
+                </div>
+              </div>
+            </div>
           </div>
 
           {/* Statistics Section */}
@@ -104,7 +312,7 @@ export default function StudyAbroadPage() {
                   <span className="text-white text-sm font-bold">+</span>
                 </div>
               </div>
-              <p className="text-white font-medium text-base">Years of Experience</p>
+              <p className="text-black font-medium text-base">Years of Experience</p>
             </div>
 
             {/* Students Helped */}
@@ -115,7 +323,7 @@ export default function StudyAbroadPage() {
                 </svg>
               </div>
               <p className="text-2xl font-bold text-gold-metallic mb-1">5K+</p>
-              <p className="text-white font-medium text-base">Students Helped</p>
+              <p className="text-black font-medium text-base">Students Helped</p>
             </div>
 
             {/* Success Rate */}
@@ -128,7 +336,7 @@ export default function StudyAbroadPage() {
                   100%
                 </div>
               </div>
-              <p className="text-white font-medium text-base">Success Rate</p>
+              <p className="text-black font-medium text-base">Success Rate</p>
             </div>
 
             {/* Trusted Worldwide */}
@@ -141,8 +349,8 @@ export default function StudyAbroadPage() {
                   <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                 </svg>
               </div>
-              <p className="text-white font-medium text-base">Trusted</p>
-              <p className="text-white font-medium text-base">Worldwide</p>
+              <p className="text-black font-medium text-base">Trusted</p>
+              <p className="text-black font-medium text-base">Worldwide</p>
             </div>
           </div>
 
@@ -156,124 +364,151 @@ export default function StudyAbroadPage() {
                 Is it to study, work, or gain PR through studying abroad? Our guidance is based on your intentions.
               </p>
               <div className="grid md:grid-cols-3 gap-6 mt-8">
-                <div className="bg-gold-metallic/10 border border-gold-metallic/30 rounded-xl overflow-hidden">
-                  <div className="relative h-48">
-                    <Image
-                      src="/study-abroad/to-study.jpg"
-                      alt="To Study"
-                      fill
-                      className="object-cover"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
-                  </div>
-                  <div className="p-6">
-                    <div className="w-12 h-12 rounded-full bg-gold-metallic/20 flex items-center justify-center border-2 border-gold-metallic/50 mx-auto mb-4">
-                      <svg className="w-6 h-6 text-gold-metallic" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-                      </svg>
+                {whyStudyCards.map((card) => (
+                  <ShowcaseCard
+                    key={card.title}
+                    imageSrc={card.image}
+                    imageAlt={card.title}
+                    eyebrow="Study Abroad Goals"
+                    title={card.title}
+                    description={card.description}
+                    ctaHref="/contact"
+                    ctaLabel="Get Guidance"
+                  />
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* How It Works - Process Timeline Section (Different Format) */}
+          <div className="mb-16">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold text-gold-metallic mb-4">
+                How We Help You Study Abroad
+              </h2>
+              <p className="page-intro mx-auto text-lg max-w-3xl">
+                Our comprehensive process ensures you receive personalized guidance at every step of your study abroad journey
+              </p>
+            </div>
+            <div className="relative max-w-5xl mx-auto">
+              {/* Timeline Line */}
+              <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gold-metallic/30" style={{ top: '0', bottom: '0' }} />
+
+              <div className="space-y-12">
+                {studyAbroadProcessSteps.map((item, index) => (
+                  <div key={index} className={`relative flex flex-col md:flex-row items-center gap-6 ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'}`}>
+                    {/* Timeline Dot */}
+                    <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-gold-metallic rounded-full border-4 border-black z-10" />
+
+                    {/* Content Card */}
+                    <div className={`flex-1 ${index % 2 === 0 ? 'md:text-right md:pr-8' : 'md:text-left md:pl-8'}`}>
+                      <div className="bg-black/70 backdrop-blur-sm border border-gold-metallic/40 rounded-2xl overflow-hidden shadow-xl">
+                        <div className="relative h-40 md:h-48">
+                          <Image
+                            src={item.image}
+                            alt={item.title}
+                            fill
+                            className="object-cover"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+                        </div>
+                        <div className={`p-6 ${index % 2 === 0 ? 'md:text-right' : 'md:text-left'}`}>
+                          <span className="text-gold-metallic font-bold text-sm mb-2 block">STEP {item.step}</span>
+                          <h3 className="text-xl font-bold text-white mb-3">{item.title}</h3>
+                          <p className="text-white text-sm leading-relaxed">{item.description}</p>
+                        </div>
+                      </div>
                     </div>
-                    <h3 className="text-xl font-bold text-gold-metallic mb-2 text-center">To Study</h3>
-                    <p className="text-white text-sm text-center">World-class education at top-ranked universities</p>
+
+                    {/* Spacer for alternating layout */}
+                    <div className="hidden md:block w-1/2" />
                   </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Benefits Section - Feature Grid Format (Different Format) */}
+          <div className="mb-16">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold text-gold-metallic mb-4">
+                Why Choose Our Study Abroad Services?
+              </h2>
+              <p className="page-intro mx-auto text-lg max-w-3xl">
+                We provide comprehensive support that goes beyond just application processing
+              </p>
+            </div>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {studyAbroadServiceBenefits.map((benefit, index) => (
+                <ShowcaseCard
+                  key={index}
+                  imageSrc={benefit.image}
+                  imageAlt={benefit.title}
+                  eyebrow="Service Benefit"
+                  title={benefit.title}
+                  description={benefit.description}
+                  ctaHref="/contact"
+                  ctaLabel="Learn More"
+                />
+              ))}
+            </div>
+          </div>
+
+          {/* Scholarship & Funding Section */}
+          <div className="mb-12">
+            <div className="bg-gradient-to-br from-black/80 via-black/70 to-black/60 rounded-2xl p-8 md:p-12 border border-gold-metallic/40 backdrop-blur-sm shadow-xl">
+              <div className="max-w-4xl mx-auto text-center">
+                <div className="mb-6">
+                  <h2 className="text-3xl md:text-4xl font-bold text-gold-metallic mb-3">
+                    Scholarship & Funding Opportunities
+                  </h2>
+                  <div className="w-20 h-0.5 bg-gold-metallic mx-auto rounded-full"></div>
                 </div>
-                <div className="bg-gold-metallic/10 border border-gold-metallic/30 rounded-xl overflow-hidden">
-                  <div className="relative h-48">
-                    <Image
-                      src="/study-abroad/to-work.jpg"
-                      alt="To Work"
-                      fill
-                      className="object-cover"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
-                  </div>
-                  <div className="p-6">
-                    <div className="w-12 h-12 rounded-full bg-gold-metallic/20 flex items-center justify-center border-2 border-gold-metallic/50 mx-auto mb-4">
-                      <svg className="w-6 h-6 text-gold-metallic" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                      </svg>
-                    </div>
-                    <h3 className="text-xl font-bold text-gold-metallic mb-2 text-center">To Work</h3>
-                    <p className="text-white text-sm text-center">Work opportunities while studying and after graduation</p>
-                  </div>
-                </div>
-                <div className="bg-gold-metallic/10 border border-gold-metallic/30 rounded-xl overflow-hidden">
-                  <div className="relative h-48">
-                    <Image
-                      src="/study-abroad/to-gain-pr.jpg"
-                      alt="To Gain PR"
-                      fill
-                      className="object-cover"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
-                  </div>
-                  <div className="p-6">
-                    <div className="w-12 h-12 rounded-full bg-gold-metallic/20 flex items-center justify-center border-2 border-gold-metallic/50 mx-auto mb-4">
-                      <svg className="w-6 h-6 text-gold-metallic" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                      </svg>
-                    </div>
-                    <h3 className="text-xl font-bold text-gold-metallic mb-2 text-center">To Gain PR</h3>
-                    <p className="text-white text-sm text-center">Permanent residency pathways through education</p>
-                  </div>
+                <p className="text-xl text-white mb-4 font-light max-w-3xl mx-auto">
+                  Merit-based scholarships and financial aid programs for exceptional candidates
+                </p>
+                <p className="text-base text-white/90 mb-8 max-w-2xl mx-auto leading-relaxed">
+                  Outstanding academic achievers may qualify for comprehensive scholarship programs covering tuition fees, living expenses, and additional academic support. Our dedicated scholarship advisors assist in identifying eligible funding opportunities and guide you through the application process to maximize your chances of securing financial assistance.
+                </p>
+                <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+                  <button
+                    onClick={() => setShowConsultationForm(!showConsultationForm)}
+                    className="bg-gold-metallic hover:bg-gold-bright text-black font-semibold px-8 py-3.5 rounded-lg transition-all shadow-lg hover:shadow-xl transform hover:scale-105"
+                  >
+                    Explore Scholarships
+                  </button>
+                  <Link
+                    href="/contact"
+                    className="border-2 border-gold-metallic/50 hover:border-gold-metallic text-gold-metallic hover:text-gold-bright font-semibold px-8 py-3.5 rounded-lg transition-all backdrop-blur-sm bg-black/30"
+                  >
+                    Schedule Consultation
+                  </Link>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Study Free Section */}
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-gold-metallic mb-4">
-              Study Free With Full Scholarship
-            </h2>
-            <p className="text-xl text-white mb-6">
-              100% Funded for Top Performers
-            </p>
-            <button
-              onClick={() => setShowConsultationForm(!showConsultationForm)}
-              className="bg-gold-metallic hover:bg-gold-bright text-black font-semibold px-8 py-4 rounded-lg transition-all shadow-lg hover:shadow-xl"
-            >
-              Apply Now
-            </button>
-          </div>
-
           {/* Country Cards Section */}
           <div className="mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-white text-center mb-8 drop-shadow-lg">
+            <h2 className="text-3xl md:text-4xl font-bold text-black text-center mb-8">
               Study in Top World Ranking Universities
             </h2>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {studyCountries.map((country, index) => (
-                <div key={index} className="rounded-2xl overflow-hidden border border-gold-metallic/40 bg-black/70 backdrop-blur-sm shadow-xl">
-                  <div className="relative w-full h-48">
-                    <Image
-                      src={country.image}
-                      alt={`Study in ${country.name}`}
-                      fill
-                      className="object-cover"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-black/30" />
-                    <div className="absolute bottom-4 left-4 right-4 z-10">
-                      <p className="text-sm font-bold text-slate-100 mb-1 drop-shadow-2xl">Study in {country.name}</p>
-                      <h3 className="text-2xl font-extrabold text-slate-100 drop-shadow-2xl">{country.name}</h3>
-                    </div>
-                  </div>
-                  <div className="p-6 bg-black/80">
-                    <p className="text-white text-base mb-4 font-semibold leading-relaxed">{country.description}</p>
-                    <ul className="space-y-2 mb-4">
-                      {country.features.map((feature, idx) => (
-                        <li key={idx} className="flex items-start gap-2">
-                          <svg className="w-5 h-5 text-gold-bright mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                            <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                          </svg>
-                          <span className="text-sm text-white font-semibold">{feature}</span>
-                        </li>
-                      ))}
-                    </ul>
-                    <button className="w-full py-2 px-4 bg-gold-metallic/30 hover:bg-gold-metallic/40 text-white font-bold rounded-lg transition-colors border border-gold-metallic/60 shadow-lg">
-                      Learn More
-                    </button>
-                  </div>
-                </div>
+                <ShowcaseCard
+                  key={index}
+                  imageSrc={country.image}
+                  imageAlt={`${country.name} flag`}
+                  imageFit="contain"
+                  eyebrow={`Study in ${country.name}`}
+                  title={country.name}
+                  tagline={country.tagline}
+                  description={country.description}
+                  highlights={country.features}
+                  footnote={`Our team provides comprehensive support including university selection, application assistance, visa guidance, and pre-departure orientation for ${country.name}.`}
+                  ctaHref="/contact"
+                  ctaLabel="Learn More"
+                />
               ))}
             </div>
           </div>
@@ -290,19 +525,105 @@ export default function StudyAbroadPage() {
             </div>
           )}
 
+          {/* FAQ Section - Accordion Format (Different Format) */}
+          <div className="mb-16">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold text-gold-metallic mb-4">
+                Frequently Asked Questions
+              </h2>
+              <p className="page-intro mx-auto text-lg max-w-3xl">
+                Find answers to common questions about studying abroad
+              </p>
+            </div>
+            <div className="max-w-4xl mx-auto space-y-4">
+              {[
+                {
+                  question: 'What are the eligibility requirements for studying abroad?',
+                  answer: 'Eligibility varies by country and program, but generally includes: completed secondary education or equivalent, proof of English proficiency (IELTS/PTE/TOEFL), financial documentation, and academic transcripts. Some programs may require specific prerequisites or work experience. Our consultants will assess your profile and guide you on meeting all requirements.'
+                },
+                {
+                  question: 'How long does the application process take?',
+                  answer: 'The timeline typically ranges from 3-6 months, depending on the country and university. This includes document preparation (2-4 weeks), university application processing (4-8 weeks), visa application (4-12 weeks), and pre-departure arrangements. We recommend starting the process 6-9 months before your intended start date to allow for any delays.'
+                },
+                {
+                  question: 'Can I work while studying abroad?',
+                  answer: 'Yes, most countries allow international students to work part-time during studies. Australia permits up to 40 hours per fortnight during semesters, Germany allows 120 full days or 240 half days per year, and other EU countries have similar provisions. Post-study work rights vary by country, with some offering pathways to permanent residency after graduation.'
+                },
+                {
+                  question: 'What are the costs involved in studying abroad?',
+                  answer: 'Costs include tuition fees (varies by country and program), living expenses (accommodation, food, transport), health insurance, visa fees, and initial setup costs. Germany offers low or no tuition fees at public universities, while countries like Australia and Canada have higher fees but offer excellent post-study opportunities. We help you identify scholarship opportunities and create a financial plan.'
+                },
+                {
+                  question: 'Do I need to know the local language?',
+                  answer: 'For English-taught programs, you typically only need English proficiency. However, learning the local language can enhance your experience and job prospects. Countries like Malta, Australia, and parts of Canada are English-speaking. Germany, France, and other EU countries offer many English programs, though local language skills are beneficial for daily life and employment.'
+                },
+                {
+                  question: 'Can my family accompany me while studying?',
+                  answer: 'Many countries allow students to bring spouses and dependent children. Denmark, Sweden, and Germany are particularly family-friendly, offering dependent visas with work rights for spouses. Requirements vary, including proof of relationship, financial capacity, and health insurance. We provide detailed guidance on family visa applications for each country.'
+                },
+                {
+                  question: 'What happens if my visa application is rejected?',
+                  answer: 'While we work to minimize rejection risks through thorough preparation, if a visa is denied, we help you understand the reasons, address any issues, and reapply with stronger documentation. We also explore alternative countries or programs that might be more suitable for your profile.'
+                },
+                {
+                  question: 'How do I choose the right country and program?',
+                  answer: 'Our consultants conduct a comprehensive assessment considering your academic background, career goals, budget, language preferences, and long-term plans (work, PR, etc.). We provide detailed comparisons of programs, costs, job markets, and quality of life to help you make an informed decision that aligns with your aspirations.'
+                }
+              ].map((faq, index) => (
+                <div key={index} className="bg-black/70 backdrop-blur-sm border border-gold-metallic/40 rounded-xl overflow-hidden shadow-lg">
+                  <button
+                    onClick={() => setOpenFAQ(openFAQ === index ? null : index)}
+                    className="w-full px-6 py-4 flex items-center justify-between text-left hover:bg-black/50 transition-colors"
+                  >
+                    <span className="text-white font-semibold text-lg pr-4">{faq.question}</span>
+                    <svg
+                      className={`w-6 h-6 text-gold-metallic flex-shrink-0 transition-transform ${openFAQ === index ? 'rotate-180' : ''}`}
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </button>
+                  {openFAQ === index && (
+                    <div className="px-6 pb-4">
+                      <div className="pt-2 border-t border-gold-metallic/20">
+                        <p className="text-white leading-relaxed">{faq.answer}</p>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <section className="mb-12 max-w-4xl mx-auto text-center">
+            <h2 className="text-2xl md:text-3xl font-bold text-gold-metallic mb-4">
+              Ethical Study Abroad Counseling
+            </h2>
+            <p className="page-intro mx-auto text-base leading-relaxed">
+              GCMA study abroad support covers university shortlisting, application review, visa
+              documentation, scholarship planning, and pre-departure guidance for students targeting
+              Australia, Germany, Denmark, Sweden, France, Malta, and Latvia.
+            </p>
+          </section>
+
           {/* Still Confused Section */}
-          <div className="bg-black/80 rounded-2xl p-8 md:p-12 mb-12">
+          <div className="bg-black/70 backdrop-blur-sm border border-gold-metallic/40 rounded-2xl p-8 md:p-12 mb-12 shadow-xl">
             <div className="grid md:grid-cols-2 gap-8 items-center">
               <div>
                 <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
                   Still Confused?
                 </h2>
-                <p className="text-lg text-white mb-6 leading-relaxed">
-                  Connect with us to learn more about our study abroad programs. 
-                  Our experts are here to guide you through the application process 
+                <p className="text-lg text-white mb-4 leading-relaxed font-medium">
+                  Connect with us to learn more about our study abroad programs.
+                  Our experts are here to guide you through the application process
                   and answer any questions you may have.
                 </p>
-                <Link href="/contact" className="inline-block bg-gold-metallic hover:bg-gold-bright text-black font-semibold px-6 py-3 rounded-lg transition-all">
+                <p className="text-white mb-6 leading-relaxed">
+                  We understand that studying abroad is a significant decision. That's why we offer free consultations to discuss your options, answer your questions, and help you make an informed choice about your future.
+                </p>
+                <Link href="/contact" className="inline-block bg-gold-metallic hover:bg-gold-bright text-black font-semibold px-6 py-3 rounded-lg transition-all shadow-lg">
                   We are Here
                 </Link>
               </div>
@@ -313,8 +634,9 @@ export default function StudyAbroadPage() {
                   fill
                   className="object-cover"
                 />
-                <div className="absolute top-4 right-4 w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center">
-                  <span className="text-white text-2xl font-bold">?</span>
+                <div className="absolute inset-0 bg-gradient-to-r from-black/40 to-transparent" />
+                <div className="absolute top-4 right-4 w-12 h-12 bg-gold-metallic rounded-full flex items-center justify-center shadow-lg">
+                  <span className="text-black text-2xl font-bold">?</span>
                 </div>
               </div>
             </div>
@@ -351,7 +673,7 @@ function ConsultationForm({ onClose }: { onClose: () => void }) {
     e.preventDefault()
     setIsSubmitting(true)
     setSubmitError(null)
-    
+
     try {
       const formDataToSend = new FormData()
       formDataToSend.append('name', formData.name)
@@ -359,14 +681,14 @@ function ConsultationForm({ onClose }: { onClose: () => void }) {
       formDataToSend.append('email', formData.email)
       formDataToSend.append('preferredCountry', formData.preferredCountry)
       formDataToSend.append('comment', formData.comment)
-      
+
       const response = await fetch(CONSULTATION_API_ENDPOINT, {
         method: 'POST',
         body: formDataToSend
       })
-      
+
       const data = await response.json()
-      
+
       if (response.ok && data.success) {
         setSubmitSuccess(true)
         setFormData({
@@ -376,7 +698,7 @@ function ConsultationForm({ onClose }: { onClose: () => void }) {
           preferredCountry: '',
           comment: '',
         })
-        
+
         setTimeout(() => {
           setSubmitSuccess(false)
           onClose()

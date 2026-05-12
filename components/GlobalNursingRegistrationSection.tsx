@@ -20,12 +20,14 @@ interface CountryContent {
   authority: string
   description: string
   opportunities: string
+  image: string
 }
 
 const COUNTRIES: Record<CountryKey, CountryContent> = {
   australia: {
     id: 'nursing-australia',
     name: 'Australia',
+    image: '/nursing/photos/cards/australia.jpg',
     authority: 'Australian Health Practitioner Regulation Agency (AHPRA) and Nursing and Midwifery Board of Australia (NMBA)',
     description:
       'Australia offers a structured pathway for internationally qualified nurses, with a strong emphasis on patient safety, clinical competence, and ethical practice.',
@@ -35,6 +37,7 @@ const COUNTRIES: Record<CountryKey, CountryContent> = {
   canada: {
     id: 'nursing-canada',
     name: 'Canada',
+    image: '/nursing/photos/cards/canada.jpg',
     authority: 'Provincial Nursing Regulatory Bodies (e.g., CNO, BCCNM, NSCN)',
     description:
       'Canada welcomes internationally educated nurses through province-specific assessment and registration pathways designed to maintain high standards of care.',
@@ -44,6 +47,7 @@ const COUNTRIES: Record<CountryKey, CountryContent> = {
   'new-zealand': {
     id: 'nursing-newzealand',
     name: 'New Zealand',
+    image: '/nursing/photos/cards/new-zealand.jpg',
     authority: 'Nursing Council of New Zealand (NCNZ)',
     description:
       'New Zealand provides a transparent registration process for overseas nurses, combining competency assessment with a strong focus on person-centred care.',
@@ -53,6 +57,7 @@ const COUNTRIES: Record<CountryKey, CountryContent> = {
   germany: {
     id: 'nursing-germany',
     name: 'Germany',
+    image: '/nursing/photos/cards/germany.jpg',
     authority: 'Regional State Health Authorities (Landesbehörden) responsible for professional recognition',
     description:
       'Germany recognises qualified international nurses through a formal credential recognition and adaptation process, aligned with EU quality and safety standards.',
@@ -62,6 +67,7 @@ const COUNTRIES: Record<CountryKey, CountryContent> = {
   malta: {
     id: 'nursing-malta',
     name: 'Malta',
+    image: '/nursing/photos/cards/malta.jpg',
     authority: 'Council for Nurses and Midwives within the Maltese health regulatory framework',
     description:
       'Malta offers a gateway to European nursing practice, with English widely used in clinical settings and a clear registration framework for overseas nurses.',
@@ -71,6 +77,7 @@ const COUNTRIES: Record<CountryKey, CountryContent> = {
   denmark: {
     id: 'nursing-denmark',
     name: 'Denmark',
+    image: '/nursing/photos/cards/denmark.jpg',
     authority: 'Danish Patient Safety Authority (Styrelsen for Patientsikkerhed)',
     description:
       'Denmark provides a structured recognition route for foreign-trained nurses, including language preparation and professional adaptation to Danish healthcare standards.',
@@ -80,6 +87,7 @@ const COUNTRIES: Record<CountryKey, CountryContent> = {
   'united-kingdom': {
     id: 'nursing-uk',
     name: 'United Kingdom',
+    image: '/nursing/photos/cards/united-kingdom.jpg',
     authority: 'Nursing and Midwifery Council (NMC)',
     description:
       'The United Kingdom offers a well-defined pathway for international nurses, combining credential verification, English language requirements, and competence assessments.',
@@ -89,6 +97,7 @@ const COUNTRIES: Record<CountryKey, CountryContent> = {
   uae: {
     id: 'nursing-uae',
     name: 'UAE',
+    image: '/nursing/photos/cards/uae.jpg',
     authority: 'Health Authorities such as DHA, DOH, and MOHAP (depending on the Emirate)',
     description:
       'The UAE attracts international nurses through modern healthcare facilities, clear licensing exams, and region-specific registration requirements.',
@@ -98,6 +107,7 @@ const COUNTRIES: Record<CountryKey, CountryContent> = {
   usa: {
     id: 'nursing-usa',
     name: 'USA',
+    image: '/nursing/photos/cards/usa.jpg',
     authority: 'State Boards of Nursing and credentialing agencies (e.g., CGFNS) for foreign-trained nurses',
     description:
       'The United States offers diverse and highly regulated pathways for international nurses, with a focus on licensing exams, credential evaluation, and state-specific standards.',
@@ -190,7 +200,7 @@ export default function GlobalNursingRegistrationSection() {
           <h2 className="text-3xl md:text-4xl font-bold text-gold-metallic mb-4">
             Global Nursing Registration
           </h2>
-          <p className="text-base md:text-lg text-gray-300">
+          <p className="text-base md:text-lg text-white">
             Internationally qualified nurses play a vital role in modern healthcare systems worldwide.
             Through this unified application, GCMA helps you explore safe, ethical pathways to register
             as a nurse in leading countries, aligning your qualifications with each country&apos;s
@@ -205,7 +215,7 @@ export default function GlobalNursingRegistrationSection() {
               <h3 className="text-xl md:text-2xl font-semibold text-gold-metallic mb-4">
                 Country-wise Nursing Pathways
               </h3>
-              <p className="text-sm md:text-base text-gray-300 mb-4">
+              <p className="text-sm md:text-base text-white mb-4">
                 Select a country to view a brief overview of its registration authority, expectations
                 from internationally educated nurses, and the types of roles commonly available.
               </p>
@@ -219,41 +229,50 @@ export default function GlobalNursingRegistrationSection() {
                     type="button"
                     id={country.id}
                     onClick={() => handleCountrySelect(key)}
-                    className={`text-xs sm:text-sm px-3 py-2 rounded-lg border transition-all ${
-                      activeCountry === key
-                        ? 'bg-gold-metallic text-black border-gold-metallic'
-                        : 'border-gold-metallic/40 text-gold-metallic hover:border-gold-metallic hover:bg-gold-metallic/10'
-                    }`}
+                    className={`text-xs sm:text-sm px-3 py-2 rounded-lg border transition-all ${activeCountry === key
+                      ? 'bg-gold-metallic text-black border-gold-metallic'
+                      : 'border-gold-metallic/40 text-gold-metallic hover:border-gold-metallic hover:bg-gold-metallic/10'
+                      }`}
                   >
                     {country.name}
                   </button>
                 ))}
               </div>
 
-              <div className="bg-black/30 rounded-xl p-4 md:p-5">
-                <h4 className="text-lg font-semibold text-gold-metallic mb-2">
-                  {activeDetails.name}
-                </h4>
-                <p className="text-xs uppercase tracking-wide text-gold-metallic/80 mb-2">
-                  Registration Authority
-                </p>
-                <p className="text-sm md:text-base text-gray-300 mb-4">
-                  {activeDetails.authority}
-                </p>
+              <div className="bg-black/30 rounded-xl overflow-hidden">
+                <div className="h-48 relative">
+                  <img
+                    src={activeDetails.image}
+                    alt={`${activeDetails.name} Nursing`}
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
+                  <h4 className="absolute bottom-4 left-4 text-2xl font-bold text-gold-metallic">
+                    {activeDetails.name}
+                  </h4>
+                </div>
+                <div className="p-4 md:p-5">
+                  <p className="text-xs uppercase tracking-wide text-gold-metallic/80 mb-2">
+                    Registration Authority
+                  </p>
+                  <p className="text-sm md:text-base text-white mb-4">
+                    {activeDetails.authority}
+                  </p>
 
-                <p className="text-xs uppercase tracking-wide text-gold-metallic/80 mb-2">
-                  Overview
-                </p>
-                <p className="text-sm md:text-base text-gray-300 mb-4">
-                  {activeDetails.description}
-                </p>
+                  <p className="text-xs uppercase tracking-wide text-gold-metallic/80 mb-2">
+                    Overview
+                  </p>
+                  <p className="text-sm md:text-base text-white mb-4">
+                    {activeDetails.description}
+                  </p>
 
-                <p className="text-xs uppercase tracking-wide text-gold-metallic/80 mb-2">
-                  Career Opportunities
-                </p>
-                <p className="text-sm md:text-base text-gray-300">
-                  {activeDetails.opportunities}
-                </p>
+                  <p className="text-xs uppercase tracking-wide text-gold-metallic/80 mb-2">
+                    Career Opportunities
+                  </p>
+                  <p className="text-sm md:text-base text-white">
+                    {activeDetails.opportunities}
+                  </p>
+                </div>
               </div>
             </div>
           </div>

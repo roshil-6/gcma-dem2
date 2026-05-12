@@ -1,0 +1,145 @@
+'use client'
+
+import type { ReactNode } from 'react'
+import ExplanationPanel, { ExplanationBox } from './ExplanationPanel'
+
+type WelfareProgramCardProps = {
+  id: string
+  imageSrc: string
+  imageAlt: string
+  eyebrow: string
+  headline: string
+  title: string
+  description: string
+  highlights: string[]
+  explanation: {
+    title: string
+    content: string
+  }
+  showExplanation: boolean
+  onToggleExplanation: (open: boolean) => void
+  applyLabel: string
+  closeLabel: string
+  isFormOpen: boolean
+  onApplyToggle: () => void
+  icon: ReactNode
+  form: ReactNode
+}
+
+export default function WelfareProgramCard({
+  id,
+  imageSrc,
+  imageAlt,
+  eyebrow,
+  headline,
+  title,
+  description,
+  highlights,
+  explanation,
+  showExplanation,
+  onToggleExplanation,
+  applyLabel,
+  closeLabel,
+  isFormOpen,
+  onApplyToggle,
+  icon,
+  form,
+}: WelfareProgramCardProps) {
+  return (
+    <article
+      id={id}
+      className="group flex h-full flex-col overflow-hidden rounded-2xl border border-gold-metallic/35 bg-black/80 shadow-xl transition-colors hover:border-gold-metallic/65 scroll-mt-20"
+    >
+      <div
+        className="relative h-52 md:h-56 cursor-pointer"
+        onClick={() => onToggleExplanation(!showExplanation)}
+        onKeyDown={(event) => {
+          if (event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault()
+            onToggleExplanation(!showExplanation)
+          }
+        }}
+        role="button"
+        tabIndex={0}
+        aria-label={`View details about ${headline}`}
+      >
+        <img
+          src={imageSrc}
+          alt={imageAlt}
+          className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+          loading="lazy"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/45 to-black/10" />
+        <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-4 p-5 md:p-6">
+          <div className="min-w-0">
+            <p className="mb-2 text-xs font-semibold uppercase tracking-[0.18em] text-gold-metallic/85">
+              {eyebrow}
+            </p>
+            <div className="flex items-center gap-2">
+              <h3 className="text-xl font-bold text-white md:text-2xl">{headline}</h3>
+              <ExplanationPanel
+                title={explanation.title}
+                content={explanation.content}
+                onToggle={onToggleExplanation}
+              />
+            </div>
+          </div>
+          <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-gold-metallic/50 bg-gold-metallic/15">
+            {icon}
+          </div>
+        </div>
+      </div>
+
+      {showExplanation ? (
+        <div className="border-b border-gold-metallic/20 px-6 pt-4">
+          <ExplanationBox
+            title={explanation.title}
+            content={explanation.content}
+            onClose={() => onToggleExplanation(false)}
+          />
+        </div>
+      ) : null}
+
+      <div className="flex flex-1 flex-col border-t border-gold-metallic/20 bg-black/75 p-6 md:p-8">
+        <h4 className="mb-3 text-xl font-semibold text-gold-metallic md:text-2xl">{title}</h4>
+        <p className="text-on-dark mb-5 text-sm leading-relaxed md:text-base">{description}</p>
+
+        <ul className="mb-6 space-y-2.5">
+          {highlights.map((highlight) => (
+            <li key={highlight} className="flex items-start gap-3">
+              <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-gold-metallic/20">
+                <svg
+                  className="h-3.5 w-3.5 text-gold-metallic"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  aria-hidden="true"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+              </span>
+              <span className="text-on-dark text-sm leading-relaxed">{highlight}</span>
+            </li>
+          ))}
+        </ul>
+
+        <button
+          type="button"
+          onClick={onApplyToggle}
+          className={`mt-auto w-full rounded-lg px-4 py-3 font-semibold transition-all ${
+            isFormOpen
+              ? 'border border-gold-metallic/50 bg-transparent text-gold-metallic hover:border-gold-metallic hover:text-gold-bright'
+              : 'bg-gold-metallic text-black shadow-lg hover:bg-gold-bright'
+          }`}
+        >
+          {isFormOpen ? closeLabel : applyLabel}
+        </button>
+
+        {isFormOpen ? <div className="mt-6 border-t border-gold-metallic/20 pt-6">{form}</div> : null}
+      </div>
+    </article>
+  )
+}

@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
+import { scrollIntoViewSafe } from '@/lib/scroll'
 import ExplanationPanel, { ExplanationBox } from './ExplanationPanel'
 
 export default function BreakTheSilenceSection() {
@@ -27,23 +28,47 @@ export default function BreakTheSilenceSection() {
       observer.observe(sectionRef.current)
     }
 
-    // Check URL on mount and auto-open form if requested
-    if (typeof window !== 'undefined') {
-      const urlParams = new URLSearchParams(window.location.search)
-      const applyType = urlParams.get('apply')
-      if (applyType === 'student' || applyType === 'tutor') {
-        setTimeout(() => {
-          setSelectedOption(applyType as 'student' | 'tutor')
-          // Scroll to form
-          const formElement = document.getElementById('break-the-silence')
-          if (formElement) {
-            formElement.scrollIntoView({ behavior: 'smooth', block: 'start' })
-          }
-        }, 500)
-      }
+    return () => observer.disconnect()
+  }, [])
+
+  useEffect(() => {
+    if (typeof window === 'undefined') {
+      return
     }
 
-    return () => observer.disconnect()
+    const urlParams = new URLSearchParams(window.location.search)
+    const applyType = urlParams.get('apply')
+    if (applyType !== 'student' && applyType !== 'tutor') {
+      return
+    }
+
+    setSelectedOption(applyType)
+
+    if (window.location.hash !== '#break-the-silence') {
+      return
+    }
+
+    let attempts = 0
+    const maxAttempts = 24
+
+    const scrollToSection = () => {
+      const target = sectionRef.current ?? document.getElementById('break-the-silence')
+      if (!target) {
+        return false
+      }
+
+      scrollIntoViewSafe(target)
+      return true
+    }
+
+    const timer = window.setInterval(() => {
+      if (scrollToSection() || attempts >= maxAttempts) {
+        window.clearInterval(timer)
+      }
+      attempts += 1
+    }, 100)
+
+    return () => window.clearInterval(timer)
   }, [])
 
   return (
@@ -57,7 +82,7 @@ export default function BreakTheSilenceSection() {
           <h2 className="text-4xl md:text-5xl font-bold mb-4 text-gold-metallic">
             Break the Silence
           </h2>
-          <p className="text-lg text-gray-300 max-w-2xl mx-auto">
+          <p className="page-intro mx-auto text-lg max-w-2xl">
             A social initiative focused on improving English communication skills
             through subsided, volunteer-based teaching. Empowering individuals through
             language and confidence.
@@ -66,8 +91,8 @@ export default function BreakTheSilenceSection() {
 
         {/* Image Section */}
         <div className="mb-8">
-          <div 
-            className="glass-card rounded-2xl overflow-hidden cursor-pointer hover:border-gold-metallic/60 transition-all duration-300"
+          <div
+            className="glass-card dark-container rounded-2xl overflow-hidden cursor-pointer hover:border-gold-metallic/60 transition-all duration-300"
             onClick={() => setShowExplanation(!showExplanation)}
             onKeyDown={(e) => {
               if (e.key === 'Enter' || e.key === ' ') {
@@ -81,16 +106,12 @@ export default function BreakTheSilenceSection() {
           >
             <div className="relative h-64 md:h-80">
               <img
-                src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1600&h=900&fit=crop&q=80"
+                src="/home/break-silence-main.jpg"
                 alt="Break the Silence - English Communication and Learning"
                 className="absolute inset-0 w-full h-full object-cover"
                 loading="lazy"
-                onError={(e) => {
-                  const target = e.target as HTMLImageElement
-                  target.src = 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=1600&h=900&fit=crop&q=80'
-                }}
               />
-              <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
+              <div className="absolute inset-0 bg-black/70 flex items-center justify-center">
                 <div className="text-center p-8 relative w-full h-full flex items-center justify-center">
                   <div className="w-24 h-24 mx-auto mb-4 rounded-full bg-gold-metallic/20 flex items-center justify-center border-2 border-gold-metallic/50 backdrop-blur-sm">
                     <svg className="w-12 h-12 text-gold-metallic" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -105,7 +126,7 @@ export default function BreakTheSilenceSection() {
                       onToggle={setShowExplanation}
                     />
                   </div>
-                  <p className="text-gray-300">Free English language learning through volunteer mentorship</p>
+                  <p className="text-white">Free English language learning through volunteer mentorship</p>
                 </div>
               </div>
             </div>
@@ -120,34 +141,29 @@ export default function BreakTheSilenceSection() {
           )}
         </div>
 
-        <div className="glass-card rounded-2xl p-8 md:p-12">
+        <div className="glass-card dark-container rounded-2xl p-8 md:p-12">
           <div className="grid md:grid-cols-2 gap-6 mb-8">
             <button
               onClick={() => setSelectedOption('student')}
-              className={`relative overflow-hidden rounded-xl border-2 transition-all duration-300 ${
-                selectedOption === 'student'
-                  ? 'border-gold-metallic bg-gold-metallic/10'
-                  : 'border-gold-metallic/30 hover:border-gold-metallic/60'
-              }`}
+              className={`relative overflow-hidden rounded-xl border-2 transition-all duration-300 ${selectedOption === 'student'
+                ? 'border-gold-metallic bg-gold-metallic/10'
+                : 'border-gold-metallic/30 hover:border-gold-metallic/60'
+                }`}
             >
               <div className="relative h-32">
                 <img
-                  src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=1600&h=900&fit=crop&q=80"
+                  src="/home/break-silence-student.jpg"
                   alt="I Am a Student - English Learning"
                   className="absolute inset-0 w-full h-full object-cover"
                   loading="lazy"
-                  onError={(e) => {
-                    const target = e.target as HTMLImageElement
-                    target.src = 'https://images.unsplash.com/photo-1509062522246-3755977927d7?w=1600&h=900&fit=crop&q=80'
-                  }}
                 />
                 <div className="absolute inset-0 bg-black/40"></div>
               </div>
-              <div className="p-6">
+              <div className="p-6 bg-black/75">
                 <h3 className="text-2xl font-bold text-gold-metallic mb-2">
                   I Am a Student
                 </h3>
-                <p className="text-gray-300 text-sm">
+                <p className="text-on-dark text-sm leading-relaxed">
                   Apply to improve your English speaking skills through our
                   volunteer-based program.
                 </p>
@@ -156,30 +172,25 @@ export default function BreakTheSilenceSection() {
 
             <button
               onClick={() => setSelectedOption('tutor')}
-              className={`relative overflow-hidden rounded-xl border-2 transition-all duration-300 ${
-                selectedOption === 'tutor'
-                  ? 'border-gold-metallic bg-gold-metallic/10'
-                  : 'border-gold-metallic/30 hover:border-gold-metallic/60'
-              }`}
+              className={`relative overflow-hidden rounded-xl border-2 transition-all duration-300 ${selectedOption === 'tutor'
+                ? 'border-gold-metallic bg-gold-metallic/10'
+                : 'border-gold-metallic/30 hover:border-gold-metallic/60'
+                }`}
             >
               <div className="relative h-32">
                 <img
-                  src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=1600&h=900&fit=crop&q=80"
+                  src="/home/break-silence-tutor.jpg"
                   alt="I Am a Tutor - Volunteer Teaching"
                   className="absolute inset-0 w-full h-full object-cover"
                   loading="lazy"
-                  onError={(e) => {
-                    const target = e.target as HTMLImageElement
-                    target.src = 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1600&h=900&fit=crop&q=80'
-                  }}
                 />
                 <div className="absolute inset-0 bg-black/40"></div>
               </div>
-              <div className="p-6">
+              <div className="p-6 bg-black/75">
                 <h3 className="text-2xl font-bold text-gold-metallic mb-2">
                   I Am a Tutor
                 </h3>
-                <p className="text-gray-300 text-sm">
+                <p className="text-on-dark text-sm leading-relaxed">
                   Volunteer to teach English as a social service. Teaching is
                   completely free.
                 </p>
@@ -187,20 +198,22 @@ export default function BreakTheSilenceSection() {
             </button>
           </div>
 
+          {/* Be a Child Tutor - Always Visible */}
+          <div className="mb-8 text-center">
+            <Link
+              href="/break-the-silence/student-tutor"
+              className="inline-flex items-center gap-2 text-gold-metallic hover:text-gold-bright font-semibold transition-colors text-lg border-2 border-gold-metallic/40 hover:border-gold-metallic rounded-lg px-6 py-3 bg-black/80 hover:bg-black/90"
+            >
+              <span>Be a Child Tutor</span>
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </Link>
+          </div>
+
           {selectedOption === 'student' && (
             <div>
               <StudentForm onClose={() => setSelectedOption(null)} />
-              <div className="mt-6 text-center">
-                <Link
-                  href="/break-the-silence/student-tutor"
-                  className="inline-flex items-center gap-2 text-gold-metallic hover:text-gold-bright font-semibold transition-colors"
-                >
-                  <span>Be a Child Tutor</span>
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                  </svg>
-                </Link>
-              </div>
             </div>
           )}
 
@@ -238,21 +251,21 @@ function StudentForm({ onClose }: { onClose: () => void }) {
     e.preventDefault()
     setIsSubmitting(true)
     setSubmitError(null)
-    
+
     try {
       const formDataToSend = new FormData()
       formDataToSend.append('name', formData.name)
       formDataToSend.append('contactNumber', formData.contactNumber)
       formDataToSend.append('learningGoals', formData.learningGoals)
       formDataToSend.append('roleType', formData.roleType)
-      
+
       const response = await fetch(BTS_STUDENT_API_ENDPOINT, {
         method: 'POST',
         body: formDataToSend
       })
-      
+
       const data = await response.json()
-      
+
       if (response.ok && data.success) {
         setSubmitSuccess(true)
         setFormData({
@@ -261,7 +274,7 @@ function StudentForm({ onClose }: { onClose: () => void }) {
           learningGoals: '',
           roleType: 'student',
         })
-        
+
         setTimeout(() => {
           setSubmitSuccess(false)
           onClose()
@@ -395,21 +408,21 @@ function TutorForm({ onClose }: { onClose: () => void }) {
     e.preventDefault()
     setIsSubmitting(true)
     setSubmitError(null)
-    
+
     try {
       const formDataToSend = new FormData()
       formDataToSend.append('name', formData.name)
       formDataToSend.append('contactNumber', formData.contactNumber)
       formDataToSend.append('areaOfExpertise', formData.areaOfExpertise)
       formDataToSend.append('availability', formData.availability)
-      
+
       const response = await fetch(BTS_TUTOR_API_ENDPOINT, {
         method: 'POST',
         body: formDataToSend
       })
-      
+
       const data = await response.json()
-      
+
       if (response.ok && data.success) {
         setSubmitSuccess(true)
         setFormData({
@@ -418,7 +431,7 @@ function TutorForm({ onClose }: { onClose: () => void }) {
           areaOfExpertise: '',
           availability: '',
         })
-        
+
         setTimeout(() => {
           setSubmitSuccess(false)
           onClose()

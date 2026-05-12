@@ -4,6 +4,7 @@ import HexagonBackground from '@/components/HexagonBackground'
 import NursingRegistrationForm from '@/components/NursingRegistrationForm'
 import WhoCanApplyBox from '@/components/WhoCanApplyBox'
 import NursingCountryBanner from '@/components/NursingCountryBanner'
+import ShowcaseCard from '@/components/ShowcaseCard'
 import Link from 'next/link'
 import Image from 'next/image'
 
@@ -20,7 +21,7 @@ export default function NursesDenmarkPage() {
           >
             Back to Home
           </Link>
-          <span className="text-xs md:text-sm text-gray-300">Denmark</span>
+          <span className="text-xs md:text-sm text-white">Denmark</span>
         </div>
       </nav>
 
@@ -41,46 +42,10 @@ export default function NursesDenmarkPage() {
               Why Work in Denmark?
             </h2>
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-              <div className="rounded-2xl overflow-hidden border border-gold-metallic/40 bg-[#f9f2e7] shadow-md">
-                <div className="relative w-full h-52">
-                  <Image src="/nursing/photos/denmark-why1.jpg" alt="Work-Life Balance" fill className="object-cover" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/15 via-black/0 to-transparent" />
-                </div>
-                <div className="p-5 text-center">
-                  <h3 className="text-lg font-extrabold text-[#1f1b2d] mb-2">Work-Life Balance</h3>
-                  <p className="text-sm text-[#1f1b2d]">High quality of life focus</p>
-                </div>
-              </div>
-              <div className="rounded-2xl overflow-hidden border border-gold-metallic/40 bg-[#f9f2e7] shadow-md">
-                <div className="relative w-full h-52">
-                  <Image src="/nursing/photos/denmark-why2.jpg" alt="Collaboration" fill className="object-cover" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/15 via-black/0 to-transparent" />
-                </div>
-                <div className="p-5 text-center">
-                  <h3 className="text-lg font-extrabold text-[#1f1b2d] mb-2">Collaboration</h3>
-                  <p className="text-sm text-[#1f1b2d]">Strong teamwork culture</p>
-                </div>
-              </div>
-              <div className="rounded-2xl overflow-hidden border border-gold-metallic/40 bg-[#f9f2e7] shadow-md">
-                <div className="relative w-full h-52">
-                  <Image src="/nursing/photos/denmark-why3.jpg" alt="Professional Development" fill className="object-cover" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/15 via-black/0 to-transparent" />
-                </div>
-                <div className="p-5 text-center">
-                  <h3 className="text-lg font-extrabold text-[#1f1b2d] mb-2">Professional Development</h3>
-                  <p className="text-sm text-[#1f1b2d]">Structured training programs</p>
-                </div>
-              </div>
-              <div className="rounded-2xl overflow-hidden border border-gold-metallic/40 bg-[#f9f2e7] shadow-md">
-                <div className="relative w-full h-52">
-                  <Image src="/nursing/photos/denmark-why4.jpg" alt="Quality Healthcare" fill className="object-cover" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/15 via-black/0 to-transparent" />
-                </div>
-                <div className="p-5 text-center">
-                  <h3 className="text-lg font-extrabold text-[#1f1b2d] mb-2">Quality Healthcare</h3>
-                  <p className="text-sm text-[#1f1b2d]">World-class medical system</p>
-                </div>
-              </div>
+              <ShowcaseCard imageSrc="/nursing/photos/denmark-why1.jpg" imageAlt="Work-Life Balance" eyebrow="Why Denmark" title="Work-Life Balance" description="High quality of life focus." ctaHref="/contact" />
+              <ShowcaseCard imageSrc="/nursing/photos/denmark-why2.jpg" imageAlt="Collaboration" eyebrow="Why Denmark" title="Collaboration" description="Strong teamwork culture." ctaHref="/contact" />
+              <ShowcaseCard imageSrc="/nursing/photos/denmark-why3.jpg" imageAlt="Professional Development" eyebrow="Why Denmark" title="Professional Development" description="Structured training programs." ctaHref="/contact" />
+              <ShowcaseCard imageSrc="/nursing/photos/denmark-why4.jpg" imageAlt="Quality Healthcare" eyebrow="Why Denmark" title="Quality Healthcare" description="World-class medical system." ctaHref="/contact" />
             </div>
           </div>
 
@@ -97,11 +62,11 @@ export default function NursesDenmarkPage() {
               </div>
               <div className="order-1 md:order-2">
                 <h2 className="text-3xl font-bold text-gold-metallic mb-4">Registration Authority</h2>
-                <p className="text-lg text-[#1f1b2d] mb-4">
+                <p className="text-lg text-black mb-4">
                   Danish Patient Safety Authority (Styrelsen for Patientsikkerhed)
                 </p>
-                <p className="text-base text-[#1f1b2d]">
-                  Denmark provides structured recognition routes with focus on collaboration, respect, 
+                <p className="text-base text-black">
+                  Denmark provides structured recognition routes with focus on collaboration, respect,
                   and strong communication. High quality of life and work-life balance.
                 </p>
               </div>
@@ -145,45 +110,9 @@ export default function NursesDenmarkPage() {
               Career Opportunities
             </h2>
             <div className="grid md:grid-cols-3 gap-6">
-              <div className="relative h-64 rounded-xl overflow-hidden group">
-                <Image
-                  src="/nursing/photos/denmark-career1.jpg"
-                  alt="Hospitals"
-                  fill
-                  className="object-cover group-hover:scale-110 transition-transform duration-300"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/10 to-transparent flex items-end p-6">
-                  <h3 className="text-2xl font-extrabold text-gray-900 shadow-lg bg-white/85 backdrop-blur-sm px-4 py-2 rounded-lg border border-gold-metallic/60">
-                    Hospitals
-                  </h3>
-                </div>
-              </div>
-              <div className="relative h-64 rounded-xl overflow-hidden group">
-                <Image
-                  src="/nursing/photos/denmark-career2.jpg"
-                  alt="Municipal Care"
-                  fill
-                  className="object-cover group-hover:scale-110 transition-transform duration-300"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/10 to-transparent flex items-end p-6">
-                  <h3 className="text-2xl font-extrabold text-gray-900 shadow-lg bg-white/85 backdrop-blur-sm px-4 py-2 rounded-lg border border-gold-metallic/60">
-                    Municipal Care
-                  </h3>
-                </div>
-              </div>
-              <div className="relative h-64 rounded-xl overflow-hidden group">
-                <Image
-                  src="/nursing/photos/denmark-career3.jpg"
-                  alt="Community Services"
-                  fill
-                  className="object-cover group-hover:scale-110 transition-transform duration-300"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/10 to-transparent flex items-end p-6">
-                  <h3 className="text-2xl font-extrabold text-gray-900 shadow-lg bg-white/85 backdrop-blur-sm px-4 py-2 rounded-lg border border-gold-metallic/60">
-                    Community Services
-                  </h3>
-                </div>
-              </div>
+              <ShowcaseCard imageSrc="/nursing/photos/denmark-career1.jpg" imageAlt="Hospitals" eyebrow="Career Opportunity" title="Hospitals" ctaHref="/contact" />
+              <ShowcaseCard imageSrc="/nursing/photos/denmark-career2.jpg" imageAlt="Municipal Care" eyebrow="Career Opportunity" title="Municipal Care" ctaHref="/contact" />
+              <ShowcaseCard imageSrc="/nursing/photos/denmark-career3.jpg" imageAlt="Community Services" eyebrow="Career Opportunity" title="Community Services" ctaHref="/contact" />
             </div>
           </div>
 

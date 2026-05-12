@@ -4,6 +4,7 @@ import HexagonBackground from '@/components/HexagonBackground'
 import NursingRegistrationForm from '@/components/NursingRegistrationForm'
 import WhoCanApplyBox from '@/components/WhoCanApplyBox'
 import NursingCountryBanner from '@/components/NursingCountryBanner'
+import ShowcaseCard from '@/components/ShowcaseCard'
 import Link from 'next/link'
 import Image from 'next/image'
 
@@ -20,7 +21,7 @@ export default function NursesUSAPage() {
           >
             Back to Home
           </Link>
-          <span className="text-xs md:text-sm text-gray-300">USA</span>
+          <span className="text-xs md:text-sm text-white">USA</span>
         </div>
       </nav>
 
@@ -41,46 +42,10 @@ export default function NursesUSAPage() {
               Why Work in USA?
             </h2>
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-              <div className="rounded-2xl overflow-hidden border border-gold-metallic/40 bg-[#f9f2e7] shadow-md">
-                <div className="relative w-full h-52">
-                  <Image src="/nursing/photos/usa-why1.jpg" alt="Major Hospitals" fill className="object-cover" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/15 via-black/0 to-transparent" />
-                </div>
-                <div className="p-5 text-center">
-                  <h3 className="text-lg font-extrabold text-[#1f1b2d] mb-2">Major Hospitals</h3>
-                  <p className="text-sm text-[#1f1b2d]">Top-tier medical facilities</p>
-                </div>
-              </div>
-              <div className="rounded-2xl overflow-hidden border border-gold-metallic/40 bg-[#f9f2e7] shadow-md">
-                <div className="relative w-full h-52">
-                  <Image src="/nursing/photos/usa-why2.jpg" alt="Research Opportunities" fill className="object-cover" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/15 via-black/0 to-transparent" />
-                </div>
-                <div className="p-5 text-center">
-                  <h3 className="text-lg font-extrabold text-[#1f1b2d] mb-2">Research Opportunities</h3>
-                  <p className="text-sm text-[#1f1b2d]">Cutting-edge medical research</p>
-                </div>
-              </div>
-              <div className="rounded-2xl overflow-hidden border border-gold-metallic/40 bg-[#f9f2e7] shadow-md">
-                <div className="relative w-full h-52">
-                  <Image src="/nursing/photos/usa-why3.jpg" alt="Leadership Roles" fill className="object-cover" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/15 via-black/0 to-transparent" />
-                </div>
-                <div className="p-5 text-center">
-                  <h3 className="text-lg font-extrabold text-[#1f1b2d] mb-2">Leadership Roles</h3>
-                  <p className="text-sm text-[#1f1b2d]">Advanced practice opportunities</p>
-                </div>
-              </div>
-              <div className="rounded-2xl overflow-hidden border border-gold-metallic/40 bg-[#f9f2e7] shadow-md">
-                <div className="relative w-full h-52">
-                  <Image src="/nursing/photos/usa-why4.jpg" alt="Immigration Pathways" fill className="object-cover" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/15 via-black/0 to-transparent" />
-                </div>
-                <div className="p-5 text-center">
-                  <h3 className="text-lg font-extrabold text-[#1f1b2d] mb-2">Immigration Pathways</h3>
-                  <p className="text-sm text-[#1f1b2d]">Long-term career options</p>
-                </div>
-              </div>
+              <ShowcaseCard imageSrc="/nursing/photos/usa-why1.jpg" imageAlt="Major Hospitals" eyebrow="Why USA" title="Major Hospitals" description="Top-tier medical facilities." ctaHref="/contact" />
+              <ShowcaseCard imageSrc="/nursing/photos/usa-why2.jpg" imageAlt="Research Opportunities" eyebrow="Why USA" title="Research Opportunities" description="Cutting-edge medical research." ctaHref="/contact" />
+              <ShowcaseCard imageSrc="/nursing/photos/usa-why3.jpg" imageAlt="Leadership Roles" eyebrow="Why USA" title="Leadership Roles" description="Advanced practice opportunities." ctaHref="/contact" />
+              <ShowcaseCard imageSrc="/nursing/photos/usa-why4.jpg" imageAlt="Immigration Pathways" eyebrow="Why USA" title="Immigration Pathways" description="Long-term career options." ctaHref="/contact" />
             </div>
           </div>
 
@@ -89,11 +54,11 @@ export default function NursesUSAPage() {
             <div className="grid md:grid-cols-2 gap-8 items-center">
               <div>
                 <h2 className="text-3xl font-bold text-gold-metallic mb-4">Registration Authority</h2>
-                <p className="text-lg text-[#1f1b2d] mb-4">
+                <p className="text-lg text-black mb-4">
                   State Boards of Nursing and CGFNS International
                 </p>
-                <p className="text-base text-[#1f1b2d]">
-                  The USA offers diverse pathways through State Boards of Nursing and CGFNS. 
+                <p className="text-base text-black">
+                  The USA offers diverse pathways through State Boards of Nursing and CGFNS.
                   Wide-ranging opportunities in major hospitals, research, and leadership roles.
                 </p>
               </div>
@@ -145,45 +110,9 @@ export default function NursesUSAPage() {
               Career Opportunities
             </h2>
             <div className="grid md:grid-cols-3 gap-6">
-              <div className="relative h-64 rounded-xl overflow-hidden group">
-                <Image
-                  src="/nursing/photos/usa-career1.jpg"
-                  alt="Major Hospitals"
-                  fill
-                  className="object-cover group-hover:scale-110 transition-transform duration-300"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/10 to-transparent flex items-end p-6">
-                  <h3 className="text-2xl font-extrabold text-gray-900 shadow-lg bg-white/85 backdrop-blur-sm px-4 py-2 rounded-lg border border-gold-metallic/60">
-                    Major Hospitals
-                  </h3>
-                </div>
-              </div>
-              <div className="relative h-64 rounded-xl overflow-hidden group">
-                <Image
-                  src="/nursing/photos/usa-career2.jpg"
-                  alt="Research Institutions"
-                  fill
-                  className="object-cover group-hover:scale-110 transition-transform duration-300"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/10 to-transparent flex items-end p-6">
-                  <h3 className="text-2xl font-extrabold text-gray-900 shadow-lg bg-white/85 backdrop-blur-sm px-4 py-2 rounded-lg border border-gold-metallic/60">
-                    Research Institutions
-                  </h3>
-                </div>
-              </div>
-              <div className="relative h-64 rounded-xl overflow-hidden group">
-                <Image
-                  src="/nursing/photos/usa-career3.jpg"
-                  alt="Community Health"
-                  fill
-                  className="object-cover group-hover:scale-110 transition-transform duration-300"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/10 to-transparent flex items-end p-6">
-                  <h3 className="text-2xl font-extrabold text-gray-900 shadow-lg bg-white/85 backdrop-blur-sm px-4 py-2 rounded-lg border border-gold-metallic/60">
-                    Community Health
-                  </h3>
-                </div>
-              </div>
+              <ShowcaseCard imageSrc="/nursing/photos/usa-career1.jpg" imageAlt="Major Hospitals" eyebrow="Career Opportunity" title="Major Hospitals" ctaHref="/contact" />
+              <ShowcaseCard imageSrc="/nursing/photos/usa-career2.jpg" imageAlt="Research Institutions" eyebrow="Career Opportunity" title="Research Institutions" ctaHref="/contact" />
+              <ShowcaseCard imageSrc="/nursing/photos/usa-career3.jpg" imageAlt="Community Health" eyebrow="Career Opportunity" title="Community Health" ctaHref="/contact" />
             </div>
           </div>
 

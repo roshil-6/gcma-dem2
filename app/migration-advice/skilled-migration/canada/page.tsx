@@ -3,6 +3,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import HexagonBackground from '@/components/HexagonBackground'
+import ShowcaseCard from '@/components/ShowcaseCard'
 
 export default function CanadaSkilledMigrationPage() {
   return (
@@ -80,66 +81,30 @@ export default function CanadaSkilledMigrationPage() {
 
           {/* Key Features with Symbols */}
           <div className="grid md:grid-cols-3 gap-6 mb-12">
-            <div className="rounded-2xl overflow-hidden border border-gold-metallic/40 bg-black/70 backdrop-blur-sm shadow-xl">
-              <div className="relative w-full h-48">
-                <Image src="/migration-advice/canada-feature1.jpg" alt="Express Entry" fill className="object-cover" />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/20 to-transparent" />
-              </div>
-              <div className="p-6">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-12 h-12 rounded-full bg-gold-metallic/20 flex items-center justify-center border-2 border-gold-metallic/50">
-                    <svg className="w-6 h-6 text-gold-metallic" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                    </svg>
-                  </div>
-                  <h3 className="text-xl font-bold text-gold-metallic">Fast Processing</h3>
-                </div>
-                <p className="text-white text-sm leading-relaxed font-medium">
-                  Express Entry typically processes applications within 6 months, making it one of the fastest immigration pathways.
-                </p>
-              </div>
-            </div>
-
-            <div className="rounded-2xl overflow-hidden border border-gold-metallic/40 bg-black/70 backdrop-blur-sm shadow-xl">
-              <div className="relative w-full h-48">
-                <Image src="/migration-advice/canada-feature2.jpg" alt="CRS Points" fill className="object-cover" />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/20 to-transparent" />
-              </div>
-              <div className="p-6">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-12 h-12 rounded-full bg-gold-metallic/20 flex items-center justify-center border-2 border-gold-metallic/50">
-                    <svg className="w-6 h-6 text-gold-metallic" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-                    </svg>
-                  </div>
-                  <h3 className="text-xl font-bold text-gold-metallic">CRS Points System</h3>
-                </div>
-                <p className="text-white text-sm leading-relaxed font-medium">
-                  Comprehensive Ranking System evaluates candidates fairly based on skills, experience, and adaptability factors.
-                </p>
-              </div>
-            </div>
-
-            <div className="rounded-2xl overflow-hidden border border-gold-metallic/40 bg-black/70 backdrop-blur-sm shadow-xl">
-              <div className="relative w-full h-48">
-                <Image src="/migration-advice/canada-feature3.jpg" alt="Provincial Nomination" fill className="object-cover" />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/20 to-transparent" />
-              </div>
-              <div className="p-6">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-12 h-12 rounded-full bg-gold-metallic/20 flex items-center justify-center border-2 border-gold-metallic/50">
-                    <svg className="w-6 h-6 text-gold-metallic" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                    </svg>
-                  </div>
-                  <h3 className="text-xl font-bold text-gold-metallic">Provincial Nomination</h3>
-                </div>
-                <p className="text-white text-sm leading-relaxed font-medium">
-                  Provincial Nominee Programs (PNP) offer additional pathways and bonus points for candidates willing to settle in specific provinces.
-                </p>
-              </div>
-            </div>
+            <ShowcaseCard
+              imageSrc="/migration-advice/canada-feature1.jpg"
+              imageAlt="Express Entry"
+              eyebrow="Canada Skilled Migration"
+              title="Fast Processing"
+              description="Express Entry typically processes applications within 6 months, making it one of the fastest immigration pathways."
+              ctaHref="/contact"
+            />
+            <ShowcaseCard
+              imageSrc="/migration-advice/canada-feature2.jpg"
+              imageAlt="CRS Points"
+              eyebrow="Canada Skilled Migration"
+              title="CRS Points System"
+              description="Comprehensive Ranking System evaluates candidates fairly based on skills, experience, and adaptability factors."
+              ctaHref="/contact"
+            />
+            <ShowcaseCard
+              imageSrc="/migration-advice/canada-feature3.jpg"
+              imageAlt="Provincial Nomination"
+              eyebrow="Canada Skilled Migration"
+              title="Provincial Nomination"
+              description="Provincial Nominee Programs (PNP) offer additional pathways and bonus points for candidates willing to settle in specific provinces."
+              ctaHref="/contact"
+            />
           </div>
 
           {/* Detailed Information Section */}
@@ -222,3 +187,4 @@ export default function CanadaSkilledMigrationPage() {
     </main>
   )
 }
+

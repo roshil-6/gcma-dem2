@@ -4,6 +4,7 @@ import HexagonBackground from '@/components/HexagonBackground'
 import NursingRegistrationForm from '@/components/NursingRegistrationForm'
 import WhoCanApplyBox from '@/components/WhoCanApplyBox'
 import NursingCountryBanner from '@/components/NursingCountryBanner'
+import ShowcaseCard from '@/components/ShowcaseCard'
 import Link from 'next/link'
 import Image from 'next/image'
 
@@ -20,7 +21,7 @@ export default function NursesUnitedKingdomPage() {
           >
             Back to Home
           </Link>
-          <span className="text-xs md:text-sm text-gray-300">United Kingdom</span>
+          <span className="text-xs md:text-sm text-white">United Kingdom</span>
         </div>
       </nav>
 
@@ -41,46 +42,10 @@ export default function NursesUnitedKingdomPage() {
               Why Work in United Kingdom?
             </h2>
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-              <div className="rounded-2xl overflow-hidden border border-gold-metallic/40 bg-[#f9f2e7] shadow-md">
-                <div className="relative w-full h-52">
-                  <Image src="/nursing/photos/uk-why1.jpg" alt="NHS System" fill className="object-cover" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/15 via-black/0 to-transparent" />
-                </div>
-                <div className="p-5 text-center">
-                  <h3 className="text-lg font-extrabold text-[#1f1b2d] mb-2">NHS System</h3>
-                  <p className="text-sm text-[#1f1b2d]">World-renowned healthcare system</p>
-                </div>
-              </div>
-              <div className="rounded-2xl overflow-hidden border border-gold-metallic/40 bg-[#f9f2e7] shadow-md">
-                <div className="relative w-full h-52">
-                  <Image src="/nursing/photos/uk-why2.jpg" alt="Career Progression" fill className="object-cover" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/15 via-black/0 to-transparent" />
-                </div>
-                <div className="p-5 text-center">
-                  <h3 className="text-lg font-extrabold text-[#1f1b2d] mb-2">Career Progression</h3>
-                  <p className="text-sm text-[#1f1b2d]">Structured progression pathways</p>
-                </div>
-              </div>
-              <div className="rounded-2xl overflow-hidden border border-gold-metallic/40 bg-[#f9f2e7] shadow-md">
-                <div className="relative w-full h-52">
-                  <Image src="/nursing/photos/uk-why3.jpg" alt="Specialist Services" fill className="object-cover" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/15 via-black/0 to-transparent" />
-                </div>
-                <div className="p-5 text-center">
-                  <h3 className="text-lg font-extrabold text-[#1f1b2d] mb-2">Specialist Services</h3>
-                  <p className="text-sm text-[#1f1b2d]">Diverse clinical areas</p>
-                </div>
-              </div>
-              <div className="rounded-2xl overflow-hidden border border-gold-metallic/40 bg-[#f9f2e7] shadow-md">
-                <div className="relative w-full h-52">
-                  <Image src="/nursing/photos/uk-why4.jpg" alt="Professional Recognition" fill className="object-cover" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/15 via-black/0 to-transparent" />
-                </div>
-                <div className="p-5 text-center">
-                  <h3 className="text-lg font-extrabold text-[#1f1b2d] mb-2">Professional Recognition</h3>
-                  <p className="text-sm text-[#1f1b2d]">NMC registration benefits</p>
-                </div>
-              </div>
+              <ShowcaseCard imageSrc="/nursing/photos/uk-why1.jpg" imageAlt="NHS System" eyebrow="Why United Kingdom" title="NHS System" description="World-renowned healthcare system." ctaHref="/contact" />
+              <ShowcaseCard imageSrc="/nursing/photos/uk-why2.jpg" imageAlt="Career Progression" eyebrow="Why United Kingdom" title="Career Progression" description="Structured progression pathways." ctaHref="/contact" />
+              <ShowcaseCard imageSrc="/nursing/photos/uk-why3.jpg" imageAlt="Specialist Services" eyebrow="Why United Kingdom" title="Specialist Services" description="Diverse clinical areas." ctaHref="/contact" />
+              <ShowcaseCard imageSrc="/nursing/photos/uk-why4.jpg" imageAlt="Professional Recognition" eyebrow="Why United Kingdom" title="Professional Recognition" description="NMC registration benefits." ctaHref="/contact" />
             </div>
           </div>
 
@@ -89,11 +54,11 @@ export default function NursesUnitedKingdomPage() {
             <div className="grid md:grid-cols-2 gap-8 items-center">
               <div>
                 <h2 className="text-3xl font-bold text-gold-metallic mb-4">Registration Authority</h2>
-                <p className="text-lg text-[#1f1b2d] mb-4">
+                <p className="text-lg text-black mb-4">
                   Nursing and Midwifery Council (NMC)
                 </p>
-                <p className="text-base text-[#1f1b2d]">
-                  The UK offers well-defined pathways through NMC with credential verification, 
+                <p className="text-base text-black">
+                  The UK offers well-defined pathways through NMC with credential verification,
                   English language requirements, and competence assessments. NHS and independent sector opportunities.
                 </p>
               </div>
@@ -145,45 +110,9 @@ export default function NursesUnitedKingdomPage() {
               Career Opportunities
             </h2>
             <div className="grid md:grid-cols-3 gap-6">
-              <div className="relative h-64 rounded-xl overflow-hidden group">
-                <Image
-                  src="/nursing/photos/uk-career1.jpg"
-                  alt="NHS Hospitals"
-                  fill
-                  className="object-cover group-hover:scale-110 transition-transform duration-300"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/10 to-transparent flex items-end p-6">
-                  <h3 className="text-2xl font-extrabold text-gray-900 shadow-lg bg-white/85 backdrop-blur-sm px-4 py-2 rounded-lg border border-gold-metallic/60">
-                    NHS Hospitals
-                  </h3>
-                </div>
-              </div>
-              <div className="relative h-64 rounded-xl overflow-hidden group">
-                <Image
-                  src="/nursing/photos/uk-career2.jpg"
-                  alt="Community Health"
-                  fill
-                  className="object-cover group-hover:scale-110 transition-transform duration-300"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/10 to-transparent flex items-end p-6">
-                  <h3 className="text-2xl font-extrabold text-gray-900 shadow-lg bg-white/85 backdrop-blur-sm px-4 py-2 rounded-lg border border-gold-metallic/60">
-                    Community Health
-                  </h3>
-                </div>
-              </div>
-              <div className="relative h-64 rounded-xl overflow-hidden group">
-                <Image
-                  src="/nursing/photos/uk-career3.jpg"
-                  alt="Mental Health"
-                  fill
-                  className="object-cover group-hover:scale-110 transition-transform duration-300"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/10 to-transparent flex items-end p-6">
-                  <h3 className="text-2xl font-extrabold text-gray-900 shadow-lg bg-white/85 backdrop-blur-sm px-4 py-2 rounded-lg border border-gold-metallic/60">
-                    Mental Health
-                  </h3>
-                </div>
-              </div>
+              <ShowcaseCard imageSrc="/nursing/photos/uk-career1.jpg" imageAlt="NHS Hospitals" eyebrow="Career Opportunity" title="NHS Hospitals" ctaHref="/contact" />
+              <ShowcaseCard imageSrc="/nursing/photos/uk-career2.jpg" imageAlt="Community Health" eyebrow="Career Opportunity" title="Community Health" ctaHref="/contact" />
+              <ShowcaseCard imageSrc="/nursing/photos/uk-career3.jpg" imageAlt="Mental Health" eyebrow="Career Opportunity" title="Mental Health" ctaHref="/contact" />
             </div>
           </div>
 

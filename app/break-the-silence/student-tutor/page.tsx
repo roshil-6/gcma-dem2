@@ -112,14 +112,14 @@ export default function StudentTutorPage() {
           <div className="rounded-2xl border border-gold-metallic/40 bg-[#f9f2e7] shadow-xl p-8 md:p-12 mb-12">
             <div className="grid md:grid-cols-2 gap-8 items-center mb-8">
               <div>
-                <h2 className="text-3xl font-bold text-[#1f1b2d] mb-6">Significance of Social Service for Young People</h2>
-                <p className="text-lg text-[#1f1b2d] mb-4 leading-relaxed font-medium">
+                <h2 className="text-3xl font-bold text-black mb-6">Significance of Social Service for Young People</h2>
+                <p className="text-lg text-black mb-4 leading-relaxed font-medium">
                   Participating in social service programs as a young person is one of the most transformative experiences you can have. It's not just about teaching—it's about building character, developing empathy, and creating positive change in your community.
                 </p>
-                <p className="text-base text-[#1f1b2d] leading-relaxed mb-4 font-medium">
+                <p className="text-base text-black leading-relaxed mb-4 font-medium">
                   As a student tutor, you have the unique opportunity to help younger children learn English while developing your own leadership skills, communication abilities, and sense of responsibility. This experience shapes you into a more compassionate, confident, and socially aware individual.
                 </p>
-                <p className="text-base text-[#1f1b2d] leading-relaxed font-medium">
+                <p className="text-base text-black leading-relaxed font-medium">
                   Teaching others reinforces your own learning, builds your confidence, and gives you valuable experience that will benefit you in your academic and professional journey. Most importantly, you become part of a movement that empowers others through education.
                 </p>
               </div>
@@ -142,7 +142,7 @@ export default function StudentTutorPage() {
                   </svg>
                 </div>
                 <h3 className="text-xl font-bold text-gold-metallic mb-3">Personal Growth</h3>
-                <p className="text-[#1f1b2d] text-sm leading-relaxed font-medium">
+                <p className="text-black text-sm leading-relaxed font-medium">
                   Develop leadership skills, confidence, and empathy through teaching and mentoring younger students.
                 </p>
               </div>
@@ -154,7 +154,7 @@ export default function StudentTutorPage() {
                   </svg>
                 </div>
                 <h3 className="text-xl font-bold text-gold-metallic mb-3">Community Impact</h3>
-                <p className="text-[#1f1b2d] text-sm leading-relaxed font-medium">
+                <p className="text-black text-sm leading-relaxed font-medium">
                   Make a meaningful difference in your community by helping children improve their English communication skills.
                 </p>
               </div>
@@ -166,7 +166,7 @@ export default function StudentTutorPage() {
                   </svg>
                 </div>
                 <h3 className="text-xl font-bold text-gold-metallic mb-3">Skill Development</h3>
-                <p className="text-[#1f1b2d] text-sm leading-relaxed font-medium">
+                <p className="text-black text-sm leading-relaxed font-medium">
                   Enhance your own English skills, teaching abilities, and gain valuable experience for your future career.
                 </p>
               </div>
@@ -175,7 +175,7 @@ export default function StudentTutorPage() {
 
           {/* Application Form Section */}
           <div className="rounded-2xl border border-gold-metallic/40 bg-[#f9f2e7] shadow-xl p-8 md:p-12">
-            <h2 className="text-3xl font-bold text-[#1f1b2d] mb-6 text-center">Student Tutor Application Form</h2>
+            <h2 className="text-3xl font-bold text-black mb-6 text-center">Student Tutor Application Form</h2>
             
             <form onSubmit={handleSubmit} className="max-w-2xl mx-auto space-y-6">
               {submitSuccess && (
@@ -195,7 +195,7 @@ export default function StudentTutorPage() {
               )}
 
               <div>
-                <label className="block text-sm font-semibold text-[#1f1b2d] mb-2">
+                <label className="block text-sm font-semibold text-black mb-2">
                   I Am a *
                 </label>
                 <select
@@ -203,7 +203,7 @@ export default function StudentTutorPage() {
                   required
                   value={formData.roleType}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-3 rounded-lg border border-gold-metallic/40 bg-white text-[#1f1b2d] focus:outline-none focus:ring-2 focus:ring-gold-metallic"
+                  className="w-full px-4 py-3 rounded-lg border border-gold-metallic/40 bg-white text-black focus:outline-none focus:ring-2 focus:ring-gold-metallic"
                   disabled={isSubmitting || submitSuccess}
                 >
                   <option value="student">Student</option>
@@ -212,7 +212,7 @@ export default function StudentTutorPage() {
               </div>
 
               <div>
-                <label className="block text-sm font-semibold text-[#1f1b2d] mb-2">
+                <label className="block text-sm font-semibold text-black mb-2">
                   Name *
                 </label>
                 <input
@@ -221,14 +221,14 @@ export default function StudentTutorPage() {
                   required
                   value={formData.name}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-3 rounded-lg border border-gold-metallic/40 bg-white text-[#1f1b2d] focus:outline-none focus:ring-2 focus:ring-gold-metallic"
+                  className="w-full px-4 py-3 rounded-lg border border-gold-metallic/40 bg-white text-black focus:outline-none focus:ring-2 focus:ring-gold-metallic"
                   placeholder="Enter your full name"
                   disabled={isSubmitting || submitSuccess}
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-semibold text-[#1f1b2d] mb-2">
+                <label className="block text-sm font-semibold text-black mb-2">
                   Contact Number *
                 </label>
                 <input
@@ -237,14 +237,14 @@ export default function StudentTutorPage() {
                   required
                   value={formData.contactNumber}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-3 rounded-lg border border-gold-metallic/40 bg-white text-[#1f1b2d] focus:outline-none focus:ring-2 focus:ring-gold-metallic"
+                  className="w-full px-4 py-3 rounded-lg border border-gold-metallic/40 bg-white text-black focus:outline-none focus:ring-2 focus:ring-gold-metallic"
                   placeholder="Enter your contact number"
                   disabled={isSubmitting || submitSuccess}
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-semibold text-[#1f1b2d] mb-2">
+                <label className="block text-sm font-semibold text-black mb-2">
                   Learning Goals / Why You Want to Be a Tutor *
                 </label>
                 <textarea
@@ -253,7 +253,7 @@ export default function StudentTutorPage() {
                   value={formData.learningGoals}
                   onChange={handleInputChange}
                   rows={5}
-                  className="w-full px-4 py-3 rounded-lg border border-gold-metallic/40 bg-white text-[#1f1b2d] focus:outline-none focus:ring-2 focus:ring-gold-metallic resize-none"
+                  className="w-full px-4 py-3 rounded-lg border border-gold-metallic/40 bg-white text-black focus:outline-none focus:ring-2 focus:ring-gold-metallic resize-none"
                   placeholder="Describe your learning goals, why you want to be a student tutor, and what you hope to achieve through this social service program"
                   disabled={isSubmitting || submitSuccess}
                 />

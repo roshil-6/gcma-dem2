@@ -6,7 +6,9 @@
     "dev": "node node_modules/next/dist/bin/next dev -p 3002",
     "build": "node node_modules/next/dist/bin/next build",
     "start": "node node_modules/next/dist/bin/next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "download:study-images": "node scripts/fetch-study-abroad-images.js",
+    "download:section-images": "node scripts/fetch-section-images.js"
   },
   "dependencies": {
     "framer-motion": "^11.3.19",

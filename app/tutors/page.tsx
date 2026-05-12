@@ -3,6 +3,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import HexagonBackground from '@/components/HexagonBackground'
+import ShowcaseCard from '@/components/ShowcaseCard'
 
 export default function TutorsPage() {
   return (
@@ -24,7 +25,10 @@ export default function TutorsPage() {
       {/* Banner Section */}
       <section className="relative z-10 py-8 px-4 mb-12">
         <div className="max-w-7xl mx-auto">
-          <div className="relative w-full h-[300px] md:h-[400px] rounded-3xl overflow-hidden shadow-2xl mb-8">
+          <div
+            className="relative w-full h-[300px] md:h-[400px] rounded-3xl overflow-hidden shadow-2xl mb-8"
+            style={{ position: 'relative' }}
+          >
             <Image
               src="/tutors/banner.jpg"
               alt="Serve Society with GCMA - Tutors"
@@ -37,7 +41,7 @@ export default function TutorsPage() {
               <div className="w-full px-8 md:px-12 max-w-7xl mx-auto">
                 <div className="inline-flex items-center gap-4 rounded-2xl bg-[#f9f2e7]/95 border border-gold-metallic/55 px-6 py-5 shadow-xl">
                   <div className="space-y-2">
-                    <h1 className="text-4xl md:text-5xl font-extrabold text-[#1f1b2d]">
+                    <h1 className="text-4xl md:text-5xl font-extrabold text-black">
                       Serve Society with GCMA
                     </h1>
                     <p className="text-lg md:text-xl text-gold-metallic font-semibold">
@@ -64,7 +68,10 @@ export default function TutorsPage() {
                   Join a community of dedicated educators who are committed to creating positive change. As a GCMA tutor, you'll receive support, training, and the satisfaction of knowing that your teaching is transforming lives and building a better society.
                 </p>
               </div>
-              <div className="relative h-64 md:h-80 rounded-xl overflow-hidden">
+              <div
+                className="relative h-64 md:h-80 rounded-xl overflow-hidden"
+                style={{ position: 'relative' }}
+              >
                 <Image
                   src="/tutors/significance.jpg"
                   alt="Tutors Significance"
@@ -77,44 +84,33 @@ export default function TutorsPage() {
 
           {/* Key Features */}
           <div className="grid md:grid-cols-3 gap-6 mb-12">
-            <div className="rounded-2xl overflow-hidden border border-gold-metallic/40 bg-black/70 backdrop-blur-sm shadow-xl">
-              <div className="relative w-full h-48">
-                <Image src="/tutors/feature1.jpg" alt="Make an Impact" fill className="object-cover" />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/20 to-transparent" />
-              </div>
-              <div className="p-6">
-                <h3 className="text-xl font-bold text-gold-metallic mb-3">Make an Impact</h3>
-                <p className="text-slate-200 text-sm leading-relaxed">
-                  Help students achieve their educational goals and create positive change in their communities.
-                </p>
-              </div>
-            </div>
-
-            <div className="rounded-2xl overflow-hidden border border-gold-metallic/40 bg-black/70 backdrop-blur-sm shadow-xl">
-              <div className="relative w-full h-48">
-                <Image src="/tutors/feature2.jpg" alt="Professional Development" fill className="object-cover" />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/20 to-transparent" />
-              </div>
-              <div className="p-6">
-                <h3 className="text-xl font-bold text-gold-metallic mb-3">Professional Development</h3>
-                <p className="text-slate-200 text-sm leading-relaxed">
-                  Receive training, support, and opportunities to grow as an educator while serving the community.
-                </p>
-              </div>
-            </div>
-
-            <div className="rounded-2xl overflow-hidden border border-gold-metallic/40 bg-black/70 backdrop-blur-sm shadow-xl">
-              <div className="relative w-full h-48">
-                <Image src="/tutors/feature3.jpg" alt="Flexible Teaching" fill className="object-cover" />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/20 to-transparent" />
-              </div>
-              <div className="p-6">
-                <h3 className="text-xl font-bold text-gold-metallic mb-3">Flexible Teaching</h3>
-                <p className="text-slate-200 text-sm leading-relaxed">
-                  Teach according to your schedule and availability, with options for online or in-person classes.
-                </p>
-              </div>
-            </div>
+            <ShowcaseCard
+              imageSrc="/tutors/feature1.jpg"
+              imageAlt="Make an Impact"
+              eyebrow="Tutor Benefit"
+              title="Make an Impact"
+              description="Help students achieve their educational goals and create positive change in their communities."
+              ctaHref="/?apply=tutor#break-the-silence"
+              ctaLabel="Apply as Tutor"
+            />
+            <ShowcaseCard
+              imageSrc="/tutors/feature2.jpg"
+              imageAlt="Professional Development"
+              eyebrow="Tutor Benefit"
+              title="Professional Development"
+              description="Receive training, support, and opportunities to grow as an educator while serving the community."
+              ctaHref="/?apply=tutor#break-the-silence"
+              ctaLabel="Apply as Tutor"
+            />
+            <ShowcaseCard
+              imageSrc="/tutors/feature3.jpg"
+              imageAlt="Flexible Teaching"
+              eyebrow="Tutor Benefit"
+              title="Flexible Teaching"
+              description="Teach according to your schedule and availability, with options for online or in-person classes."
+              ctaHref="/?apply=tutor#break-the-silence"
+              ctaLabel="Apply as Tutor"
+            />
           </div>
 
           {/* CTA Section */}

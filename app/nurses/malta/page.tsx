@@ -4,6 +4,7 @@ import HexagonBackground from '@/components/HexagonBackground'
 import NursingRegistrationForm from '@/components/NursingRegistrationForm'
 import WhoCanApplyBox from '@/components/WhoCanApplyBox'
 import NursingCountryBanner from '@/components/NursingCountryBanner'
+import ShowcaseCard from '@/components/ShowcaseCard'
 import Link from 'next/link'
 import Image from 'next/image'
 
@@ -20,7 +21,7 @@ export default function NursesMaltaPage() {
           >
             Back to Home
           </Link>
-          <span className="text-xs md:text-sm text-gray-300">Malta</span>
+          <span className="text-xs md:text-sm text-white">Malta</span>
         </div>
       </nav>
 
@@ -41,46 +42,10 @@ export default function NursesMaltaPage() {
               Why Work in Malta?
             </h2>
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-              <div className="rounded-2xl overflow-hidden border border-gold-metallic/40 bg-[#f9f2e7] shadow-md">
-                <div className="relative w-full h-52">
-                  <Image src="/nursing/photos/malta-why1.jpg" alt="European Gateway" fill className="object-cover" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/15 via-black/0 to-transparent" />
-                </div>
-                <div className="p-5 text-center">
-                  <h3 className="text-lg font-extrabold text-[#1f1b2d] mb-2">European Gateway</h3>
-                  <p className="text-sm text-[#1f1b2d]">Access to European healthcare</p>
-                </div>
-              </div>
-              <div className="rounded-2xl overflow-hidden border border-gold-metallic/40 bg-[#f9f2e7] shadow-md">
-                <div className="relative w-full h-52">
-                  <Image src="/nursing/photos/malta-why2.jpg" alt="English Language" fill className="object-cover" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/15 via-black/0 to-transparent" />
-                </div>
-                <div className="p-5 text-center">
-                  <h3 className="text-lg font-extrabold text-[#1f1b2d] mb-2">English Language</h3>
-                  <p className="text-sm text-[#1f1b2d]">Widely used in clinical settings</p>
-                </div>
-              </div>
-              <div className="rounded-2xl overflow-hidden border border-gold-metallic/40 bg-[#f9f2e7] shadow-md">
-                <div className="relative w-full h-52">
-                  <Image src="/nursing/photos/malta-why3.jpg" alt="International Teams" fill className="object-cover" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/15 via-black/0 to-transparent" />
-                </div>
-                <div className="p-5 text-center">
-                  <h3 className="text-lg font-extrabold text-[#1f1b2d] mb-2">International Teams</h3>
-                  <p className="text-sm text-[#1f1b2d]">Multicultural work environment</p>
-                </div>
-              </div>
-              <div className="rounded-2xl overflow-hidden border border-gold-metallic/40 bg-[#f9f2e7] shadow-md">
-                <div className="relative w-full h-52">
-                  <Image src="/nursing/photos/malta-why4.jpg" alt="Growing Sector" fill className="object-cover" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/15 via-black/0 to-transparent" />
-                </div>
-                <div className="p-5 text-center">
-                  <h3 className="text-lg font-extrabold text-[#1f1b2d] mb-2">Growing Sector</h3>
-                  <p className="text-sm text-[#1f1b2d]">Rapidly expanding opportunities</p>
-                </div>
-              </div>
+              <ShowcaseCard imageSrc="/nursing/photos/malta-why1.jpg" imageAlt="European Gateway" eyebrow="Why Malta" title="European Gateway" description="Access to European healthcare." ctaHref="/contact" />
+              <ShowcaseCard imageSrc="/nursing/photos/malta-why2.jpg" imageAlt="English Language" eyebrow="Why Malta" title="English Language" description="Widely used in clinical settings." ctaHref="/contact" />
+              <ShowcaseCard imageSrc="/nursing/photos/malta-why3.jpg" imageAlt="International Teams" eyebrow="Why Malta" title="International Teams" description="Multicultural work environment." ctaHref="/contact" />
+              <ShowcaseCard imageSrc="/nursing/photos/malta-why4.jpg" imageAlt="Growing Sector" eyebrow="Why Malta" title="Growing Sector" description="Rapidly expanding opportunities." ctaHref="/contact" />
             </div>
           </div>
 
@@ -89,11 +54,11 @@ export default function NursesMaltaPage() {
             <div className="grid md:grid-cols-2 gap-8 items-center">
               <div>
                 <h2 className="text-3xl font-bold text-gold-metallic mb-4">Registration Authority</h2>
-                <p className="text-lg text-[#1f1b2d] mb-4">
+                <p className="text-lg text-black mb-4">
                   Council for Nurses and Midwives (Malta)
                 </p>
-                <p className="text-base text-[#1f1b2d]">
-                  Malta offers a gateway to European nursing practice with English widely used in clinical settings. 
+                <p className="text-base text-black">
+                  Malta offers a gateway to European nursing practice with English widely used in clinical settings.
                   Supportive environment for international teams. Clear registration framework.
                 </p>
               </div>
@@ -145,45 +110,9 @@ export default function NursesMaltaPage() {
               Career Opportunities
             </h2>
             <div className="grid md:grid-cols-3 gap-6">
-              <div className="relative h-64 rounded-xl overflow-hidden group">
-                <Image
-                  src="/nursing/photos/malta-career1.jpg"
-                  alt="State Hospitals"
-                  fill
-                  className="object-cover group-hover:scale-110 transition-transform duration-300"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/10 to-transparent flex items-end p-6">
-                  <h3 className="text-2xl font-extrabold text-gray-900 shadow-lg bg-white/85 backdrop-blur-sm px-4 py-2 rounded-lg border border-gold-metallic/60">
-                    State Hospitals
-                  </h3>
-                </div>
-              </div>
-              <div className="relative h-64 rounded-xl overflow-hidden group">
-                <Image
-                  src="/nursing/photos/malta-career2.jpg"
-                  alt="Health Centres"
-                  fill
-                  className="object-cover group-hover:scale-110 transition-transform duration-300"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/10 to-transparent flex items-end p-6">
-                  <h3 className="text-2xl font-extrabold text-gray-900 shadow-lg bg-white/85 backdrop-blur-sm px-4 py-2 rounded-lg border border-gold-metallic/60">
-                    Health Centres
-                  </h3>
-                </div>
-              </div>
-              <div className="relative h-64 rounded-xl overflow-hidden group">
-                <Image
-                  src="/nursing/photos/malta-career3.jpg"
-                  alt="Private Clinics"
-                  fill
-                  className="object-cover group-hover:scale-110 transition-transform duration-300"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/10 to-transparent flex items-end p-6">
-                  <h3 className="text-2xl font-extrabold text-gray-900 shadow-lg bg-white/85 backdrop-blur-sm px-4 py-2 rounded-lg border border-gold-metallic/60">
-                    Private Clinics
-                  </h3>
-                </div>
-              </div>
+              <ShowcaseCard imageSrc="/nursing/photos/malta-career1.jpg" imageAlt="State Hospitals" eyebrow="Career Opportunity" title="State Hospitals" ctaHref="/contact" />
+              <ShowcaseCard imageSrc="/nursing/photos/malta-career2.jpg" imageAlt="Health Centres" eyebrow="Career Opportunity" title="Health Centres" ctaHref="/contact" />
+              <ShowcaseCard imageSrc="/nursing/photos/malta-career3.jpg" imageAlt="Private Clinics" eyebrow="Career Opportunity" title="Private Clinics" ctaHref="/contact" />
             </div>
           </div>
 

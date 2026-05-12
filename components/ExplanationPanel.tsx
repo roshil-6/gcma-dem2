@@ -5,18 +5,24 @@ import { useState } from 'react'
 interface ExplanationPanelProps {
   content: string
   title: string
+  isVisible?: boolean
   onToggle?: (isVisible: boolean) => void
 }
 
-export default function ExplanationPanel({ content, title, onToggle }: ExplanationPanelProps) {
-  const [isVisible, setIsVisible] = useState(false)
+export default function ExplanationPanel({ content, title, isVisible, onToggle }: ExplanationPanelProps) {
+  const [internalVisible, setInternalVisible] = useState(false)
+  const isControlled = isVisible !== undefined
+  const visible = isControlled ? isVisible : internalVisible
+
+  const setVisible = (nextVisible: boolean) => {
+    if (!isControlled) {
+      setInternalVisible(nextVisible)
+    }
+    onToggle?.(nextVisible)
+  }
 
   const togglePanel = () => {
-    const newState = !isVisible
-    setIsVisible(newState)
-    if (onToggle) {
-      onToggle(newState)
-    }
+    setVisible(!visible)
   }
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
@@ -24,10 +30,7 @@ export default function ExplanationPanel({ content, title, onToggle }: Explanati
       e.preventDefault()
       togglePanel()
     } else if (e.key === 'Escape') {
-      setIsVisible(false)
-      if (onToggle) {
-        onToggle(false)
-      }
+      setVisible(false)
     }
   }
 
@@ -43,7 +46,7 @@ export default function ExplanationPanel({ content, title, onToggle }: Explanati
         }}
         onKeyDown={handleKeyDown}
         aria-label={`Show details about ${title}`}
-        aria-expanded={isVisible}
+        aria-expanded={visible}
       >
         <svg
           className="w-5 h-5"
@@ -60,7 +63,7 @@ export default function ExplanationPanel({ content, title, onToggle }: Explanati
       </button>
 
       {/* Return visibility state for parent to render box */}
-      {isVisible && (
+      {visible && (
         <div style={{ display: 'none' }} data-explanation-visible="true" />
       )}
     </>
@@ -102,7 +105,7 @@ export function ExplanationBox({ content, title, onClose }: { content: string; t
           </svg>
         </button>
       </div>
-      <p className="text-base md:text-lg text-gray-200 leading-relaxed">
+      <p className="text-base md:text-lg text-white leading-relaxed">
         {content}
       </p>
     </div>

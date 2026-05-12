@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect, useRef } from 'react'
-import ExplanationPanel, { ExplanationBox } from './ExplanationPanel'
+import WelfareProgramCard from './WelfareProgramCard'
 
 export default function HumanitarianAidSection() {
   const [activeCard, setActiveCard] = useState<'medical' | 'education' | null>(
@@ -41,178 +41,76 @@ export default function HumanitarianAidSection() {
           <h2 className="text-4xl md:text-5xl font-bold mb-4 text-gold-metallic">
             Humanitarian Aid & Welfare Programs
           </h2>
-          <p className="text-lg text-gray-300 max-w-2xl mx-auto">
+          <p className="page-intro mx-auto text-lg max-w-2xl">
             Supporting communities through verified medical assistance and
             educational empowerment programs.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8 items-start">
-          {/* Medical Assistance Card */}
-          <div id="medical-assistance" className="glass-card rounded-2xl overflow-hidden hover:scale-105 transition-transform duration-300 scroll-mt-20">
-            {/* Image Section */}
-            <div 
-              className="relative h-48 cursor-pointer"
-              onClick={() => setShowMedicalExplanation(!showMedicalExplanation)}
-              onKeyDown={(e) => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                  e.preventDefault()
-                  setShowMedicalExplanation(!showMedicalExplanation)
-                }
-              }}
-              role="button"
-              tabIndex={0}
-              aria-label="Click to view details about Healthcare Support"
-            >
-              <img
-                src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=1600&h=900&fit=crop&auto=format&q=80"
-                alt="Medical Assistance for the Underprivileged - Hospital Care"
-                className="absolute inset-0 w-full h-full object-cover object-center z-0"
-                loading="lazy"
-                onError={(e) => {
-                  const target = e.target as HTMLImageElement
-                  target.src = 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?w=1600&h=900&fit=crop&auto=format&q=80'
-                }}
-              />
-              <div className="absolute inset-0 bg-black/50 flex items-center justify-center z-10">
-                <div className="text-center p-6 w-full flex flex-col items-center justify-center">
-                  <div className="w-16 h-16 mb-3 rounded-full bg-gold-metallic/20 flex items-center justify-center border-2 border-gold-metallic/50 backdrop-blur-sm">
-                    <svg className="w-8 h-8 text-gold-metallic" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-                    </svg>
-                  </div>
-                  <div className="flex items-center justify-center gap-2 flex-wrap">
-                    <h4 className="text-xl md:text-2xl font-bold text-gold-metallic drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]" style={{ textShadow: '0 2px 8px rgba(0,0,0,0.8), 0 0 4px rgba(0,0,0,0.5)' }}>Healthcare Support</h4>
-                    <ExplanationPanel
-                      title="Healthcare Support"
-                      content="This program supports financially vulnerable patients who need medical assistance. Applications are reviewed using verified doctor and hospital referrals to ensure responsible and fair support. The focus is on dignity, transparency, and genuine care."
-                      onToggle={setShowMedicalExplanation}
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            {/* Explanation box for Medical */}
-            {showMedicalExplanation && (
-              <div className="px-8 pt-4">
-                <ExplanationBox
-                  title="Healthcare Support"
-                  content="This program supports financially vulnerable patients who need medical assistance. Applications are reviewed using verified doctor and hospital referrals to ensure responsible and fair support. The focus is on dignity, transparency, and genuine care."
-                  onClose={() => setShowMedicalExplanation(false)}
-                />
-              </div>
-            )}
-            
-            <div className="p-8">
-              <div className="mb-6">
-                <h3 className="text-2xl font-bold text-gold-metallic mb-3">
-                  Medical Assistance for the Underprivileged
-                </h3>
-                <p className="text-gray-300">
-                  Support financially vulnerable patients through verified hospital
-                  referrals. We connect those in need with appropriate medical
-                  care and financial assistance.
-                </p>
-              </div>
+        <div className="grid items-stretch gap-8 md:grid-cols-2">
+          <WelfareProgramCard
+            id="medical-assistance"
+            imageSrc="/home/healthcare-support.jpg"
+            imageAlt="Medical assistance for financially vulnerable patients"
+            eyebrow="Humanitarian Aid"
+            headline="Healthcare Support"
+            title="Medical Assistance for the Underprivileged"
+            description="Support financially vulnerable patients through verified hospital referrals. We connect those in need with appropriate medical care and financial assistance."
+            highlights={[
+              'Verified referrals from licensed doctors and recognized hospitals',
+              'Financial assistance for treatment, surgery, and emergency care',
+              'Transparent review with dignity-first communication',
+            ]}
+            explanation={{
+              title: 'Healthcare Support',
+              content:
+                'This program supports financially vulnerable patients who need medical assistance. Applications are reviewed using verified doctor and hospital referrals to ensure responsible and fair support. The focus is on dignity, transparency, and genuine care.',
+            }}
+            showExplanation={showMedicalExplanation}
+            onToggleExplanation={setShowMedicalExplanation}
+            applyLabel="Apply for Medical Assistance"
+            closeLabel="Close Form"
+            isFormOpen={activeCard === 'medical'}
+            onApplyToggle={() => setActiveCard(activeCard === 'medical' ? null : 'medical')}
+            icon={
+              <svg className="h-6 w-6 text-gold-metallic" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+              </svg>
+            }
+            form={<MedicalForm onClose={() => setActiveCard(null)} />}
+          />
 
-              <button
-                onClick={() => setActiveCard(activeCard === 'medical' ? null : 'medical')}
-                className="btn-gold-outline w-full"
-              >
-                {activeCard === 'medical' ? 'Close Form' : 'Apply for Medical Assistance'}
-              </button>
-
-              {activeCard === 'medical' && (
-                <MedicalForm
-                  onClose={() => setActiveCard(null)}
-                />
-              )}
-            </div>
-          </div>
-
-          {/* Educational Support Card */}
-          <div id="education-support" className="glass-card rounded-2xl overflow-hidden hover:scale-105 transition-transform duration-300 scroll-mt-20">
-            {/* Image Section */}
-            <div 
-              className="relative h-48 cursor-pointer"
-              onClick={() => setShowEducationExplanation(!showEducationExplanation)}
-              onKeyDown={(e) => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                  e.preventDefault()
-                  setShowEducationExplanation(!showEducationExplanation)
-                }
-              }}
-              role="button"
-              tabIndex={0}
-              aria-label="Click to view details about Education Empowerment"
-            >
-              <img
-                src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=1600&h=900&fit=crop&auto=format&q=80"
-                alt="Educational Support for Girl Students - Women Empowerment"
-                className="absolute inset-0 w-full h-full object-cover object-center"
-                loading="lazy"
-                onError={(e) => {
-                  const target = e.target as HTMLImageElement
-                  target.src = 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=1600&h=900&fit=crop&auto=format&q=80'
-                }}
-              />
-              <div className="absolute inset-0 bg-black/50 flex items-center justify-center z-10">
-                <div className="text-center p-6 w-full flex flex-col items-center justify-center">
-                  <div className="w-16 h-16 mb-3 rounded-full bg-gold-metallic/20 flex items-center justify-center border-2 border-gold-metallic/50 backdrop-blur-sm">
-                    <svg className="w-8 h-8 text-gold-metallic" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-                    </svg>
-                  </div>
-                  <div className="flex items-center justify-center gap-2 flex-wrap">
-                    <h4 className="text-xl md:text-2xl font-bold text-gold-metallic drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]" style={{ textShadow: '0 2px 8px rgba(0,0,0,0.8), 0 0 4px rgba(0,0,0,0.5)' }}>Education Empowerment</h4>
-                    <ExplanationPanel
-                      title="Education Empowerment"
-                      content="This initiative supports girl students who require educational assistance to continue their studies. Applications help us understand the student's background and needs so support can be provided responsibly and meaningfully. The goal is empowerment through education."
-                      onToggle={setShowEducationExplanation}
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            {/* Explanation box for Education */}
-            {showEducationExplanation && (
-              <div className="px-8 pt-4">
-                <ExplanationBox
-                  title="Education Empowerment"
-                  content="This initiative supports girl students who require educational assistance to continue their studies. Applications help us understand the student's background and needs so support can be provided responsibly and meaningfully. The goal is empowerment through education."
-                  onClose={() => setShowEducationExplanation(false)}
-                />
-              </div>
-            )}
-            
-            <div className="p-8">
-              <div className="mb-6">
-                <h3 className="text-2xl font-bold text-gold-metallic mb-3">
-                  Educational Support for Girl Students
-                </h3>
-                <p className="text-gray-300">
-                  Promote education and empowerment for girls through social
-                  welfare initiatives. Supporting the next generation of leaders
-                  and change-makers.
-                </p>
-              </div>
-
-              <button
-                onClick={() => setActiveCard(activeCard === 'education' ? null : 'education')}
-                className="btn-gold-outline w-full"
-              >
-                {activeCard === 'education' ? 'Close Form' : 'Apply for Educational Support'}
-              </button>
-
-              {activeCard === 'education' && (
-                <EducationForm
-                  onClose={() => setActiveCard(null)}
-                />
-              )}
-            </div>
-          </div>
+          <WelfareProgramCard
+            id="education-support"
+            imageSrc="/home/education-support.jpg"
+            imageAlt="Educational support for girl students"
+            eyebrow="Social Welfare"
+            headline="Education Empowerment"
+            title="Educational Support for Girl Students"
+            description="Promote education and empowerment for girls through social welfare initiatives. Supporting the next generation of leaders and change-makers."
+            highlights={[
+              'Support for school fees, supplies, and continuing education',
+              'Applications reviewed with family context and need in mind',
+              'Focus on long-term empowerment through learning access',
+            ]}
+            explanation={{
+              title: 'Education Empowerment',
+              content:
+                "This initiative supports girl students who require educational assistance to continue their studies. Applications help us understand the student's background and needs so support can be provided responsibly and meaningfully. The goal is empowerment through education.",
+            }}
+            showExplanation={showEducationExplanation}
+            onToggleExplanation={setShowEducationExplanation}
+            applyLabel="Apply for Educational Support"
+            closeLabel="Close Form"
+            isFormOpen={activeCard === 'education'}
+            onApplyToggle={() => setActiveCard(activeCard === 'education' ? null : 'education')}
+            icon={
+              <svg className="h-6 w-6 text-gold-metallic" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+              </svg>
+            }
+            form={<EducationForm onClose={() => setActiveCard(null)} />}
+          />
         </div>
       </div>
     </section>
@@ -252,7 +150,7 @@ function MedicalForm({ onClose }: { onClose: () => void }) {
     e.preventDefault()
     setIsSubmitting(true)
     setSubmitError(null)
-    
+
     try {
       const formDataToSend = new FormData()
       formDataToSend.append('applicantName', formData.applicantName)
@@ -263,14 +161,14 @@ function MedicalForm({ onClose }: { onClose: () => void }) {
       if (formData.medicalCertificate) {
         formDataToSend.append('medicalCertificate', formData.medicalCertificate)
       }
-      
+
       const response = await fetch(MEDICAL_API_ENDPOINT, {
         method: 'POST',
         body: formDataToSend
       })
-      
+
       const data = await response.json()
-      
+
       if (response.ok && data.success) {
         setSubmitSuccess(true)
         setFormData({
@@ -281,7 +179,7 @@ function MedicalForm({ onClose }: { onClose: () => void }) {
           caseDescription: '',
           medicalCertificate: null,
         })
-        
+
         setTimeout(() => {
           setSubmitSuccess(false)
           onClose()
@@ -297,7 +195,7 @@ function MedicalForm({ onClose }: { onClose: () => void }) {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="mt-6 space-y-4">
+    <form onSubmit={handleSubmit} className="form-sheet mt-6">
       {submitSuccess && (
         <div className="bg-gold-metallic/20 border border-gold-metallic/50 rounded-lg p-4 mb-4">
           <p className="text-gold-metallic font-semibold text-center">
@@ -449,7 +347,7 @@ function EducationForm({ onClose }: { onClose: () => void }) {
     e.preventDefault()
     setIsSubmitting(true)
     setSubmitError(null)
-    
+
     try {
       const formDataToSend = new FormData()
       formDataToSend.append('studentName', formData.studentName)
@@ -457,14 +355,14 @@ function EducationForm({ onClose }: { onClose: () => void }) {
       formDataToSend.append('educationLevel', formData.educationLevel)
       formDataToSend.append('schoolName', formData.schoolName)
       formDataToSend.append('supportRequirement', formData.supportRequirement)
-      
+
       const response = await fetch(EDUCATION_API_ENDPOINT, {
         method: 'POST',
         body: formDataToSend
       })
-      
+
       const data = await response.json()
-      
+
       if (response.ok && data.success) {
         setSubmitSuccess(true)
         setFormData({
@@ -474,7 +372,7 @@ function EducationForm({ onClose }: { onClose: () => void }) {
           schoolName: '',
           supportRequirement: '',
         })
-        
+
         setTimeout(() => {
           setSubmitSuccess(false)
           onClose()
@@ -490,7 +388,7 @@ function EducationForm({ onClose }: { onClose: () => void }) {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="mt-6 space-y-4">
+    <form onSubmit={handleSubmit} className="form-sheet mt-6">
       {submitSuccess && (
         <div className="bg-gold-metallic/20 border border-gold-metallic/50 rounded-lg p-4 mb-4">
           <p className="text-gold-metallic font-semibold text-center">

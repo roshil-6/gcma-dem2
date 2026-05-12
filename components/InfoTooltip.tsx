@@ -133,7 +133,7 @@ export default function InfoTooltip({ content, position = 'bottom' }: InfoToolti
           
           {/* Tooltip Content */}
           <div className="glass-card rounded-lg p-4 border border-gold-metallic/50 shadow-lg shadow-gold-metallic/20">
-            <p className="text-sm text-gray-200 leading-relaxed">{content}</p>
+            <p className="text-sm text-white leading-relaxed">{content}</p>
           </div>
         </div>
       )}

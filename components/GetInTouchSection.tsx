@@ -36,14 +36,10 @@ export default function GetInTouchSection() {
         <div className="mb-8 glass-card rounded-2xl overflow-hidden">
           <div className="relative h-64 md:h-96">
             <img
-              src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=1600&h=900&fit=crop&q=80"
+              src="/about/get-in-touch.jpg"
               alt="Get In Touch - Community and Connection"
               className="absolute inset-0 w-full h-full object-cover"
               loading="lazy"
-              onError={(e) => {
-                const target = e.target as HTMLImageElement
-                target.src = 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1600&h=900&fit=crop&q=80'
-              }}
             />
             <Link
               href="/contact"
@@ -57,7 +53,7 @@ export default function GetInTouchSection() {
         </div>
         
         <div className="glass-card rounded-2xl p-8 md:p-12 text-center">
-          <p className="text-lg md:text-xl text-gray-300 leading-relaxed max-w-2xl mx-auto">
+          <p className="text-lg md:text-xl text-white leading-relaxed max-w-2xl mx-auto">
             Together, we can create lasting change in the lives of migrants and their families. 
             Join us in building a world that embraces diversity and compassion.
           </p>

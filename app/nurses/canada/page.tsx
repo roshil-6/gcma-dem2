@@ -4,6 +4,7 @@ import HexagonBackground from '@/components/HexagonBackground'
 import NursingRegistrationForm from '@/components/NursingRegistrationForm'
 import WhoCanApplyBox from '@/components/WhoCanApplyBox'
 import NursingCountryBanner from '@/components/NursingCountryBanner'
+import ShowcaseCard from '@/components/ShowcaseCard'
 import Link from 'next/link'
 import Image from 'next/image'
 
@@ -20,7 +21,7 @@ export default function NursesCanadaPage() {
           >
             Back to Home
           </Link>
-          <span className="text-xs md:text-sm text-gray-300">Canada</span>
+          <span className="text-xs md:text-sm text-white">Canada</span>
         </div>
       </nav>
 
@@ -41,46 +42,10 @@ export default function NursesCanadaPage() {
               Why Work in Canada?
             </h2>
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-              <div className="rounded-2xl overflow-hidden border border-gold-metallic/40 bg-[#f9f2e7] shadow-md">
-                <div className="relative w-full h-52">
-                  <Image src="/nursing/photos/canada-why1.jpg" alt="Permanent Residency" fill className="object-cover" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/15 via-black/0 to-transparent" />
-                </div>
-                <div className="p-5 text-center">
-                  <h3 className="text-lg font-extrabold text-[#1f1b2d] mb-2">Permanent Residency</h3>
-                  <p className="text-sm text-[#1f1b2d]">Pathways to PR and family settlement</p>
-                </div>
-              </div>
-              <div className="rounded-2xl overflow-hidden border border-gold-metallic/40 bg-[#f9f2e7] shadow-md">
-                <div className="relative w-full h-52">
-                  <Image src="/nursing/photos/canada-why2.jpg" alt="Specialized Roles" fill className="object-cover" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/15 via-black/0 to-transparent" />
-                </div>
-                <div className="p-5 text-center">
-                  <h3 className="text-lg font-extrabold text-[#1f1b2d] mb-2">Specialized Roles</h3>
-                  <p className="text-sm text-[#1f1b2d]">ICU, ER, geriatrics opportunities</p>
-                </div>
-              </div>
-              <div className="rounded-2xl overflow-hidden border border-gold-metallic/40 bg-[#f9f2e7] shadow-md">
-                <div className="relative w-full h-52">
-                  <Image src="/nursing/photos/canada-why3.jpg" alt="Rural Health" fill className="object-cover" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/15 via-black/0 to-transparent" />
-                </div>
-                <div className="p-5 text-center">
-                  <h3 className="text-lg font-extrabold text-[#1f1b2d] mb-2">Rural Health</h3>
-                  <p className="text-sm text-[#1f1b2d]">Diverse healthcare settings</p>
-                </div>
-              </div>
-              <div className="rounded-2xl overflow-hidden border border-gold-metallic/40 bg-[#f9f2e7] shadow-md">
-                <div className="relative w-full h-52">
-                  <Image src="/nursing/photos/canada-why4.jpg" alt="Quality Healthcare" fill className="object-cover" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/15 via-black/0 to-transparent" />
-                </div>
-                <div className="p-5 text-center">
-                  <h3 className="text-lg font-extrabold text-[#1f1b2d] mb-2">Quality Healthcare</h3>
-                  <p className="text-sm text-[#1f1b2d]">World-class medical facilities</p>
-                </div>
-              </div>
+              <ShowcaseCard imageSrc="/nursing/photos/canada-why1.jpg" imageAlt="Permanent Residency" eyebrow="Why Canada" title="Permanent Residency" description="Pathways to PR and family settlement." ctaHref="/contact" />
+              <ShowcaseCard imageSrc="/nursing/photos/canada-why2.jpg" imageAlt="Specialized Roles" eyebrow="Why Canada" title="Specialized Roles" description="ICU, ER, geriatrics opportunities." ctaHref="/contact" />
+              <ShowcaseCard imageSrc="/nursing/photos/canada-why3.jpg" imageAlt="Rural Health" eyebrow="Why Canada" title="Rural Health" description="Diverse healthcare settings." ctaHref="/contact" />
+              <ShowcaseCard imageSrc="/nursing/photos/canada-why4.jpg" imageAlt="Quality Healthcare" eyebrow="Why Canada" title="Quality Healthcare" description="World-class medical facilities." ctaHref="/contact" />
             </div>
           </div>
 
@@ -97,11 +62,11 @@ export default function NursesCanadaPage() {
               </div>
               <div className="order-1 md:order-2">
                 <h2 className="text-3xl font-bold text-gold-metallic mb-4">Registration Authority</h2>
-                <p className="text-lg text-[#1f1b2d] mb-4">
+                <p className="text-lg text-black mb-4">
                   Provincial Nursing Regulatory Bodies (CNO, BCCNM, NSCN)
                 </p>
-                <p className="text-base text-[#1f1b2d]">
-                  Canada welcomes internationally educated nurses through province-specific assessment pathways. 
+                <p className="text-base text-black">
+                  Canada welcomes internationally educated nurses through province-specific assessment pathways.
                   Safe, ethical, and person-centred care standards.
                 </p>
               </div>
@@ -145,45 +110,9 @@ export default function NursesCanadaPage() {
               Career Opportunities
             </h2>
             <div className="grid md:grid-cols-3 gap-6">
-              <div className="relative h-64 rounded-xl overflow-hidden group">
-                <Image
-                  src="/nursing/photos/canada-career1.jpg"
-                  alt="Public Hospitals"
-                  fill
-                  className="object-cover group-hover:scale-110 transition-transform duration-300"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/10 to-transparent flex items-end p-6">
-                  <h3 className="text-2xl font-extrabold text-gray-900 shadow-lg bg-white/85 backdrop-blur-sm px-4 py-2 rounded-lg border border-gold-metallic/60">
-                    Public Hospitals
-                  </h3>
-                </div>
-              </div>
-              <div className="relative h-64 rounded-xl overflow-hidden group">
-                <Image
-                  src="/nursing/photos/canada-career2.jpg"
-                  alt="Community Health"
-                  fill
-                  className="object-cover group-hover:scale-110 transition-transform duration-300"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/10 to-transparent flex items-end p-6">
-                  <h3 className="text-2xl font-extrabold text-gray-900 shadow-lg bg-white/85 backdrop-blur-sm px-4 py-2 rounded-lg border border-gold-metallic/60">
-                    Community Health
-                  </h3>
-                </div>
-              </div>
-              <div className="relative h-64 rounded-xl overflow-hidden group">
-                <Image
-                  src="/nursing/photos/canada-career3.jpg"
-                  alt="Long-term Care"
-                  fill
-                  className="object-cover group-hover:scale-110 transition-transform duration-300"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/10 to-transparent flex items-end p-6">
-                  <h3 className="text-2xl font-extrabold text-gray-900 shadow-lg bg-white/85 backdrop-blur-sm px-4 py-2 rounded-lg border border-gold-metallic/60">
-                    Long-term Care
-                  </h3>
-                </div>
-              </div>
+              <ShowcaseCard imageSrc="/nursing/photos/canada-career1.jpg" imageAlt="Public Hospitals" eyebrow="Career Opportunity" title="Public Hospitals" ctaHref="/contact" />
+              <ShowcaseCard imageSrc="/nursing/photos/canada-career2.jpg" imageAlt="Community Health" eyebrow="Career Opportunity" title="Community Health" ctaHref="/contact" />
+              <ShowcaseCard imageSrc="/nursing/photos/canada-career3.jpg" imageAlt="Long-term Care" eyebrow="Career Opportunity" title="Long-term Care" ctaHref="/contact" />
             </div>
           </div>
 

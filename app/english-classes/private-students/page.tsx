@@ -3,6 +3,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import HexagonBackground from '@/components/HexagonBackground'
+import ShowcaseCard from '@/components/ShowcaseCard'
 
 export default function EnglishClassesPrivateStudentsPage() {
   return (
@@ -37,7 +38,7 @@ export default function EnglishClassesPrivateStudentsPage() {
               <div className="w-full px-8 md:px-12 max-w-7xl mx-auto">
                 <div className="inline-flex items-center gap-4 rounded-2xl bg-[#f9f2e7]/95 border border-gold-metallic/55 px-6 py-5 shadow-xl">
                   <div className="space-y-2">
-                    <h1 className="text-4xl md:text-5xl font-extrabold text-[#1f1b2d]">
+                    <h1 className="text-4xl md:text-5xl font-extrabold text-black">
                       English Speaking Classes
                     </h1>
                     <p className="text-lg md:text-xl text-gold-metallic font-semibold">
@@ -77,44 +78,33 @@ export default function EnglishClassesPrivateStudentsPage() {
 
           {/* Key Features */}
           <div className="grid md:grid-cols-3 gap-6 mb-12">
-            <div className="rounded-2xl overflow-hidden border border-gold-metallic/40 bg-black/70 backdrop-blur-sm shadow-xl">
-              <div className="relative w-full h-48">
-                <Image src="/english-classes/private-students/feature1.jpg" alt="Advanced Curriculum" fill className="object-cover" />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/20 to-transparent" />
-              </div>
-              <div className="p-6">
-                <h3 className="text-xl font-bold text-gold-metallic mb-3">Advanced Curriculum</h3>
-                <p className="text-slate-200 text-sm leading-relaxed">
-                  Challenging content designed for high-achieving students, including academic writing and presentation skills.
-                </p>
-              </div>
-            </div>
-
-            <div className="rounded-2xl overflow-hidden border border-gold-metallic/40 bg-black/70 backdrop-blur-sm shadow-xl">
-              <div className="relative w-full h-48">
-                <Image src="/english-classes/private-students/feature2.jpg" alt="Test Preparation" fill className="object-cover" />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/20 to-transparent" />
-              </div>
-              <div className="p-6">
-                <h3 className="text-xl font-bold text-gold-metallic mb-3">Test Preparation</h3>
-                <p className="text-slate-200 text-sm leading-relaxed">
-                  Preparation for international English tests like IELTS, TOEFL, and Cambridge exams for higher education abroad.
-                </p>
-              </div>
-            </div>
-
-            <div className="rounded-2xl overflow-hidden border border-gold-metallic/40 bg-black/70 backdrop-blur-sm shadow-xl">
-              <div className="relative w-full h-48">
-                <Image src="/english-classes/private-students/feature3.jpg" alt="Global Communication" fill className="object-cover" />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/20 to-transparent" />
-              </div>
-              <div className="p-6">
-                <h3 className="text-xl font-bold text-gold-metallic mb-3">Global Communication</h3>
-                <p className="text-slate-200 text-sm leading-relaxed">
-                  Develop skills for effective communication in international academic and professional settings.
-                </p>
-              </div>
-            </div>
+            <ShowcaseCard
+              imageSrc="/english-classes/private-students/feature1.jpg"
+              imageAlt="Advanced Curriculum"
+              eyebrow="Private Students"
+              title="Advanced Curriculum"
+              description="Challenging content designed for high-achieving students, including academic writing and presentation skills."
+              ctaHref="/?apply=student#break-the-silence"
+              ctaLabel="Apply as Student"
+            />
+            <ShowcaseCard
+              imageSrc="/english-classes/private-students/feature2.jpg"
+              imageAlt="Test Preparation"
+              eyebrow="Private Students"
+              title="Test Preparation"
+              description="Preparation for international English tests like IELTS, TOEFL, and Cambridge exams for higher education abroad."
+              ctaHref="/?apply=student#break-the-silence"
+              ctaLabel="Apply as Student"
+            />
+            <ShowcaseCard
+              imageSrc="/english-classes/private-students/feature3.jpg"
+              imageAlt="Global Communication"
+              eyebrow="Private Students"
+              title="Global Communication"
+              description="Develop skills for effective communication in international academic and professional settings."
+              ctaHref="/?apply=student#break-the-silence"
+              ctaLabel="Apply as Student"
+            />
           </div>
 
           {/* CTA Section */}

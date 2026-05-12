@@ -4,6 +4,7 @@ import HexagonBackground from '@/components/HexagonBackground'
 import NursingRegistrationForm from '@/components/NursingRegistrationForm'
 import WhoCanApplyBox from '@/components/WhoCanApplyBox'
 import NursingCountryBanner from '@/components/NursingCountryBanner'
+import ShowcaseCard from '@/components/ShowcaseCard'
 import Link from 'next/link'
 import Image from 'next/image'
 
@@ -20,7 +21,7 @@ export default function NursesUAEPage() {
           >
             Back to Home
           </Link>
-          <span className="text-xs md:text-sm text-gray-300">UAE</span>
+          <span className="text-xs md:text-sm text-white">UAE</span>
         </div>
       </nav>
 
@@ -41,46 +42,10 @@ export default function NursesUAEPage() {
               Why Work in UAE?
             </h2>
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-              <div className="rounded-2xl overflow-hidden border border-gold-metallic/40 bg-[#f9f2e7] shadow-md">
-                <div className="relative w-full h-52">
-                  <Image src="/nursing/photos/uae-why1.jpg" alt="Tax-Free Salaries" fill className="object-cover" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/15 via-black/0 to-transparent" />
-                </div>
-                <div className="p-5 text-center">
-                  <h3 className="text-lg font-extrabold text-[#1f1b2d] mb-2">Tax-Free Salaries</h3>
-                  <p className="text-sm text-[#1f1b2d]">Excellent financial benefits</p>
-                </div>
-              </div>
-              <div className="rounded-2xl overflow-hidden border border-gold-metallic/40 bg-[#f9f2e7] shadow-md">
-                <div className="relative w-full h-52">
-                  <Image src="/nursing/photos/uae-why2.jpg" alt="Modern Facilities" fill className="object-cover" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/15 via-black/0 to-transparent" />
-                </div>
-                <div className="p-5 text-center">
-                  <h3 className="text-lg font-extrabold text-[#1f1b2d] mb-2">Modern Facilities</h3>
-                  <p className="text-sm text-[#1f1b2d]">State-of-the-art healthcare</p>
-                </div>
-              </div>
-              <div className="rounded-2xl overflow-hidden border border-gold-metallic/40 bg-[#f9f2e7] shadow-md">
-                <div className="relative w-full h-52">
-                  <Image src="/nursing/photos/uae-why3.jpg" alt="Multicultural Teams" fill className="object-cover" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/15 via-black/0 to-transparent" />
-                </div>
-                <div className="p-5 text-center">
-                  <h3 className="text-lg font-extrabold text-[#1f1b2d] mb-2">Multicultural Teams</h3>
-                  <p className="text-sm text-[#1f1b2d]">Diverse international environment</p>
-                </div>
-              </div>
-              <div className="rounded-2xl overflow-hidden border border-gold-metallic/40 bg-[#f9f2e7] shadow-md">
-                <div className="relative w-full h-52">
-                  <Image src="/nursing/photos/uae-why4.jpg" alt="Specialist Centres" fill className="object-cover" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/15 via-black/0 to-transparent" />
-                </div>
-                <div className="p-5 text-center">
-                  <h3 className="text-lg font-extrabold text-[#1f1b2d] mb-2">Specialist Centres</h3>
-                  <p className="text-sm text-[#1f1b2d]">Advanced medical facilities</p>
-                </div>
-              </div>
+              <ShowcaseCard imageSrc="/nursing/photos/uae-why1.jpg" imageAlt="Tax-Free Salaries" eyebrow="Why UAE" title="Tax-Free Salaries" description="Excellent financial benefits." ctaHref="/contact" />
+              <ShowcaseCard imageSrc="/nursing/photos/uae-why2.jpg" imageAlt="Modern Facilities" eyebrow="Why UAE" title="Modern Facilities" description="State-of-the-art healthcare." ctaHref="/contact" />
+              <ShowcaseCard imageSrc="/nursing/photos/uae-why3.jpg" imageAlt="Multicultural Teams" eyebrow="Why UAE" title="Multicultural Teams" description="Diverse international environment." ctaHref="/contact" />
+              <ShowcaseCard imageSrc="/nursing/photos/uae-why4.jpg" imageAlt="Specialist Centres" eyebrow="Why UAE" title="Specialist Centres" description="Advanced medical facilities." ctaHref="/contact" />
             </div>
           </div>
 
@@ -97,11 +62,11 @@ export default function NursesUAEPage() {
               </div>
               <div className="order-1 md:order-2">
                 <h2 className="text-3xl font-bold text-gold-metallic mb-4">Registration Authority</h2>
-                <p className="text-lg text-[#1f1b2d] mb-4">
+                <p className="text-lg text-black mb-4">
                   DHA, DOH, MOHAP (depending on Emirate)
                 </p>
-                <p className="text-base text-[#1f1b2d]">
-                  The UAE attracts international nurses through modern healthcare facilities, 
+                <p className="text-base text-black">
+                  The UAE attracts international nurses through modern healthcare facilities,
                   clear licensing exams, and tax-free salaries. Multicultural clinical practice.
                 </p>
               </div>
@@ -145,45 +110,9 @@ export default function NursesUAEPage() {
               Career Opportunities
             </h2>
             <div className="grid md:grid-cols-3 gap-6">
-              <div className="relative h-64 rounded-xl overflow-hidden group">
-                <Image
-                  src="/nursing/photos/uae-career1.jpg"
-                  alt="Tertiary Hospitals"
-                  fill
-                  className="object-cover group-hover:scale-110 transition-transform duration-300"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/10 to-transparent flex items-end p-6">
-                  <h3 className="text-2xl font-extrabold text-gray-900 shadow-lg bg-white/85 backdrop-blur-sm px-4 py-2 rounded-lg border border-gold-metallic/60">
-                    Tertiary Hospitals
-                  </h3>
-                </div>
-              </div>
-              <div className="relative h-64 rounded-xl overflow-hidden group">
-                <Image
-                  src="/nursing/photos/uae-career2.jpg"
-                  alt="Specialist Centres"
-                  fill
-                  className="object-cover group-hover:scale-110 transition-transform duration-300"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/10 to-transparent flex items-end p-6">
-                  <h3 className="text-2xl font-extrabold text-gray-900 shadow-lg bg-white/85 backdrop-blur-sm px-4 py-2 rounded-lg border border-gold-metallic/60">
-                    Specialist Centres
-                  </h3>
-                </div>
-              </div>
-              <div className="relative h-64 rounded-xl overflow-hidden group">
-                <Image
-                  src="/nursing/photos/uae-career3.jpg"
-                  alt="Private Networks"
-                  fill
-                  className="object-cover group-hover:scale-110 transition-transform duration-300"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/10 to-transparent flex items-end p-6">
-                  <h3 className="text-2xl font-extrabold text-gray-900 shadow-lg bg-white/85 backdrop-blur-sm px-4 py-2 rounded-lg border border-gold-metallic/60">
-                    Private Networks
-                  </h3>
-                </div>
-              </div>
+              <ShowcaseCard imageSrc="/nursing/photos/uae-career1.jpg" imageAlt="Tertiary Hospitals" eyebrow="Career Opportunity" title="Tertiary Hospitals" ctaHref="/contact" />
+              <ShowcaseCard imageSrc="/nursing/photos/uae-career2.jpg" imageAlt="Specialist Centres" eyebrow="Career Opportunity" title="Specialist Centres" ctaHref="/contact" />
+              <ShowcaseCard imageSrc="/nursing/photos/uae-career3.jpg" imageAlt="Private Networks" eyebrow="Career Opportunity" title="Private Networks" ctaHref="/contact" />
             </div>
           </div>
 

@@ -3,8 +3,12 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import HexagonBackground from '@/components/HexagonBackground'
+import ShowcaseCard from '@/components/ShowcaseCard'
+import { useState } from 'react'
 
 export default function EnglishClassesGovtStudentsPage() {
+  const [heroSrc, setHeroSrc] = useState('/english-classes/govt-students/hero-banner.jpg')
+
   return (
     <main className="relative min-h-screen">
       <HexagonBackground />
@@ -24,20 +28,22 @@ export default function EnglishClassesGovtStudentsPage() {
       {/* Banner Section */}
       <section className="relative z-10 py-8 px-4 mb-12">
         <div className="max-w-7xl mx-auto">
-          <div className="relative w-full h-[300px] md:h-[400px] rounded-3xl overflow-hidden shadow-2xl mb-8">
-            <Image
-              src="/english-classes/govt-students/banner.jpg"
-              alt="English Classes for Government School Students"
-              fill
-              className="object-cover"
-              priority
+          <div
+            className="relative mb-8 h-[300px] w-full overflow-hidden rounded-3xl shadow-2xl md:h-[400px]"
+            style={{ position: 'relative' }}
+          >
+            <img
+              src={heroSrc}
+              alt="Government school students learning English in a classroom"
+              className="absolute inset-0 z-0 h-full w-full object-cover object-center"
+              onError={() => setHeroSrc('/english-classes/govt-students/banner.jpg')}
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/30 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/40 to-black/10" />
             <div className="absolute inset-0 flex items-center">
               <div className="w-full px-8 md:px-12 max-w-7xl mx-auto">
                 <div className="inline-flex items-center gap-4 rounded-2xl bg-[#f9f2e7]/95 border border-gold-metallic/55 px-6 py-5 shadow-xl">
                   <div className="space-y-2">
-                    <h1 className="text-4xl md:text-5xl font-extrabold text-[#1f1b2d]">
+                    <h1 className="text-4xl md:text-5xl font-extrabold text-black">
                       English Speaking Classes
                     </h1>
                     <p className="text-lg md:text-xl text-gold-metallic font-semibold">
@@ -64,11 +70,15 @@ export default function EnglishClassesGovtStudentsPage() {
                   With qualified instructors and a curriculum tailored to government school syllabi, we help students improve their communication skills, excel in examinations, and prepare for future opportunities in higher education and employment.
                 </p>
               </div>
-              <div className="relative h-64 md:h-80 rounded-xl overflow-hidden">
+              <div
+                className="relative h-64 overflow-hidden rounded-xl md:h-80"
+                style={{ position: 'relative' }}
+              >
                 <Image
                   src="/english-classes/govt-students/significance.jpg"
                   alt="English Classes Significance"
                   fill
+                  sizes="(max-width: 768px) 100vw, 560px"
                   className="object-cover"
                 />
               </div>
@@ -77,44 +87,33 @@ export default function EnglishClassesGovtStudentsPage() {
 
           {/* Key Features */}
           <div className="grid md:grid-cols-3 gap-6 mb-12">
-            <div className="rounded-2xl overflow-hidden border border-gold-metallic/40 bg-black/70 backdrop-blur-sm shadow-xl">
-              <div className="relative w-full h-48">
-                <Image src="/english-classes/govt-students/feature1.jpg" alt="Interactive Learning" fill className="object-cover" />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/20 to-transparent" />
-              </div>
-              <div className="p-6">
-                <h3 className="text-xl font-bold text-gold-metallic mb-3">Interactive Learning</h3>
-                <p className="text-slate-200 text-sm leading-relaxed">
-                  Engaging activities and group discussions that make learning English fun and effective for students.
-                </p>
-              </div>
-            </div>
-
-            <div className="rounded-2xl overflow-hidden border border-gold-metallic/40 bg-black/70 backdrop-blur-sm shadow-xl">
-              <div className="relative w-full h-48">
-                <Image src="/english-classes/govt-students/feature2.jpg" alt="Curriculum Alignment" fill className="object-cover" />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/20 to-transparent" />
-              </div>
-              <div className="p-6">
-                <h3 className="text-xl font-bold text-gold-metallic mb-3">Curriculum Alignment</h3>
-                <p className="text-slate-200 text-sm leading-relaxed">
-                  Classes aligned with government school curriculum to help students excel in their regular studies.
-                </p>
-              </div>
-            </div>
-
-            <div className="rounded-2xl overflow-hidden border border-gold-metallic/40 bg-black/70 backdrop-blur-sm shadow-xl">
-              <div className="relative w-full h-48">
-                <Image src="/english-classes/govt-students/feature3.jpg" alt="Confidence Building" fill className="object-cover" />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/20 to-transparent" />
-              </div>
-              <div className="p-6">
-                <h3 className="text-xl font-bold text-gold-metallic mb-3">Confidence Building</h3>
-                <p className="text-slate-200 text-sm leading-relaxed">
-                  Focus on building speaking confidence through practice sessions and personalized feedback.
-                </p>
-              </div>
-            </div>
+            <ShowcaseCard
+              imageSrc="/english-classes/govt-students/feature1.jpg"
+              imageAlt="Interactive Learning"
+              eyebrow="Govt Students"
+              title="Interactive Learning"
+              description="Engaging activities and group discussions that make learning English fun and effective for students."
+              ctaHref="/?apply=student#break-the-silence"
+              ctaLabel="Apply as Student"
+            />
+            <ShowcaseCard
+              imageSrc="/english-classes/govt-students/feature2.jpg"
+              imageAlt="Curriculum Alignment"
+              eyebrow="Govt Students"
+              title="Curriculum Alignment"
+              description="Classes aligned with government school curriculum to help students excel in their regular studies."
+              ctaHref="/?apply=student#break-the-silence"
+              ctaLabel="Apply as Student"
+            />
+            <ShowcaseCard
+              imageSrc="/english-classes/govt-students/feature3.jpg"
+              imageAlt="Confidence Building"
+              eyebrow="Govt Students"
+              title="Confidence Building"
+              description="Focus on building speaking confidence through practice sessions and personalized feedback."
+              ctaHref="/?apply=student#break-the-silence"
+              ctaLabel="Apply as Student"
+            />
           </div>
 
           {/* CTA Section */}

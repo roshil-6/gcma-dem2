@@ -3,6 +3,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import HexagonBackground from '@/components/HexagonBackground'
+import ShowcaseCard from '@/components/ShowcaseCard'
 
 export default function MigrationAdvicePage() {
   return (
@@ -88,85 +89,24 @@ export default function MigrationAdvicePage() {
 
             {/* Country Cards */}
             <div className="grid md:grid-cols-2 gap-8">
-              {/* Australia Card */}
-              <Link href="/migration-advice/skilled-migration/australia" className="group">
-                <div className="rounded-2xl overflow-hidden border border-gold-metallic/40 bg-black/70 backdrop-blur-sm shadow-xl hover:border-gold-metallic transition-all">
-                  <div className="relative w-full h-64">
-                    <Image
-                      src="/migration-advice/australia.jpg"
-                      alt="Skilled Migration to Australia"
-                      fill
-                      className="object-cover group-hover:scale-105 transition-transform duration-300"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-black/30" />
-                    <div className="absolute top-4 right-4">
-                      <div className="relative w-16 h-12">
-                        <Image
-                          src="/nursing/flags/au.png"
-                          alt="Australia Flag"
-                          fill
-                          className="object-contain drop-shadow-lg"
-                        />
-                      </div>
-                    </div>
-                    <div className="absolute bottom-4 left-4 right-4 z-10">
-                      <h3 className="text-2xl font-bold text-white mb-1 drop-shadow-2xl">Australia</h3>
-                      <p className="text-sm text-white font-medium">Skilled Migration Program</p>
-                    </div>
-                  </div>
-                  <div className="p-6">
-                    <p className="text-white mb-4 font-medium">
-                      Australia offers excellent opportunities for skilled professionals through its points-based migration system.
-                    </p>
-                    <div className="flex items-center text-gold-metallic font-semibold">
-                      <span>Learn More</span>
-                      <svg className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                      </svg>
-                    </div>
-                  </div>
-                </div>
-              </Link>
-
-              {/* Canada Card */}
-              <Link href="/migration-advice/skilled-migration/canada" className="group">
-                <div className="rounded-2xl overflow-hidden border border-gold-metallic/40 bg-black/70 backdrop-blur-sm shadow-xl hover:border-gold-metallic transition-all">
-                  <div className="relative w-full h-64">
-                    <Image
-                      src="/migration-advice/canada.jpg"
-                      alt="Skilled Migration to Canada"
-                      fill
-                      className="object-cover group-hover:scale-105 transition-transform duration-300"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-black/30" />
-                    <div className="absolute top-4 right-4">
-                      <div className="relative w-16 h-12">
-                        <Image
-                          src="/nursing/flags/ca.png"
-                          alt="Canada Flag"
-                          fill
-                          className="object-contain drop-shadow-lg"
-                        />
-                      </div>
-                    </div>
-                    <div className="absolute bottom-4 left-4 right-4 z-10">
-                      <h3 className="text-2xl font-bold text-white mb-1 drop-shadow-2xl">Canada</h3>
-                      <p className="text-sm text-white font-medium">Express Entry System</p>
-                    </div>
-                  </div>
-                  <div className="p-6">
-                    <p className="text-white mb-4 font-medium">
-                      Canada's Express Entry system provides a fast-track pathway for skilled workers to obtain permanent residency.
-                    </p>
-                    <div className="flex items-center text-gold-metallic font-semibold">
-                      <span>Learn More</span>
-                      <svg className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                      </svg>
-                    </div>
-                  </div>
-                </div>
-              </Link>
+              <ShowcaseCard
+                imageSrc="/migration-advice/australia.jpg"
+                imageAlt="Skilled Migration to Australia"
+                eyebrow="Skilled Migration Program"
+                title="Australia"
+                description="Australia offers excellent opportunities for skilled professionals through its points-based migration system."
+                ctaHref="/migration-advice/skilled-migration/australia"
+                ctaLabel="Learn More"
+              />
+              <ShowcaseCard
+                imageSrc="/migration-advice/canada.jpg"
+                imageAlt="Skilled Migration to Canada"
+                eyebrow="Express Entry System"
+                title="Canada"
+                description="Canada's Express Entry system provides a fast-track pathway for skilled workers to obtain permanent residency."
+                ctaHref="/migration-advice/skilled-migration/canada"
+                ctaLabel="Learn More"
+              />
             </div>
           </div>
 

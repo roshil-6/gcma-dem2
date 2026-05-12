@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { FormActions, FormField, FormGrid, FormSheet } from '@/components/FormSheet'
 
 interface NursingRegistrationFormProps {
   initialCountry?: string
@@ -45,65 +46,48 @@ export default function NursingRegistrationForm({
   }
 
   return (
-    <div className="glass-card rounded-2xl p-6 md:p-8">
-      <h3 className="text-xl md:text-2xl font-semibold text-gold-metallic mb-2">
-        Global Nursing Registration Form
-      </h3>
-      <p className="text-sm md:text-base text-gray-300 mb-6">
-        Please complete this single application form for any of the listed countries. Our team
-        will review your profile and guide you on eligibility, documentation, and next steps.
-      </p>
-
-      <form onSubmit={handleSubmit} className="space-y-4" encType="multipart/form-data">
-        <div className="grid md:grid-cols-2 gap-4">
-          {/* Full Name */}
-          <div>
-            <label className="block text-sm font-semibold text-gold-metallic mb-1">
-              Full Name *
-            </label>
+    <FormSheet
+      title="Global Nursing Registration Form"
+      description="Please complete this single application form for any of the listed countries. Our team will review your profile and guide you on eligibility, documentation, and next steps."
+    >
+      <form onSubmit={handleSubmit} className="form-sheet" encType="multipart/form-data">
+        <FormGrid>
+          <FormField label="Full Name" htmlFor="fullName" required>
             <input
+              id="fullName"
               name="fullName"
               type="text"
               required
               className="form-input"
               placeholder="Enter your full name"
             />
-          </div>
+          </FormField>
 
-          {/* Contact Number */}
-          <div>
-            <label className="block text-sm font-semibold text-gold-metallic mb-1">
-              Contact Number *
-            </label>
+          <FormField label="Contact Number" htmlFor="contactNumber" required>
             <input
+              id="contactNumber"
               name="contactNumber"
               type="tel"
               required
               className="form-input"
               placeholder="Include country code if possible"
             />
-          </div>
+          </FormField>
 
-          {/* Email */}
-          <div>
-            <label className="block text-sm font-semibold text-gold-metallic mb-1">
-              Email *
-            </label>
+          <FormField label="Email" htmlFor="email" required>
             <input
+              id="email"
               name="email"
               type="email"
               required
               className="form-input"
               placeholder="Enter a valid email address"
             />
-          </div>
+          </FormField>
 
-          {/* Country of Interest */}
-          <div>
-            <label className="block text-sm font-semibold text-gold-metallic mb-1">
-              Country of Interest *
-            </label>
+          <FormField label="Country of Interest" htmlFor="countryOfInterest" required>
             <select
+              id="countryOfInterest"
               name="countryOfInterest"
               required
               defaultValue={initialCountry || ''}
@@ -124,30 +108,24 @@ export default function NursingRegistrationForm({
               <option value="UAE">UAE</option>
               <option value="USA">USA</option>
             </select>
-          </div>
-        </div>
+          </FormField>
+        </FormGrid>
 
-        {/* Nursing Qualification */}
-        <div>
-          <label className="block text-sm font-semibold text-gold-metallic mb-1">
-            Nursing Qualification *
-          </label>
+        <FormField label="Nursing Qualification" htmlFor="nursingQualification" required>
           <input
+            id="nursingQualification"
             name="nursingQualification"
             type="text"
             required
             className="form-input"
             placeholder="e.g., BSc Nursing, GNM, MSc Nursing"
           />
-        </div>
+        </FormField>
 
-        {/* Years of Experience & English Test */}
-        <div className="grid md:grid-cols-2 gap-4">
-          <div>
-            <label className="block text-sm font-semibold text-gold-metallic mb-1">
-              Years of Experience *
-            </label>
+        <FormGrid>
+          <FormField label="Years of Experience" htmlFor="yearsOfExperience" required>
             <input
+              id="yearsOfExperience"
               name="yearsOfExperience"
               type="number"
               min={0}
@@ -155,42 +133,34 @@ export default function NursingRegistrationForm({
               className="form-input"
               placeholder="Total years of clinical experience"
             />
-          </div>
+          </FormField>
 
-          <div>
-            <label className="block text-sm font-semibold text-gold-metallic mb-1">
-              English Test (optional)
-            </label>
+          <FormField label="English Test" htmlFor="englishTest" hint="Optional">
             <input
+              id="englishTest"
               name="englishTest"
               type="text"
               className="form-input"
               placeholder="IELTS / OET / PTE with scores, if available"
             />
-          </div>
-        </div>
+          </FormField>
+        </FormGrid>
 
-        {/* CV Upload */}
-        <div>
-          <label className="block text-sm font-semibold text-gold-metallic mb-1">
-            CV Upload (PDF / DOC, optional)
-          </label>
-          <input name="cv" type="file" accept=".pdf,.doc,.docx" className="form-input" />
-        </div>
+        <FormField label="CV Upload" htmlFor="cv" hint="PDF or DOC, optional">
+          <input id="cv" name="cv" type="file" accept=".pdf,.doc,.docx" className="form-input form-file" />
+        </FormField>
 
-        {/* Notes */}
-        <div>
-          <label className="block text-sm font-semibold text-gold-metallic mb-1">Notes</label>
+        <FormField label="Notes" htmlFor="notes">
           <textarea
+            id="notes"
             name="notes"
             rows={4}
-            className="form-input"
+            className="form-input form-textarea"
             placeholder="Share any additional details about your goals, preferred timelines, or questions."
           />
-        </div>
+        </FormField>
 
-        {/* Submit */}
-        <div className="pt-2 flex justify-center">
+        <FormActions>
           <button
             type="submit"
             disabled={isSubmitting}
@@ -198,21 +168,13 @@ export default function NursingRegistrationForm({
           >
             {isSubmitting ? 'Submitting...' : 'Submit Nursing Application'}
           </button>
-        </div>
+        </FormActions>
 
-        {/* Messages */}
-        {submitMessage && (
-          <div className="mt-3 text-sm text-green-400 bg-green-500/10 border border-green-500/30 rounded-lg px-4 py-3 text-center">
-            {submitMessage}
-          </div>
-        )}
-        {errorMessage && (
-          <div className="mt-3 text-sm text-red-400 bg-red-500/10 border border-red-500/30 rounded-lg px-4 py-3 text-center">
-            {errorMessage}
-          </div>
-        )}
+        {submitMessage ? (
+          <div className="form-feedback form-feedback-success">{submitMessage}</div>
+        ) : null}
+        {errorMessage ? <div className="form-feedback form-feedback-error">{errorMessage}</div> : null}
       </form>
-    </div>
+    </FormSheet>
   )
 }
-
