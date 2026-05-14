@@ -39,7 +39,7 @@ export default function BeliefStatementSection() {
               className="absolute inset-0 w-full h-full object-cover"
               loading="lazy"
             />
-            <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
+            <div className="absolute inset-0 bg-[#333333]/50 flex items-center justify-center">
               <h2 className="text-3xl md:text-4xl font-bold text-gold-metallic text-center px-4 drop-shadow-lg">
                 Our Core Philosophy
               </h2>

@@ -4,6 +4,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import HexagonBackground from '@/components/HexagonBackground'
 import ShowcaseCard from '@/components/ShowcaseCard'
+import EnglishClassInquiryForm from '@/components/EnglishClassInquiryForm'
 import { useState } from 'react'
 
 type ProgramTrack = {
@@ -82,7 +83,7 @@ function ProgramTrackLink({
   return (
     <Link
       href={href}
-      className="group flex h-full flex-col overflow-hidden rounded-xl border border-gold-metallic/35 bg-black/80 shadow-lg transition-all hover:-translate-y-0.5 hover:border-gold-metallic/70 hover:shadow-xl"
+      className="group flex h-full flex-col overflow-hidden rounded-xl border border-gold-metallic/35 bg-[#333333]/80 shadow-lg transition-all hover:-translate-y-0.5 hover:border-gold-metallic/70 hover:shadow-xl"
     >
       <div className="relative h-36" style={{ position: 'relative' }}>
         <Image
@@ -92,8 +93,8 @@ function ProgramTrackLink({
           sizes="(max-width: 768px) 100vw, 320px"
           className="object-cover transition-transform duration-300 group-hover:scale-[1.03]"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/35 to-black/10" />
-        <span className="absolute right-3 top-3 rounded-full border border-gold-metallic/35 bg-black/70 px-3 py-1 text-xs font-semibold uppercase tracking-[0.12em] text-gold-metallic">
+        <div className="absolute inset-0 bg-gradient-to-t from-[#333333]/85 via-[#333333]/35 to-[#333333]/10" />
+        <span className="absolute right-3 top-3 rounded-full border border-gold-metallic/35 bg-[#333333]/70 px-3 py-1 text-xs font-semibold uppercase tracking-[0.12em] text-gold-metallic">
           {audience}
         </span>
         <h3 className="absolute bottom-3 left-3 right-3 text-xl font-bold text-white drop-shadow-lg">{title}</h3>
@@ -137,7 +138,7 @@ function ProgramTrackPanel({
   tracks: ProgramTrack[]
 }) {
   return (
-    <div className="rounded-2xl border border-gold-metallic/40 bg-black/75 p-5 shadow-xl md:p-6">
+    <div className="rounded-2xl border border-gold-metallic/40 bg-[#333333]/75 p-5 shadow-xl md:p-6">
       <div className="mb-5 border-b border-gold-metallic/20 pb-5">
         <p className="text-xs font-semibold uppercase tracking-[0.18em] text-gold-metallic/85">{title}</p>
         <p className="mt-2 max-w-3xl text-sm leading-relaxed text-slate-200 md:text-base">{subtitle}</p>
@@ -183,7 +184,7 @@ export default function EnglishAcademyPage() {
               className="object-cover"
               priority
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/35 to-black/10" />
+            <div className="absolute inset-0 bg-gradient-to-r from-[#333333]/70 via-[#333333]/35 to-[#333333]/10" />
             <div className="absolute inset-0 flex items-center">
               <div className="mx-auto w-full max-w-7xl px-8 md:px-12">
                 <div className="inline-flex items-center gap-4 rounded-2xl border border-gold-metallic/55 bg-[#f9f2e7]/95 px-6 py-5 shadow-xl">
@@ -198,7 +199,7 @@ export default function EnglishAcademyPage() {
             </div>
           </div>
 
-          <div className="mb-12 rounded-2xl border border-gold-metallic/40 bg-black/70 p-8 shadow-xl backdrop-blur-sm md:p-12">
+          <div className="mb-12 rounded-2xl border border-gold-metallic/40 bg-[#333333]/70 p-8 shadow-xl backdrop-blur-sm md:p-12">
             <div className="grid items-center gap-8 md:grid-cols-2">
               <div>
                 <h2 className="mb-6 text-3xl font-bold text-gold-metallic">Why Choose English Academy?</h2>
@@ -341,17 +342,24 @@ export default function EnglishAcademyPage() {
             </div>
           </div>
 
-          <div className="rounded-2xl border border-gold-metallic/30 bg-gold-metallic/10 p-8 text-center">
-            <h3 className="mb-4 text-2xl font-bold text-gold-metallic">Ready to Start Your English Journey?</h3>
-            <p className="mx-auto mb-6 max-w-2xl text-white">
-              Contact us to learn more about schedules, batch options, and the right exam track for your goal.
-            </p>
-            <Link
-              href="/contact"
-              className="inline-flex items-center rounded-lg bg-gold-metallic px-8 py-4 font-semibold text-black shadow-lg transition-all hover:bg-gold-bright hover:shadow-xl"
-            >
-              Get in Touch
-            </Link>
+          <div className="grid gap-8 rounded-2xl border border-gold-metallic/30 bg-gold-metallic/10 p-8 md:grid-cols-2 md:items-stretch">
+            <EnglishClassInquiryForm
+              apiEndpoint="/api/submissions/english-academy"
+              headline="English Academy — request info"
+              subline="PTE, IELTS, OET, and other adult tracks. Tell us your goal and we will follow up."
+            />
+            <div className="flex flex-col justify-center text-center">
+              <h3 className="mb-4 text-2xl font-bold text-gold-metallic">Prefer to email or visit?</h3>
+              <p className="mx-auto mb-6 max-w-md text-white">
+                Use the contact page for full details or visit us — we will match you to the right batch and exam track.
+              </p>
+              <Link
+                href="/contact"
+                className="inline-flex items-center justify-center rounded-lg bg-gold-metallic px-8 py-4 font-semibold text-black shadow-lg transition-all hover:bg-gold-bright hover:shadow-xl"
+              >
+                Get in Touch
+              </Link>
+            </div>
           </div>
         </div>
       </section>

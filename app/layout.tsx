@@ -1,5 +1,7 @@
 import type { Metadata } from 'next'
+import { Cormorant_Garamond, Plus_Jakarta_Sans } from 'next/font/google'
 import './globals.css'
+import FloatingActions from '@/components/FloatingActions'
 import {
   SITE_DESCRIPTION,
   SITE_NAME,
@@ -8,8 +10,25 @@ import {
   organizationJsonLd,
 } from '@/lib/seo'
 
+const fontSans = Plus_Jakarta_Sans({
+  subsets: ['latin'],
+  variable: '--font-sans',
+  display: 'swap',
+})
+
+const fontDisplay = Cormorant_Garamond({
+  subsets: ['latin'],
+  variable: '--font-display',
+  weight: ['500', '600', '700'],
+  display: 'swap',
+})
+
 export const metadata: Metadata = {
   metadataBase: new URL(getSiteUrl()),
+  icons: {
+    icon: [{ url: '/favicon.svg', type: 'image/svg+xml' }],
+    shortcut: '/favicon.svg',
+  },
   ...buildPageMetadata({
     title: `${SITE_NAME} | Justice, Protection & Empowerment`,
     description: SITE_DESCRIPTION,
@@ -35,13 +54,14 @@ export default function RootLayout({
   const jsonLd = organizationJsonLd()
 
   return (
-    <html lang="en">
-      <body className="antialiased theme-light">
+    <html lang="en" className={`${fontSans.variable} ${fontDisplay.variable}`}>
+      <body className={`${fontSans.className} antialiased theme-light`}>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
         {children}
+        <FloatingActions />
       </body>
     </html>
   )

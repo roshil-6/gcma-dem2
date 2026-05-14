@@ -170,8 +170,6 @@ export default function HexagonBackground() {
       const height = window.innerHeight
       ctx.clearRect(0, 0, width, height)
 
-      if (isScrollingRef.current) return
-
       frameRef.current += 1
       const time = frameRef.current * 0.06
       const mouseX = mousePosRef.current.x
@@ -180,7 +178,7 @@ export default function HexagonBackground() {
       const maxDistanceSq = maxDistance * maxDistance
       const parallaxIntensity = isMobileRef.current ? 18 : 28
       const repulsionStrength = isMobileRef.current ? 26 : 36
-      const animateFloat = !reduceMotionRef.current
+      const animateFloat = !reduceMotionRef.current && !isScrollingRef.current
 
       hexagonsRef.current.forEach((hex, index) => {
         const dx = mouseX - hex.baseX

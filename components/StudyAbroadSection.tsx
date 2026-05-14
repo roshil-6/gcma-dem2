@@ -149,7 +149,7 @@ export default function StudyAbroadSection() {
                 </div>
 
                 {/* Why Choose Us */}
-                <div className="bg-black/40 rounded-3xl p-8 md:p-12 border border-gold-metallic/20">
+                <div className="bg-[#333333]/40 rounded-3xl p-8 md:p-12 border border-gold-metallic/20">
                     <h2 className="text-3xl md:text-4xl font-bold text-gold-metallic text-center mb-12">
                         Why Choose Our Services
                     </h2>

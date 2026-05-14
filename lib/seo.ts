@@ -5,7 +5,7 @@ export const SITE_SHORT_NAME = 'GCMA'
 export const SITE_DESCRIPTION =
   'Global Council for Migration Awareness and Social Welfare (GCMA) provides immigration fraud reporting, humanitarian aid, nursing registration abroad, study abroad counseling, skilled migration advice, visit visa guidance, English classes, and community welfare programs for students, nurses, and families worldwide.'
 
-const DEFAULT_SITE_URL = 'http://localhost:3002'
+const DEFAULT_SITE_URL = 'http://localhost:3030'
 
 export function getSiteUrl() {
   const configured = process.env.NEXT_PUBLIC_SITE_URL?.trim()

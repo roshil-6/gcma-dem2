@@ -39,7 +39,7 @@ export default function WeListenSection() {
               className="absolute inset-0 w-full h-full object-cover"
               loading="lazy"
             />
-            <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
+            <div className="absolute inset-0 bg-[#333333]/50 flex items-center justify-center">
               <div className="text-center px-4">
                 <h2 className="text-4xl md:text-5xl font-bold text-gold-metallic mb-4 drop-shadow-lg">
                   We Listen. We Care.

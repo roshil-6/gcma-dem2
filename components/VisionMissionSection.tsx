@@ -44,7 +44,7 @@ export default function VisionMissionSection() {
                 className="absolute inset-0 w-full h-full object-cover"
                 loading="lazy"
               />
-              <div className="absolute inset-0 bg-black/45 flex items-center justify-center">
+              <div className="absolute inset-0 bg-[#333333]/45 flex items-center justify-center">
                 <h3 className="text-2xl md:text-3xl font-bold text-gold-metallic text-center px-4 drop-shadow-lg">
                   Mission
                 </h3>
@@ -67,7 +67,7 @@ export default function VisionMissionSection() {
                 className="absolute inset-0 w-full h-full object-cover"
                 loading="lazy"
               />
-              <div className="absolute inset-0 bg-black/45 flex items-center justify-center">
+              <div className="absolute inset-0 bg-[#333333]/45 flex items-center justify-center">
                 <h3 className="text-2xl md:text-3xl font-bold text-gold-metallic text-center px-4 drop-shadow-lg">
                   Vision
                 </h3>

@@ -86,7 +86,7 @@ export default function VisitVisaPage() {
               className="object-cover"
               priority
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/30 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-r from-[#333333]/60 via-[#333333]/30 to-transparent" />
             <div className="absolute inset-0 flex items-center">
               <div className="w-full px-8 md:px-12 max-w-7xl mx-auto">
                 <div className="inline-flex items-center gap-4 rounded-2xl bg-[#f9f2e7]/95 border border-gold-metallic/55 px-6 py-5 shadow-xl">
@@ -104,7 +104,7 @@ export default function VisitVisaPage() {
           </div>
 
           {/* Significance Section */}
-          <div className="rounded-2xl border border-gold-metallic/40 bg-black/70 backdrop-blur-sm shadow-xl p-8 md:p-12 mb-12">
+          <div className="rounded-2xl border border-gold-metallic/40 bg-[#333333]/70 backdrop-blur-sm shadow-xl p-8 md:p-12 mb-12">
             <div className="grid md:grid-cols-2 gap-8 items-center">
               <div>
                 <h2 className="text-3xl font-bold text-gold-metallic mb-6">Why Visit Visa Matters</h2>
@@ -173,7 +173,7 @@ export default function VisitVisaPage() {
               {visaProcessSteps.map((step) => (
                 <article
                   key={step.title}
-                  className="overflow-hidden rounded-xl border border-gold-metallic/40 bg-black/70 shadow-xl backdrop-blur-sm"
+                  className="overflow-hidden rounded-xl border border-gold-metallic/40 bg-[#333333]/70 shadow-xl backdrop-blur-sm"
                 >
                   <div className="relative h-36 w-full">
                     <Image
@@ -182,7 +182,7 @@ export default function VisitVisaPage() {
                       fill
                       className="object-cover"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#333333]/75 via-[#333333]/20 to-transparent" />
                   </div>
                   <div className="p-6">
                     <div className="mb-4 flex items-center gap-4">
@@ -200,10 +200,10 @@ export default function VisitVisaPage() {
 
           {/* Required Documents Checklist - List Format (Different Format) */}
           <div className="mb-12">
-            <div className="bg-black/70 backdrop-blur-sm border border-gold-metallic/40 rounded-2xl p-8 md:p-12 shadow-xl">
+            <div className="bg-[#333333]/70 backdrop-blur-sm border border-gold-metallic/40 rounded-2xl p-8 md:p-12 shadow-xl">
               <h2 className="text-3xl font-bold text-gold-metallic mb-6">Required Documents Checklist</h2>
               <div className="grid gap-6 md:grid-cols-2">
-                <div className="overflow-hidden rounded-xl border border-gold-metallic/20 bg-black/40">
+                <div className="overflow-hidden rounded-xl border border-gold-metallic/20 bg-[#333333]/40">
                   <div className="relative h-36 w-full">
                     <Image
                       src="/visit-visa/checklist-essential-documents.jpg"
@@ -211,7 +211,7 @@ export default function VisitVisaPage() {
                       fill
                       className="object-cover"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#333333]/70 via-[#333333]/20 to-transparent" />
                   </div>
                   <div className="p-5">
                     <h3 className="mb-4 text-xl font-semibold text-white">Essential Documents</h3>
@@ -227,7 +227,7 @@ export default function VisitVisaPage() {
                     </ul>
                   </div>
                 </div>
-                <div className="overflow-hidden rounded-xl border border-gold-metallic/20 bg-black/40">
+                <div className="overflow-hidden rounded-xl border border-gold-metallic/20 bg-[#333333]/40">
                   <div className="relative h-36 w-full">
                     <Image
                       src="/visit-visa/checklist-supporting-documents.jpg"
@@ -235,7 +235,7 @@ export default function VisitVisaPage() {
                       fill
                       className="object-cover"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#333333]/70 via-[#333333]/20 to-transparent" />
                   </div>
                   <div className="p-5">
                     <h3 className="mb-4 text-xl font-semibold text-white">Supporting Documents</h3>

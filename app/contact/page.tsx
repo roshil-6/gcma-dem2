@@ -89,7 +89,7 @@ export default function ContactPage() {
       <GetInTouchSection />
 
       {/* Contact Form Section */}
-      <section className="py-12 md:py-16 px-4 relative z-10">
+      <section id="get-in-touch-form" className="py-12 md:py-16 px-4 relative z-10 scroll-mt-24">
         <div className="max-w-4xl mx-auto">
           <FormSheet title="Contact Form" description="Share your details and our team will get back to you.">
             <form onSubmit={handleSubmit} className="form-sheet">

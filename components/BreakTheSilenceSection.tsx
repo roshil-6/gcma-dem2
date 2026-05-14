@@ -2,13 +2,16 @@
 
 import { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
+import { useSearchParams } from 'next/navigation'
 import { scrollIntoViewSafe } from '@/lib/scroll'
 import ExplanationPanel, { ExplanationBox } from './ExplanationPanel'
 
 export default function BreakTheSilenceSection() {
+  const searchParams = useSearchParams()
   const [selectedOption, setSelectedOption] = useState<'student' | 'tutor' | null>(
     null
   )
+  const [studentFormRole, setStudentFormRole] = useState<'student' | 'student-tutor'>('student')
   const [showExplanation, setShowExplanation] = useState(false)
   const sectionRef = useRef<HTMLDivElement>(null)
 
@@ -32,19 +35,16 @@ export default function BreakTheSilenceSection() {
   }, [])
 
   useEffect(() => {
-    if (typeof window === 'undefined') {
-      return
-    }
-
-    const urlParams = new URLSearchParams(window.location.search)
-    const applyType = urlParams.get('apply')
-    if (applyType !== 'student' && applyType !== 'tutor') {
-      return
-    }
-
-    setSelectedOption(applyType)
-
-    if (window.location.hash !== '#break-the-silence') {
+    const applyType = searchParams.get('apply')
+    if (applyType === 'student-tutor') {
+      setStudentFormRole('student-tutor')
+      setSelectedOption('student')
+    } else if (applyType === 'student') {
+      setStudentFormRole('student')
+      setSelectedOption('student')
+    } else if (applyType === 'tutor') {
+      setSelectedOption('tutor')
+    } else {
       return
     }
 
@@ -69,7 +69,7 @@ export default function BreakTheSilenceSection() {
     }, 100)
 
     return () => window.clearInterval(timer)
-  }, [])
+  }, [searchParams])
 
   return (
     <section
@@ -111,7 +111,7 @@ export default function BreakTheSilenceSection() {
                 className="absolute inset-0 w-full h-full object-cover"
                 loading="lazy"
               />
-              <div className="absolute inset-0 bg-black/70 flex items-center justify-center">
+              <div className="absolute inset-0 bg-[#333333]/70 flex items-center justify-center">
                 <div className="text-center p-8 relative w-full h-full flex items-center justify-center">
                   <div className="w-24 h-24 mx-auto mb-4 rounded-full bg-gold-metallic/20 flex items-center justify-center border-2 border-gold-metallic/50 backdrop-blur-sm">
                     <svg className="w-12 h-12 text-gold-metallic" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -144,7 +144,10 @@ export default function BreakTheSilenceSection() {
         <div className="glass-card dark-container rounded-2xl p-8 md:p-12">
           <div className="grid md:grid-cols-2 gap-6 mb-8">
             <button
-              onClick={() => setSelectedOption('student')}
+              onClick={() => {
+                setStudentFormRole('student')
+                setSelectedOption('student')
+              }}
               className={`relative overflow-hidden rounded-xl border-2 transition-all duration-300 ${selectedOption === 'student'
                 ? 'border-gold-metallic bg-gold-metallic/10'
                 : 'border-gold-metallic/30 hover:border-gold-metallic/60'
@@ -157,9 +160,9 @@ export default function BreakTheSilenceSection() {
                   className="absolute inset-0 w-full h-full object-cover"
                   loading="lazy"
                 />
-                <div className="absolute inset-0 bg-black/40"></div>
+                <div className="absolute inset-0 bg-[#333333]/40"></div>
               </div>
-              <div className="p-6 bg-black/75">
+              <div className="p-6 bg-[#333333]/75">
                 <h3 className="text-2xl font-bold text-gold-metallic mb-2">
                   I Am a Student
                 </h3>
@@ -184,9 +187,9 @@ export default function BreakTheSilenceSection() {
                   className="absolute inset-0 w-full h-full object-cover"
                   loading="lazy"
                 />
-                <div className="absolute inset-0 bg-black/40"></div>
+                <div className="absolute inset-0 bg-[#333333]/40"></div>
               </div>
-              <div className="p-6 bg-black/75">
+              <div className="p-6 bg-[#333333]/75">
                 <h3 className="text-2xl font-bold text-gold-metallic mb-2">
                   I Am a Tutor
                 </h3>
@@ -201,8 +204,17 @@ export default function BreakTheSilenceSection() {
           {/* Be a Child Tutor - Always Visible */}
           <div className="mb-8 text-center">
             <Link
-              href="/break-the-silence/student-tutor"
-              className="inline-flex items-center gap-2 text-gold-metallic hover:text-gold-bright font-semibold transition-colors text-lg border-2 border-gold-metallic/40 hover:border-gold-metallic rounded-lg px-6 py-3 bg-black/80 hover:bg-black/90"
+              href="/?apply=student-tutor#break-the-silence"
+              scroll={false}
+              onClick={() => {
+                setStudentFormRole('student-tutor')
+                setSelectedOption('student')
+                window.requestAnimationFrame(() => {
+                  const el = sectionRef.current ?? document.getElementById('break-the-silence')
+                  if (el) scrollIntoViewSafe(el)
+                })
+              }}
+              className="inline-flex items-center gap-2 text-gold-metallic hover:text-gold-bright font-semibold transition-colors text-lg border-2 border-gold-metallic/40 hover:border-gold-metallic rounded-lg px-6 py-3 bg-[#333333]/80 hover:bg-[#333333]/90"
             >
               <span>Be a Child Tutor</span>
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -213,7 +225,10 @@ export default function BreakTheSilenceSection() {
 
           {selectedOption === 'student' && (
             <div>
-              <StudentForm onClose={() => setSelectedOption(null)} />
+              <StudentForm
+                initialRoleType={studentFormRole}
+                onClose={() => setSelectedOption(null)}
+              />
             </div>
           )}
 
@@ -229,16 +244,28 @@ export default function BreakTheSilenceSection() {
 // API endpoint for BTS Student Form
 const BTS_STUDENT_API_ENDPOINT = '/api/submissions/bts-student'
 
-function StudentForm({ onClose }: { onClose: () => void }) {
+function StudentForm({
+  onClose,
+  initialRoleType = 'student',
+}: {
+  onClose: () => void
+  initialRoleType?: 'student' | 'student-tutor'
+}) {
   const [formData, setFormData] = useState({
     name: '',
     contactNumber: '',
     learningGoals: '',
-    roleType: 'student', // 'student' or 'student-tutor'
+    roleType: initialRoleType,
   })
   const [submitSuccess, setSubmitSuccess] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitError, setSubmitError] = useState<string | null>(null)
+
+  useEffect(() => {
+    setFormData((prev) =>
+      prev.roleType === initialRoleType ? prev : { ...prev, roleType: initialRoleType }
+    )
+  }, [initialRoleType])
 
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -272,7 +299,7 @@ function StudentForm({ onClose }: { onClose: () => void }) {
           name: '',
           contactNumber: '',
           learningGoals: '',
-          roleType: 'student',
+          roleType: initialRoleType,
         })
 
         setTimeout(() => {
@@ -310,7 +337,12 @@ function StudentForm({ onClose }: { onClose: () => void }) {
             name="roleType"
             required
             value={formData.roleType}
-            onChange={(e) => setFormData((prev) => ({ ...prev, roleType: e.target.value }))}
+            onChange={(e) =>
+              setFormData((prev) => ({
+                ...prev,
+                roleType: e.target.value as 'student' | 'student-tutor',
+              }))
+            }
             className="form-input"
             disabled={isSubmitting || submitSuccess}
           >
