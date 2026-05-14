@@ -40,7 +40,7 @@ export default function AboutGCMSection() {
               className="absolute inset-0 w-full h-full object-cover"
               loading="lazy"
             />
-            <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
+            <div className="absolute inset-0 bg-[#333333]/50 flex items-center justify-center">
               <h2 className="text-3xl md:text-4xl font-bold text-gold-metallic text-center px-4 drop-shadow-lg">
                 About GCMA
               </h2>
@@ -58,13 +58,13 @@ export default function AboutGCMSection() {
             </div>
             
             <div className="grid md:grid-cols-2 gap-6 mb-8">
-              <div className="bg-black/30 rounded-xl p-6 border border-gold-metallic/30">
+              <div className="bg-[#333333]/30 rounded-xl p-6 border border-gold-metallic/30">
                 <h4 className="text-xl font-semibold text-gold-metallic mb-3">Our Authority</h4>
                 <p className="text-white">
                   GCMA authorizes the National Human Rights and Humanitarian Federation (NHRF) to report migration-related scams and fraudulent practices as a community welfare venture. This initiative aims to prevent individuals from falling prey to unethical agents, false promises, and illegal migration pathways while promoting transparency and responsible practices.
                 </p>
               </div>
-              <div className="bg-black/30 rounded-xl p-6 border border-gold-metallic/30">
+              <div className="bg-[#333333]/30 rounded-xl p-6 border border-gold-metallic/30">
                 <h4 className="text-xl font-semibold text-gold-metallic mb-3">Our Principles</h4>
                 <p className="text-white">
                   Our work is grounded in the principles of dignity, fairness, accountability, and public awareness. We focus on education, guidance, and advocacy to help people pursue safe, legal, and informed migration pathways, recognizing migration as a legitimate aspiration and a potential force for positive social and economic development.

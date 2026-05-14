@@ -5,9 +5,10 @@
 :root {
   --gold-metallic: #c9a961;
   --gold-bright: #d4af37;
-  --black-deep: #0a0a0a;
-  --black-glass: rgba(10, 10, 10, 0.7);
+  --black-deep: #333333;
+  --black-glass: rgba(51, 51, 51, 0.72);
   --light-bg: #f9f6ef;
+  --light-bg-mid: #f3eee4;
   --light-text: #1f1b2d;
   --light-card: rgba(255, 255, 255, 0.75);
   --light-card-border: rgba(53, 6, 62, 0.15);
@@ -27,7 +28,7 @@
 }
 
 html {
-  scroll-behavior: auto;
+  scroll-behavior: smooth;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -39,16 +40,48 @@ html {
 body {
   background: var(--black-deep);
   color: #ffffff;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: var(--font-sans), system-ui, 'Segoe UI', Roboto, sans-serif;
+  font-size: 1.0625rem;
+  line-height: 1.65;
   overflow-x: hidden;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
 }
 
-/* Light Theme */
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display), Georgia, 'Times New Roman', serif;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+/* Light page canvas: very subtle vertical warmth */
 body.theme-light {
-  background: var(--light-bg);
+  background: linear-gradient(
+    180deg,
+    var(--light-bg) 0%,
+    var(--light-bg-mid) 22%,
+    var(--light-bg) 55%,
+    #faf7f0 100%
+  );
   color: var(--light-text);
+}
+
+::selection {
+  background: rgba(201, 169, 97, 0.35);
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid var(--gold-metallic);
+  outline-offset: 3px;
+}
+
+:focus:not(:focus-visible) {
+  outline: none;
 }
 
 body.theme-dark {
@@ -332,9 +365,11 @@ body.theme-light .bg-black\/30 span {
 
 /* Glassmorphism utility classes */
 .glass-card {
-  background: rgba(10, 10, 10, 0.78);
-  border: 1px solid rgba(201, 169, 97, 0.3);
-  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  background: rgba(51, 51, 51, 0.78);
+  border: 1px solid rgba(201, 169, 97, 0.32);
+  box-shadow: 0 4px 24px rgba(51, 51, 51, 0.12), 0 12px 48px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
 }
 
 @supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
@@ -405,6 +440,152 @@ body.theme-light section[class*='bg-black'] .text-white {
   /* White inside dark containers */
 }
 
+/*
+ * Charcoal surfaces (ShowcaseCard-style bg-[#333333]/… utilities).
+ * Mirrors the bg-black rules above so light-theme text stays readable.
+ */
+body.theme-light .bg-\[\#333333\]\/30 {
+  background: rgba(243, 239, 230, 0.5) !important;
+  border-color: rgba(201, 169, 97, 0.3) !important;
+}
+
+body.theme-light .bg-\[\#333333\]\/70 .text-white,
+body.theme-light .bg-\[\#333333\]\/70 h3.text-white,
+body.theme-light .bg-\[\#333333\]\/70 p.text-white,
+body.theme-light .bg-\[\#333333\]\/70 h4.text-white,
+body.theme-light .bg-\[\#333333\]\/70 h2.text-white,
+body.theme-light .bg-\[\#333333\]\/70 h1.text-white,
+body.theme-light .bg-\[\#333333\]\/70 span.text-white,
+body.theme-light .bg-\[\#333333\]\/70 div.text-white,
+body.theme-light .bg-\[\#333333\]\/70 li.text-white,
+body.theme-light [class*='bg-[#333333]'] .text-white,
+body.theme-light [class*='bg-[#333333]'] .text-gray-300,
+body.theme-light [class*='bg-[#333333]'] .text-gray-200,
+body.theme-light [class*='bg-[#333333]'] .text-gray-400,
+body.theme-light .rounded-2xl.bg-\[\#333333\]\/70 .text-white,
+body.theme-light .rounded-2xl.bg-\[\#333333\]\/70 h3,
+body.theme-light .rounded-2xl.bg-\[\#333333\]\/70 p,
+body.theme-light .rounded-2xl.bg-\[\#333333\]\/70 span {
+  color: #ffffff !important;
+}
+
+.bg-\[\#333333\]\/70 .text-gray-300,
+.bg-\[\#333333\]\/70 .text-gray-200,
+.bg-\[\#333333\]\/70 .text-gray-400,
+.bg-\[\#333333\]\/80 .text-gray-300,
+.bg-\[\#333333\]\/80 .text-gray-200,
+.bg-\[\#333333\]\/80 .text-gray-400,
+[class*='bg-[#333333]'] .text-gray-300,
+[class*='bg-[#333333]'] .text-gray-200,
+[class*='bg-[#333333]'] .text-gray-400 {
+  color: #ffffff !important;
+}
+
+.bg-\[\#333333\]\/70 .text-white,
+.bg-\[\#333333\]\/70 p.text-white,
+.bg-\[\#333333\]\/70 h3.text-white,
+.bg-\[\#333333\]\/70 h2.text-white,
+.bg-\[\#333333\]\/70 h1.text-white,
+.bg-\[\#333333\]\/70 span.text-white,
+.bg-\[\#333333\]\/70 div.text-white,
+.bg-\[\#333333\]\/70 li.text-white,
+.bg-\[\#333333\]\/70 .text-white,
+.bg-\[\#333333\]\/80 .text-white,
+.bg-\[\#333333\]\/80 p,
+.bg-\[\#333333\]\/80 span,
+.bg-\[\#333333\]\/80 h1,
+.bg-\[\#333333\]\/80 h2,
+.bg-\[\#333333\]\/80 h3,
+.bg-\[\#333333\]\/80 h4,
+[class*='bg-[#333333]'] .text-white,
+[class*='bg-[#333333]'] p,
+[class*='bg-[#333333]'] span {
+  color: #ffffff !important;
+}
+
+body.theme-light .bg-\[\#333333\]\/80 .text-white,
+body.theme-light .bg-\[\#333333\]\/80 .text-gray-300,
+body.theme-light .bg-\[\#333333\]\/80 .text-gray-200,
+body.theme-light .bg-\[\#333333\]\/80 p,
+body.theme-light .bg-\[\#333333\]\/80 span,
+body.theme-light .bg-\[\#333333\]\/30 .text-white,
+body.theme-light .bg-\[\#333333\]\/30 .text-gray-300,
+body.theme-light .bg-\[\#333333\]\/30 .text-gray-200,
+body.theme-light .bg-\[\#333333\]\/30 p,
+body.theme-light .bg-\[\#333333\]\/30 span {
+  color: #ffffff !important;
+}
+
+body.theme-light [class*='bg-[#333333]'] .text-white,
+body.theme-light [class*='bg-[#333333]'] p,
+body.theme-light [class*='bg-[#333333]'] span,
+body.theme-light [class*='bg-[#333333]'] div,
+body.theme-light [class*='bg-[#333333]'] h1,
+body.theme-light [class*='bg-[#333333]'] h2,
+body.theme-light [class*='bg-[#333333]'] h3,
+body.theme-light [class*='bg-[#333333]'] h4,
+body.theme-light [class*='rounded-2xl'][class*='bg-[#333333]'] .text-white,
+body.theme-light [class*='rounded-xl'][class*='bg-[#333333]'] .text-white,
+body.theme-light div[class*='bg-[#333333]'] .text-white,
+body.theme-light section[class*='bg-[#333333]'] .text-white {
+  color: #ffffff !important;
+}
+
+body.theme-light [class*='bg-[#333333]'] .text-white,
+body.theme-light [class*='from-[#333333]'] .text-white,
+body.theme-light [class*='to-[#333333]'] .text-white,
+body.theme-light [class*='bg-[#333333]'] p,
+body.theme-light [class*='from-[#333333]'] p,
+body.theme-light [class*='to-[#333333]'] p,
+body.theme-light [class*='bg-[#333333]'] span,
+body.theme-light [class*='from-[#333333]'] span,
+body.theme-light [class*='to-[#333333]'] span,
+body.theme-light [class*='bg-[#333333]'] li,
+body.theme-light [class*='from-[#333333]'] li,
+body.theme-light [class*='to-[#333333]'] li,
+body.theme-light [class*='bg-[#333333]'] label,
+body.theme-light [class*='from-[#333333]'] label,
+body.theme-light [class*='to-[#333333]'] label,
+body.theme-light [class*='bg-[#333333]'] .text-gray-200,
+body.theme-light [class*='from-[#333333]'] .text-gray-200,
+body.theme-light [class*='to-[#333333]'] .text-gray-200,
+body.theme-light [class*='bg-[#333333]'] .text-gray-300,
+body.theme-light [class*='from-[#333333]'] .text-gray-300,
+body.theme-light [class*='to-[#333333]'] .text-gray-300,
+body.theme-light [class*='bg-[#333333]'] .text-gray-400,
+body.theme-light [class*='from-[#333333]'] .text-gray-400,
+body.theme-light [class*='to-[#333333]'] .text-gray-400,
+body.theme-light [class*='bg-[#333333]'] .text-on-dark,
+body.theme-light [class*='from-[#333333]'] .text-on-dark,
+body.theme-light [class*='to-[#333333]'] .text-on-dark {
+  color: rgba(255, 255, 255, 0.92) !important;
+}
+
+body.theme-light [class*='bg-[#333333]'] .text-gold-metallic,
+body.theme-light [class*='bg-[#333333]'] [class*='text-gold'] {
+  color: var(--gold-bright) !important;
+}
+
+body.theme-light [class*='bg-[#333333]'] .form-input {
+  background: rgba(255, 255, 255, 0.08) !important;
+  border-color: rgba(201, 169, 97, 0.35) !important;
+  color: #ffffff !important;
+}
+
+body.theme-light [class*='bg-[#333333]'] .form-input::placeholder {
+  color: rgba(255, 255, 255, 0.55) !important;
+}
+
+body.theme-light [class*='bg-[#333333]'] select.form-input {
+  background-color: rgba(51, 51, 51, 0.75) !important;
+  color: #ffffff !important;
+}
+
+body.theme-light [class*='bg-[#333333]'] select.form-input option {
+  background-color: #333333 !important;
+  color: #ffffff !important;
+}
+
 /* Default: text-white on light theme background (NOT in dark containers) = BLACK */
 body.theme-light .text-white {
   color: #1a1a1a !important;
@@ -440,10 +621,21 @@ body.theme-light .glass-card:not(.dark-container) .text-gray-200 {
 }
 
 .glass-card:hover {
-  border-color: rgba(201, 169, 97, 0.6);
-  box-shadow: 0 8px 32px 0 rgba(201, 169, 97, 0.2),
-    0 0 20px rgba(201, 169, 97, 0.1);
+  border-color: rgba(201, 169, 97, 0.65);
+  box-shadow: 0 12px 40px rgba(201, 169, 97, 0.15), 0 0 0 1px rgba(201, 169, 97, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  transform: translateY(-1px);
   transition: all 0.3s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .glass-card {
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .glass-card:hover {
+    transform: none;
+  }
 }
 
 /* Gold button styles */
@@ -483,6 +675,80 @@ body.theme-light .glass-card:not(.dark-container) .text-gray-200 {
   box-shadow: 0 0 20px rgba(201, 169, 97, 0.3);
 }
 
+.welfare-card-form .form-sheet {
+  gap: 1.375rem;
+}
+
+@media (min-width: 640px) {
+  .welfare-card-form .form-sheet {
+    gap: 1.5rem;
+  }
+}
+
+/* Dark in-card forms: stronger edges + touch-friendly height */
+.welfare-card-form .form-input {
+  background: rgba(255, 255, 255, 0.11);
+  border: 1px solid rgba(201, 169, 97, 0.5);
+  min-height: 3rem;
+  padding: 0.8125rem 1rem;
+  font-size: 1rem;
+  line-height: 1.45;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.18);
+}
+
+.welfare-card-form textarea.form-input {
+  min-height: 7rem;
+  padding-top: 0.875rem;
+}
+
+.welfare-card-form .form-input:focus {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: var(--gold-bright);
+  box-shadow:
+    0 0 0 1px rgba(201, 169, 97, 0.35),
+    0 6px 16px rgba(0, 0, 0, 0.22);
+}
+
+.welfare-card-form select.form-input {
+  background-color: rgba(38, 38, 38, 0.98) !important;
+}
+
+.welfare-card-form .form-input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.welfare-card-form .form-actions-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding-top: 0.25rem;
+}
+
+@media (min-width: 640px) {
+  .welfare-card-form .form-actions-row {
+    flex-direction: row;
+    gap: 0.75rem;
+  }
+
+  .welfare-card-form .form-actions-row .btn-gold,
+  .welfare-card-form .form-actions-row .btn-gold-outline {
+    flex: 1;
+  }
+}
+
+.welfare-card-form .form-actions-row .btn-gold,
+.welfare-card-form .form-actions-row .btn-gold-outline {
+  min-height: 3rem;
+  width: 100%;
+}
+
+@media (min-width: 640px) {
+  .welfare-card-form .form-actions-row .btn-gold,
+  .welfare-card-form .form-actions-row .btn-gold-outline {
+    width: auto;
+  }
+}
+
 /* Form input styles */
 .form-input {
   background: rgba(255, 255, 255, 0.05);
@@ -520,9 +786,38 @@ body.theme-light .form-input::placeholder {
   color: var(--light-placeholder);
 }
 
+/* Dark welfare card forms sit on light site theme — override light form-input */
+body.theme-light .welfare-card-form .form-input {
+  background: rgba(255, 255, 255, 0.11);
+  border: 1px solid rgba(201, 169, 97, 0.5);
+  color: #ffffff;
+}
+
+body.theme-light .welfare-card-form .form-input:focus {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: var(--gold-bright);
+  box-shadow:
+    0 0 0 1px rgba(201, 169, 97, 0.35),
+    0 6px 16px rgba(0, 0, 0, 0.22);
+}
+
+body.theme-light .welfare-card-form .form-input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+body.theme-light .welfare-card-form select.form-input {
+  background-color: rgba(38, 38, 38, 0.98) !important;
+  color: #ffffff !important;
+}
+
+body.theme-light .welfare-card-form select.form-input option {
+  background-color: #333333 !important;
+  color: #ffffff !important;
+}
+
 /* Select dropdown styling */
 select.form-input {
-  background-color: rgba(0, 0, 0, 0.8) !important;
+  background-color: rgba(51, 51, 51, 0.8) !important;
   color: #ffffff !important;
   cursor: pointer;
 }
@@ -533,7 +828,7 @@ body.theme-light select.form-input {
 }
 
 select.form-input option {
-  background-color: #000000 !important;
+  background-color: #333333 !important;
   color: #ffffff !important;
   padding: 0.5rem;
 }
@@ -544,14 +839,14 @@ body.theme-light select.form-input option {
 }
 
 select.form-input:focus {
-  background-color: rgba(0, 0, 0, 0.9) !important;
+  background-color: rgba(51, 51, 51, 0.9) !important;
 }
 
 /* Section reveal animation */
 @keyframes fadeInUp {
   from {
     opacity: 0;
-    transform: translateY(30px);
+    transform: translateY(18px);
   }
 
   to {
@@ -561,12 +856,13 @@ select.form-input:focus {
 }
 
 .section-reveal {
-  animation: fadeInUp 0.28s ease-out;
+  animation: fadeInUp 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
 main > section {
   content-visibility: auto;
   contain-intrinsic-size: auto 640px;
+  scroll-margin-top: 1.5rem;
 }
 
 @media (max-width: 768px) {
@@ -681,7 +977,7 @@ body.theme-light div:not([class*='text-']):not([class*='glass-card']):not(.text-
 
 /* Ensure text inside dark containers remains white AND background stays dark */
 body.theme-light .dark-container {
-  background: rgba(10, 10, 10, 0.85) !important;
+  background: rgba(51, 51, 51, 0.85) !important;
   border-color: rgba(201, 169, 97, 0.3) !important;
 }
 
@@ -766,7 +1062,7 @@ body.theme-light .dark-container select.form-input,
 body.theme-light .glass-card.dark-container select.form-input,
 body.theme-light .form-sheet.dark-container select.form-input,
 body.theme-light [class*='bg-black'] select.form-input {
-  background-color: rgba(0, 0, 0, 0.75) !important;
+  background-color: rgba(51, 51, 51, 0.75) !important;
   color: #ffffff !important;
 }
 
@@ -774,7 +1070,7 @@ body.theme-light .dark-container select.form-input option,
 body.theme-light .glass-card.dark-container select.form-input option,
 body.theme-light .form-sheet.dark-container select.form-input option,
 body.theme-light [class*='bg-black'] select.form-input option {
-  background-color: #000000 !important;
+  background-color: #333333 !important;
   color: #ffffff !important;
 }
 

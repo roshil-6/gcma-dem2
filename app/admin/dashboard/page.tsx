@@ -3,6 +3,11 @@
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
+import {
+  SUBMISSION_TYPES,
+  SUBMISSION_TYPE_LABELS,
+  getSubmissionTypeLabel,
+} from '@/lib/submission-types'
 
 interface Submission {
   id: string
@@ -91,12 +96,7 @@ export default function AdminDashboard() {
     }
   }
 
-  const formatType = (type: string) => {
-    return type
-      .split('-')
-      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-      .join(' ')
-  }
+  const formatType = (type: string) => getSubmissionTypeLabel(type)
 
   const getStatusColor = (status?: string) => {
     switch (status) {
@@ -123,7 +123,7 @@ export default function AdminDashboard() {
       
       <div className="max-w-7xl mx-auto">
         {/* Header */}
-        <div className="bg-white/75 backdrop-blur-md border border-[#35063e]/15 rounded-2xl p-6 mb-6 shadow-lg">
+        <div className="mb-6 bg-white/75 backdrop-blur-md border border-[#35063e]/15 rounded-2xl p-6 shadow-lg">
           <div className="flex justify-between items-center flex-wrap gap-4">
             <div>
               <h1 className="text-3xl font-bold text-gold-metallic mb-2">
@@ -140,30 +140,64 @@ export default function AdminDashboard() {
               Logout
             </button>
           </div>
-
-          {/* Filter */}
-          <div className="mt-6">
-            <label className="block text-sm font-medium text-gold-metallic mb-2">
-              Filter by Type
-            </label>
-            <select
-              value={selectedType}
-              onChange={(e) => setSelectedType(e.target.value)}
-              className="px-4 py-3 bg-[#f3efe6] border border-[#35063e]/25 rounded-lg text-[#35063e] cursor-pointer max-w-xs appearance-none focus:outline-none focus:ring-2 focus:ring-gold-metallic focus:border-transparent transition-all"
-            >
-              <option value="all">All Submissions</option>
-              <option value="immigration-fraud">Immigration Fraud</option>
-              <option value="medical-assistance">Medical Assistance</option>
-              <option value="education-support">Education Support</option>
-              <option value="bts-student">BTS Student</option>
-              <option value="bts-tutor">BTS Tutor</option>
-              <option value="contact">Contact</option>
-              <option value="nurses-applications">Nurses Applications</option>
-            </select>
-          </div>
         </div>
 
-        {/* Submissions List */}
+        <div className="grid grid-cols-1 gap-6 lg:grid-cols-[min(280px,100%)_1fr]">
+          {/* Sidebar — all submission types (matches site forms) */}
+          <div className="h-fit overflow-hidden rounded-xl border-2 border-[#35063e] shadow-md lg:sticky lg:top-6">
+            <div className="bg-[#2563eb] px-4 py-3 text-center text-sm font-bold uppercase tracking-wide text-white">
+              All Submissions
+            </div>
+            <ul className="max-h-[70vh] divide-y divide-[#35063e]/15 overflow-y-auto bg-[#f9f6ef] lg:max-h-[calc(100vh-8rem)]">
+              <li>
+                <button
+                  type="button"
+                  onClick={() => setSelectedType('all')}
+                  className={`w-full px-4 py-3 text-left text-sm font-semibold transition-colors ${
+                    selectedType === 'all'
+                      ? 'bg-gold-metallic/25 text-[#35063e]'
+                      : 'text-[#35063e] hover:bg-white/80'
+                  }`}
+                >
+                  All types
+                </button>
+              </li>
+              {SUBMISSION_TYPES.map((type) => (
+                <li key={type}>
+                  <button
+                    type="button"
+                    onClick={() => setSelectedType(type)}
+                    className={`w-full px-4 py-3 text-left text-sm font-semibold leading-snug transition-colors ${
+                      selectedType === type
+                        ? 'bg-gold-metallic/25 text-[#35063e]'
+                        : 'text-[#35063e] hover:bg-white/80'
+                    }`}
+                  >
+                    {SUBMISSION_TYPE_LABELS[type]}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="min-w-0">
+            <div className="mb-4 lg:hidden">
+              <label className="mb-2 block text-sm font-medium text-gold-metallic">Filter by type</label>
+              <select
+                value={selectedType}
+                onChange={(e) => setSelectedType(e.target.value)}
+                className="w-full px-4 py-3 bg-[#f3efe6] border border-[#35063e]/25 rounded-lg text-[#35063e] cursor-pointer appearance-none focus:outline-none focus:ring-2 focus:ring-gold-metallic focus:border-transparent transition-all"
+              >
+                <option value="all">All types</option>
+                {SUBMISSION_TYPES.map((type) => (
+                  <option key={type} value={type}>
+                    {SUBMISSION_TYPE_LABELS[type]}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            {/* Submissions List */}
         {isLoading ? (
           <div className="bg-white/75 backdrop-blur-md border border-[#35063e]/15 rounded-2xl p-12 text-center shadow-lg">
             <p className="text-gold-metallic">Loading submissions...</p>
@@ -243,6 +277,8 @@ export default function AdminDashboard() {
             ))}
           </div>
         )}
+          </div>
+        </div>
       </div>
     </div>
   )

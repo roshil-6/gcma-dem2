@@ -251,7 +251,7 @@ export default function StudyAbroadPage() {
                 priority
               />
               {/* Dark overlay for text readability */}
-              <div className="absolute inset-0 bg-black/80" />
+              <div className="absolute inset-0 bg-[#333333]/80" />
               {/* Gold accent overlay */}
               <div className="absolute inset-0 bg-gradient-to-r from-gold-metallic/10 via-transparent to-gold-metallic/10" />
             </div>
@@ -288,7 +288,7 @@ export default function StudyAbroadPage() {
                   </Link>
                   <Link
                     href="#countries"
-                    className="inline-flex items-center border-2 border-gold-metallic/50 hover:border-gold-metallic text-gold-metallic hover:text-gold-bright font-semibold text-base px-8 py-3.5 rounded-lg gap-2 transition-all backdrop-blur-sm bg-black/30"
+                    className="inline-flex items-center border-2 border-gold-metallic/50 hover:border-gold-metallic text-gold-metallic hover:text-gold-bright font-semibold text-base px-8 py-3.5 rounded-lg gap-2 transition-all backdrop-blur-sm bg-[#333333]/30"
                   >
                     <span>Explore Programs</span>
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -302,17 +302,20 @@ export default function StudyAbroadPage() {
 
           {/* Statistics Section */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16">
-            {/* Years of Practice */}
+            {/* Ethical assurance — honest guidance, no inflated claims */}
             <div className="text-center">
-              <div className="relative w-24 h-24 mx-auto mb-4">
-                <div className="absolute inset-0 rounded-full bg-gold-metallic/20 border-2 border-gold-metallic/50 flex items-center justify-center">
-                  <span className="text-3xl font-bold text-gold-metallic">10+</span>
-                </div>
-                <div className="absolute -top-1 -right-1 w-6 h-6 bg-gold-metallic rounded-full flex items-center justify-center">
-                  <span className="text-white text-sm font-bold">+</span>
-                </div>
+              <div className="w-24 h-24 mx-auto mb-4 flex items-center justify-center">
+                <svg className="w-16 h-16 text-gold-metallic" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
+                  />
+                </svg>
               </div>
-              <p className="text-black font-medium text-base">Years of Experience</p>
+              <p className="text-2xl font-bold text-gold-metallic mb-1">Ethical</p>
+              <p className="text-black font-medium text-base">Honest guidance</p>
             </div>
 
             {/* Students Helped */}
@@ -355,7 +358,7 @@ export default function StudyAbroadPage() {
           </div>
 
           {/* Why Study Abroad Section */}
-          <div className="bg-black/80 rounded-2xl p-8 md:p-12 mb-12">
+          <div className="bg-[#333333]/80 rounded-2xl p-8 md:p-12 mb-12">
             <div className="text-center mb-8">
               <h2 className="text-3xl md:text-4xl font-bold text-gold-metallic mb-4">
                 Why do you want to study abroad?
@@ -398,11 +401,11 @@ export default function StudyAbroadPage() {
                 {studyAbroadProcessSteps.map((item, index) => (
                   <div key={index} className={`relative flex flex-col md:flex-row items-center gap-6 ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'}`}>
                     {/* Timeline Dot */}
-                    <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-gold-metallic rounded-full border-4 border-black z-10" />
+                    <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-gold-metallic rounded-full border-4 border-[#333333] z-10" />
 
                     {/* Content Card */}
                     <div className={`flex-1 ${index % 2 === 0 ? 'md:text-right md:pr-8' : 'md:text-left md:pl-8'}`}>
-                      <div className="bg-black/70 backdrop-blur-sm border border-gold-metallic/40 rounded-2xl overflow-hidden shadow-xl">
+                      <div className="bg-[#333333]/70 backdrop-blur-sm border border-gold-metallic/40 rounded-2xl overflow-hidden shadow-xl">
                         <div className="relative h-40 md:h-48">
                           <Image
                             src={item.image}
@@ -410,7 +413,7 @@ export default function StudyAbroadPage() {
                             fill
                             className="object-cover"
                           />
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+                          <div className="absolute inset-0 bg-gradient-to-t from-[#333333]/80 via-[#333333]/30 to-transparent" />
                         </div>
                         <div className={`p-6 ${index % 2 === 0 ? 'md:text-right' : 'md:text-left'}`}>
                           <span className="text-gold-metallic font-bold text-sm mb-2 block">STEP {item.step}</span>
@@ -456,7 +459,7 @@ export default function StudyAbroadPage() {
 
           {/* Scholarship & Funding Section */}
           <div className="mb-12">
-            <div className="bg-gradient-to-br from-black/80 via-black/70 to-black/60 rounded-2xl p-8 md:p-12 border border-gold-metallic/40 backdrop-blur-sm shadow-xl">
+            <div className="bg-gradient-to-br from-[#333333]/80 via-[#333333]/70 to-[#333333]/60 rounded-2xl p-8 md:p-12 border border-gold-metallic/40 backdrop-blur-sm shadow-xl">
               <div className="max-w-4xl mx-auto text-center">
                 <div className="mb-6">
                   <h2 className="text-3xl md:text-4xl font-bold text-gold-metallic mb-3">
@@ -479,7 +482,7 @@ export default function StudyAbroadPage() {
                   </button>
                   <Link
                     href="/contact"
-                    className="border-2 border-gold-metallic/50 hover:border-gold-metallic text-gold-metallic hover:text-gold-bright font-semibold px-8 py-3.5 rounded-lg transition-all backdrop-blur-sm bg-black/30"
+                    className="border-2 border-gold-metallic/50 hover:border-gold-metallic text-gold-metallic hover:text-gold-bright font-semibold px-8 py-3.5 rounded-lg transition-all backdrop-blur-sm bg-[#333333]/30"
                   >
                     Schedule Consultation
                   </Link>
@@ -515,7 +518,7 @@ export default function StudyAbroadPage() {
 
           {/* Consultation Form Section */}
           {showConsultationForm && (
-            <div className="bg-black/80 rounded-2xl p-8 md:p-12 mb-12">
+            <div className="bg-[#333333]/80 rounded-2xl p-8 md:p-12 mb-12">
               <div className="max-w-2xl mx-auto">
                 <h2 className="text-3xl md:text-4xl font-bold text-gold-metallic text-center mb-8">
                   Free Consultation
@@ -570,10 +573,10 @@ export default function StudyAbroadPage() {
                   answer: 'Our consultants conduct a comprehensive assessment considering your academic background, career goals, budget, language preferences, and long-term plans (work, PR, etc.). We provide detailed comparisons of programs, costs, job markets, and quality of life to help you make an informed decision that aligns with your aspirations.'
                 }
               ].map((faq, index) => (
-                <div key={index} className="bg-black/70 backdrop-blur-sm border border-gold-metallic/40 rounded-xl overflow-hidden shadow-lg">
+                <div key={index} className="bg-[#333333]/70 backdrop-blur-sm border border-gold-metallic/40 rounded-xl overflow-hidden shadow-lg">
                   <button
                     onClick={() => setOpenFAQ(openFAQ === index ? null : index)}
-                    className="w-full px-6 py-4 flex items-center justify-between text-left hover:bg-black/50 transition-colors"
+                    className="w-full px-6 py-4 flex items-center justify-between text-left hover:bg-[#333333]/50 transition-colors"
                   >
                     <span className="text-white font-semibold text-lg pr-4">{faq.question}</span>
                     <svg
@@ -609,7 +612,7 @@ export default function StudyAbroadPage() {
           </section>
 
           {/* Still Confused Section */}
-          <div className="bg-black/70 backdrop-blur-sm border border-gold-metallic/40 rounded-2xl p-8 md:p-12 mb-12 shadow-xl">
+          <div className="bg-[#333333]/70 backdrop-blur-sm border border-gold-metallic/40 rounded-2xl p-8 md:p-12 mb-12 shadow-xl">
             <div className="grid md:grid-cols-2 gap-8 items-center">
               <div>
                 <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
@@ -634,7 +637,7 @@ export default function StudyAbroadPage() {
                   fill
                   className="object-cover"
                 />
-                <div className="absolute inset-0 bg-gradient-to-r from-black/40 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-r from-[#333333]/40 to-transparent" />
                 <div className="absolute top-4 right-4 w-12 h-12 bg-gold-metallic rounded-full flex items-center justify-center shadow-lg">
                   <span className="text-black text-2xl font-bold">?</span>
                 </div>
@@ -793,14 +796,14 @@ function ConsultationForm({ onClose }: { onClose: () => void }) {
           }}
           disabled={isSubmitting || submitSuccess}
         >
-          <option value="" className="bg-black/80 text-slate-100">Select preferred country</option>
-          <option value="australia" className="bg-black/80 text-slate-100">Australia</option>
-          <option value="germany" className="bg-black/80 text-slate-100">Germany</option>
-          <option value="denmark" className="bg-black/80 text-slate-100">Denmark</option>
-          <option value="sweden" className="bg-black/80 text-slate-100">Sweden</option>
-          <option value="france" className="bg-black/80 text-slate-100">France</option>
-          <option value="malta" className="bg-black/80 text-slate-100">Malta</option>
-          <option value="latvia" className="bg-black/80 text-slate-100">Latvia</option>
+          <option value="" className="bg-[#333333]/80 text-slate-100">Select preferred country</option>
+          <option value="australia" className="bg-[#333333]/80 text-slate-100">Australia</option>
+          <option value="germany" className="bg-[#333333]/80 text-slate-100">Germany</option>
+          <option value="denmark" className="bg-[#333333]/80 text-slate-100">Denmark</option>
+          <option value="sweden" className="bg-[#333333]/80 text-slate-100">Sweden</option>
+          <option value="france" className="bg-[#333333]/80 text-slate-100">France</option>
+          <option value="malta" className="bg-[#333333]/80 text-slate-100">Malta</option>
+          <option value="latvia" className="bg-[#333333]/80 text-slate-100">Latvia</option>
         </select>
       </div>
 

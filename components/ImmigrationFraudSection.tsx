@@ -142,7 +142,7 @@ export default function ImmigrationFraudSection() {
                 className="absolute inset-0 w-full h-full object-cover"
                 loading="lazy"
               />
-              <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
+              <div className="absolute inset-0 bg-[#333333]/50 flex items-center justify-center">
                 <div className="text-center p-8">
                   <div className="w-24 h-24 mx-auto mb-4 rounded-full bg-gold-metallic/20 flex items-center justify-center border-2 border-gold-metallic/50 backdrop-blur-sm">
                     <svg className="w-12 h-12 text-gold-metallic" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -331,7 +331,7 @@ export default function ImmigrationFraudSection() {
               </p>
             </div>
 
-            <div className="bg-black/30 border border-gold-metallic/30 rounded-lg p-4 text-sm text-white">
+            <div className="bg-[#333333]/30 border border-gold-metallic/30 rounded-lg p-4 text-sm text-white">
               <p className="font-semibold text-gold-metallic mb-2">Disclaimer:</p>
               <p>
                 By submitting this complaint, you confirm that all information

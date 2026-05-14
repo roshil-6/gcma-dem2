@@ -33,7 +33,7 @@ function CardBody({
   'tagline' | 'description' | 'highlights' | 'footnote' | 'ctaLabel' | 'ctaHref' | 'ctaOnClick'
 >) {
   return (
-    <div className="p-6 bg-black/70">
+    <div className="p-6 bg-[#333333]">
       {tagline ? (
         <p className="text-gold-metallic text-sm mb-3 font-semibold leading-relaxed">{tagline}</p>
       ) : null}
@@ -109,7 +109,7 @@ export default function ShowcaseCard({
 
   const card = (
     <div
-      className={`rounded-2xl overflow-hidden border border-gold-metallic/40 bg-black/80 shadow-xl ${href ? 'hover:border-gold-metallic transition-all' : ''} ${className}`}
+      className={`rounded-2xl overflow-hidden border border-gold-metallic/40 bg-[#333333] shadow-xl ${href ? 'hover:border-gold-metallic transition-all' : ''} ${className}`}
     >
       <div
         className={`relative isolate overflow-hidden w-full ${isFlagImage ? 'h-56 bg-[#0b121f]' : 'h-48'}`}
@@ -136,7 +136,7 @@ export default function ShowcaseCard({
           />
         )}
         {isFlagImage ? (
-          <div className="absolute inset-x-0 bottom-0 z-10 border-t border-gold-metallic/25 bg-black/90 px-4 py-3">
+          <div className="absolute inset-x-0 bottom-0 z-10 border-t border-gold-metallic/25 bg-[#333333]/95 px-4 py-3">
             {eyebrow ? (
               <p className="text-sm font-bold text-white mb-1">{eyebrow}</p>
             ) : null}
@@ -144,7 +144,7 @@ export default function ShowcaseCard({
           </div>
         ) : (
           <>
-            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/70 to-black/50" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#333333]/95 via-[#333333]/70 to-[#333333]/35" />
             <div className="absolute bottom-4 left-4 right-4 z-10">
               {eyebrow ? (
                 <p className="text-sm font-bold text-white mb-1 drop-shadow-2xl">{eyebrow}</p>

@@ -179,7 +179,7 @@ export default function MigrationScamReportForm() {
               />
             </div>
 
-            <div className="bg-black/30 border border-gold-metallic/30 rounded-lg p-4 text-sm text-white">
+            <div className="bg-[#333333]/30 border border-gold-metallic/30 rounded-lg p-4 text-sm text-white">
               <p className="font-semibold text-gold-metallic mb-2">Confidentiality Notice:</p>
               <p>
                 All information provided is strictly confidential and will be used only for 

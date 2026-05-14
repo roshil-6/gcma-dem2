@@ -239,14 +239,14 @@ export default function GlobalNursingRegistrationSection() {
                 ))}
               </div>
 
-              <div className="bg-black/30 rounded-xl overflow-hidden">
+              <div className="bg-[#333333]/30 rounded-xl overflow-hidden">
                 <div className="h-48 relative">
                   <img
                     src={activeDetails.image}
                     alt={`${activeDetails.name} Nursing`}
                     className="w-full h-full object-cover"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#333333]/80 to-transparent" />
                   <h4 className="absolute bottom-4 left-4 text-2xl font-bold text-gold-metallic">
                     {activeDetails.name}
                   </h4>

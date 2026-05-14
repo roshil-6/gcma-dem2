@@ -34,7 +34,7 @@ export default function HumanitarianAidSection() {
     <section
       id="social-support"
       ref={sectionRef}
-      className="min-h-screen py-12 md:py-16 px-4 relative z-10"
+      className="min-h-screen py-10 sm:py-12 md:py-16 px-3 sm:px-4 relative z-10"
     >
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16">
@@ -47,7 +47,7 @@ export default function HumanitarianAidSection() {
           </p>
         </div>
 
-        <div className="grid items-stretch gap-8 md:grid-cols-2">
+        <div className="grid items-start gap-8 md:grid-cols-2">
           <WelfareProgramCard
             id="medical-assistance"
             imageSrc="/home/healthcare-support.jpg"
@@ -195,16 +195,21 @@ function MedicalForm({ onClose }: { onClose: () => void }) {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="form-sheet mt-6">
+    <form onSubmit={handleSubmit} className="form-sheet">
       {submitSuccess && (
-        <div className="bg-gold-metallic/20 border border-gold-metallic/50 rounded-lg p-4 mb-4">
-          <p className="text-gold-metallic font-semibold text-center">
+        <div className="bg-gold-metallic/20 border border-gold-metallic/50 rounded-lg p-4">
+          <p className="text-gold-metallic font-semibold text-center text-sm sm:text-base">
             ✓ Application submitted successfully! Thank you for your submission.
           </p>
         </div>
       )}
+      {submitError && (
+        <div className="rounded-lg border border-red-400/50 bg-red-950/40 p-4">
+          <p className="text-center text-sm font-semibold text-red-200">{submitError}</p>
+        </div>
+      )}
       <div>
-        <label className="block text-sm font-medium text-gold-metallic mb-2">
+        <label className="block text-sm font-semibold text-gold-metallic mb-2.5">
           Applicant Name *
         </label>
         <input
@@ -220,7 +225,7 @@ function MedicalForm({ onClose }: { onClose: () => void }) {
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gold-metallic mb-2">
+        <label className="block text-sm font-semibold text-gold-metallic mb-2.5">
           Contact Number *
         </label>
         <input
@@ -236,7 +241,7 @@ function MedicalForm({ onClose }: { onClose: () => void }) {
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gold-metallic mb-2">
+        <label className="block text-sm font-semibold text-gold-metallic mb-2.5">
           Referring Doctor's Name *
         </label>
         <input
@@ -252,7 +257,7 @@ function MedicalForm({ onClose }: { onClose: () => void }) {
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gold-metallic mb-2">
+        <label className="block text-sm font-semibold text-gold-metallic mb-2.5">
           Referring Hospital Name *
         </label>
         <input
@@ -268,7 +273,7 @@ function MedicalForm({ onClose }: { onClose: () => void }) {
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gold-metallic mb-2">
+        <label className="block text-sm font-semibold text-gold-metallic mb-2.5">
           Medical Case Description *
         </label>
         <textarea
@@ -284,7 +289,7 @@ function MedicalForm({ onClose }: { onClose: () => void }) {
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gold-metallic mb-2">
+        <label className="block text-sm font-semibold text-gold-metallic mb-2.5">
           Medical Certificate (Optional)
         </label>
         <input
@@ -296,24 +301,24 @@ function MedicalForm({ onClose }: { onClose: () => void }) {
           disabled={isSubmitting || submitSuccess}
         />
         {formData.medicalCertificate && (
-          <p className="text-xs text-gray-400 mt-2">
+          <p className="text-xs text-white/60 mt-2">
             Selected: {formData.medicalCertificate.name}
           </p>
         )}
-        <p className="text-xs text-gray-400 mt-2">
+        <p className="text-xs text-white/55 mt-2">
           Accepted formats: PDF, JPG, PNG, DOC, DOCX (Max 10MB)
         </p>
       </div>
 
-      <div className="flex gap-3">
-        <button type="submit" className="btn-gold flex-1" disabled={submitSuccess}>
-          {submitSuccess ? 'Submitted ✓' : 'Submit Application'}
-        </button>
+      <div className="form-actions-row">
         <button
-          type="button"
-          onClick={onClose}
-          className="btn-gold-outline flex-1"
+          type="submit"
+          className="btn-gold"
+          disabled={isSubmitting || submitSuccess}
         >
+          {isSubmitting ? 'Submitting...' : submitSuccess ? 'Submitted ✓' : 'Submit Application'}
+        </button>
+        <button type="button" onClick={onClose} className="btn-gold-outline">
           Cancel
         </button>
       </div>
@@ -388,16 +393,21 @@ function EducationForm({ onClose }: { onClose: () => void }) {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="form-sheet mt-6">
+    <form onSubmit={handleSubmit} className="form-sheet">
       {submitSuccess && (
-        <div className="bg-gold-metallic/20 border border-gold-metallic/50 rounded-lg p-4 mb-4">
-          <p className="text-gold-metallic font-semibold text-center">
+        <div className="bg-gold-metallic/20 border border-gold-metallic/50 rounded-lg p-4">
+          <p className="text-gold-metallic font-semibold text-center text-sm sm:text-base">
             ✓ Application submitted successfully! Thank you for your submission.
           </p>
         </div>
       )}
+      {submitError && (
+        <div className="rounded-lg border border-red-400/50 bg-red-950/40 p-4">
+          <p className="text-center text-sm font-semibold text-red-200">{submitError}</p>
+        </div>
+      )}
       <div>
-        <label className="block text-sm font-medium text-gold-metallic mb-2">
+        <label className="block text-sm font-semibold text-gold-metallic mb-2.5">
           Student Name *
         </label>
         <input
@@ -413,7 +423,7 @@ function EducationForm({ onClose }: { onClose: () => void }) {
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gold-metallic mb-2">
+        <label className="block text-sm font-semibold text-gold-metallic mb-2.5">
           Contact Number *
         </label>
         <input
@@ -429,7 +439,7 @@ function EducationForm({ onClose }: { onClose: () => void }) {
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gold-metallic mb-2">
+        <label className="block text-sm font-semibold text-gold-metallic mb-2.5">
           Current Education Level *
         </label>
         <select
@@ -456,7 +466,7 @@ function EducationForm({ onClose }: { onClose: () => void }) {
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gold-metallic mb-2">
+        <label className="block text-sm font-semibold text-gold-metallic mb-2.5">
           School / College Name *
         </label>
         <input
@@ -472,7 +482,7 @@ function EducationForm({ onClose }: { onClose: () => void }) {
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gold-metallic mb-2">
+        <label className="block text-sm font-semibold text-gold-metallic mb-2.5">
           Support Requirement Description *
         </label>
         <textarea
@@ -487,15 +497,11 @@ function EducationForm({ onClose }: { onClose: () => void }) {
         />
       </div>
 
-      <div className="flex gap-3">
-        <button type="submit" className="btn-gold flex-1" disabled={isSubmitting || submitSuccess}>
+      <div className="form-actions-row">
+        <button type="submit" className="btn-gold" disabled={isSubmitting || submitSuccess}>
           {isSubmitting ? 'Submitting...' : submitSuccess ? 'Submitted ✓' : 'Submit Application'}
         </button>
-        <button
-          type="button"
-          onClick={onClose}
-          className="btn-gold-outline flex-1"
-        >
+        <button type="button" onClick={onClose} className="btn-gold-outline">
           Cancel
         </button>
       </div>

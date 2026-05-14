@@ -12,6 +12,7 @@ const heroImageCandidates = [
 const primaryLinks = [
   { href: '/', label: 'Home' },
   { href: '/about', label: 'About Us' },
+  { href: '/gcma-projects', label: 'GCMA Projects' },
   { href: '/calculators/pr-calculator', label: 'PR Calculator' },
   { href: '/calculators/canada-points', label: 'Canada Points Calculator' },
   { href: '/contact', label: 'Contact Us' },

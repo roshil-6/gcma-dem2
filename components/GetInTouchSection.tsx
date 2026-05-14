@@ -43,7 +43,7 @@ export default function GetInTouchSection() {
             />
             <Link
               href="/contact"
-              className="absolute inset-0 bg-black/50 flex items-center justify-center hover:bg-black/40 transition-colors"
+              className="absolute inset-0 bg-[#333333]/50 flex items-center justify-center hover:bg-[#333333]/40 transition-colors"
             >
               <h2 className="text-3xl md:text-4xl font-bold text-gold-metallic text-center px-4 drop-shadow-lg">
                 Get In Touch

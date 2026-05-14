@@ -46,17 +46,20 @@ export default function CharitySupportPage() {
 
           {/* Statistics Section */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16">
-            {/* Years of Practice */}
+            {/* Ethical assurance — honest guidance, no inflated claims */}
             <div className="text-center">
-              <div className="relative w-24 h-24 mx-auto mb-4">
-                <div className="absolute inset-0 rounded-full bg-gold-metallic/20 border-2 border-gold-metallic/50 flex items-center justify-center">
-                  <span className="text-3xl font-bold text-gold-metallic">10+</span>
-                </div>
-                <div className="absolute -top-1 -right-1 w-6 h-6 bg-gold-metallic rounded-full flex items-center justify-center">
-                  <span className="text-white text-sm font-bold">+</span>
-                </div>
+              <div className="w-24 h-24 mx-auto mb-4 flex items-center justify-center">
+                <svg className="w-16 h-16 text-gold-metallic" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
+                  />
+                </svg>
               </div>
-              <p className="text-white font-medium text-base">Years of Practice</p>
+              <p className="text-2xl font-bold text-gold-metallic mb-1">Ethical</p>
+              <p className="text-white font-medium text-base">Honest guidance</p>
             </div>
 
             {/* Counseling Sessions */}
@@ -99,7 +102,7 @@ export default function CharitySupportPage() {
           </div>
 
           {/* Dark Band Section - "Still Confused?" */}
-          <div className="bg-black/80 rounded-2xl p-8 md:p-12 mb-12">
+          <div className="bg-[#333333]/80 rounded-2xl p-8 md:p-12 mb-12">
             <div className="grid md:grid-cols-2 gap-8 items-center">
               <div>
                 <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
@@ -131,7 +134,7 @@ export default function CharitySupportPage() {
           {/* Charity Options Cards */}
           <div className="grid md:grid-cols-2 gap-8 mb-12">
             {/* Healthcare Support Card */}
-            <div className="rounded-2xl overflow-hidden border border-gold-metallic/40 bg-black/70 backdrop-blur-sm shadow-xl">
+            <div className="rounded-2xl overflow-hidden border border-gold-metallic/40 bg-[#333333]/70 backdrop-blur-sm shadow-xl">
               <div className="relative w-full h-64">
                 <Image
                   src="/charity-support/healthcare.jpg"
@@ -139,7 +142,7 @@ export default function CharitySupportPage() {
                   fill
                   className="object-cover"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/20 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#333333]/40 via-[#333333]/20 to-transparent" />
               </div>
               <div className="p-6">
                 <div className="flex items-center gap-3 mb-4">
@@ -220,7 +223,7 @@ export default function CharitySupportPage() {
             </div>
 
             {/* Education Empowerment Card */}
-            <div className="rounded-2xl overflow-hidden border border-gold-metallic/40 bg-black/70 backdrop-blur-sm shadow-xl">
+            <div className="rounded-2xl overflow-hidden border border-gold-metallic/40 bg-[#333333]/70 backdrop-blur-sm shadow-xl">
               <div className="relative w-full h-64">
                 <Image
                   src="/charity-support/education.jpg"
@@ -228,7 +231,7 @@ export default function CharitySupportPage() {
                   fill
                   className="object-cover"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/20 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#333333]/40 via-[#333333]/20 to-transparent" />
               </div>
               <div className="p-6">
                 <div className="flex items-center gap-3 mb-4">
@@ -655,12 +658,12 @@ function EducationForm({ onClose }: { onClose: () => void }) {
           }}
           disabled={isSubmitting || submitSuccess}
         >
-          <option value="" className="bg-black/80 text-slate-100">Select education level</option>
-          <option value="primary" className="bg-black/80 text-slate-100">Primary School</option>
-          <option value="secondary" className="bg-black/80 text-slate-100">Secondary School</option>
-          <option value="higher-secondary" className="bg-black/80 text-slate-100">Higher Secondary</option>
-          <option value="undergraduate" className="bg-black/80 text-slate-100">Undergraduate</option>
-          <option value="graduate" className="bg-black/80 text-slate-100">Graduate</option>
+          <option value="" className="bg-[#333333]/80 text-slate-100">Select education level</option>
+          <option value="primary" className="bg-[#333333]/80 text-slate-100">Primary School</option>
+          <option value="secondary" className="bg-[#333333]/80 text-slate-100">Secondary School</option>
+          <option value="higher-secondary" className="bg-[#333333]/80 text-slate-100">Higher Secondary</option>
+          <option value="undergraduate" className="bg-[#333333]/80 text-slate-100">Undergraduate</option>
+          <option value="graduate" className="bg-[#333333]/80 text-slate-100">Graduate</option>
         </select>
       </div>
 

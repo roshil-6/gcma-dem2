@@ -1,5 +1,10 @@
 import fs from 'fs'
 import path from 'path'
+import type { SubmissionType } from './submission-types'
+import { SUBMISSION_TYPES } from './submission-types'
+
+export type { SubmissionType }
+export { SUBMISSION_TYPES, SUBMISSION_TYPE_LABELS, getSubmissionTypeLabel } from './submission-types'
 
 const DATA_DIR = path.join(process.cwd(), 'data')
 
@@ -7,16 +12,6 @@ const DATA_DIR = path.join(process.cwd(), 'data')
 if (!fs.existsSync(DATA_DIR)) {
   fs.mkdirSync(DATA_DIR, { recursive: true })
 }
-
-export type SubmissionType = 
-  | 'immigration-fraud'
-  | 'medical-assistance'
-  | 'education-support'
-  | 'bts-student'
-  | 'bts-tutor'
-  | 'contact'
-  | 'nurses-applications'
-  | 'study-abroad-consultation'
 
 export interface Submission {
   id: string
@@ -78,18 +73,8 @@ export function getSubmissions(type?: SubmissionType): Submission[] {
   } else {
     // Get all submissions from all types
     const allSubmissions: Submission[] = []
-    const types: SubmissionType[] = [
-      'immigration-fraud',
-      'medical-assistance',
-      'education-support',
-      'bts-student',
-      'bts-tutor',
-      'contact',
-      'nurses-applications',
-      'study-abroad-consultation'
-    ]
 
-    types.forEach(t => {
+    SUBMISSION_TYPES.forEach((t) => {
       const filePath = getFilePath(t)
       if (fs.existsSync(filePath)) {
         try {

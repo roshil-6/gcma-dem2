@@ -6,7 +6,8 @@ import { cookies } from 'next/headers'
 async function isAuthenticated(request: NextRequest): Promise<boolean> {
   const cookieStore = await cookies()
   const authToken = cookieStore.get('admin-auth')
-  const adminPassword = process.env.ADMIN_PASSWORD || 'Senora@2024'
+  const adminPassword = process.env.ADMIN_PASSWORD?.trim() ?? ''
+  if (!adminPassword) return false
   return authToken?.value === adminPassword
 }
 

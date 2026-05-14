@@ -6,8 +6,13 @@ export async function POST(request: NextRequest) {
     const body = await request.json()
     const { password } = body
 
-    // Admin password - Set ADMIN_PASSWORD in .env.local to override
-    const adminPassword = process.env.ADMIN_PASSWORD || 'Senora@2024'
+    const adminPassword = process.env.ADMIN_PASSWORD?.trim() ?? ''
+    if (!adminPassword) {
+      return NextResponse.json(
+        { error: 'Admin login is not configured (set ADMIN_PASSWORD).' },
+        { status: 503 }
+      )
+    }
 
     if (password === adminPassword) {
       const cookieStore = await cookies()

@@ -126,7 +126,7 @@ export default function TravelPage() {
               className="object-cover"
               priority
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/30 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-r from-[#333333]/60 via-[#333333]/30 to-transparent" />
             <div className="absolute inset-0 flex items-center">
               <div className="w-full px-8 md:px-12 max-w-7xl mx-auto">
                 <div className="inline-flex items-center gap-4 rounded-2xl bg-[#f9f2e7]/95 border border-gold-metallic/55 px-6 py-5 shadow-xl">
@@ -227,7 +227,7 @@ export default function TravelPage() {
 
           {/* Comprehensive Services List - Numbered Format (Different Format) */}
           <div className="mb-12">
-            <div className="bg-black/70 backdrop-blur-sm border border-gold-metallic/40 rounded-2xl p-8 md:p-12 shadow-xl">
+            <div className="bg-[#333333]/70 backdrop-blur-sm border border-gold-metallic/40 rounded-2xl p-8 md:p-12 shadow-xl">
               <h2 className="text-3xl font-bold text-gold-metallic mb-6 text-center">Our Comprehensive Travel Services</h2>
               <div className="grid md:grid-cols-2 gap-8">
                 <div>
@@ -236,7 +236,7 @@ export default function TravelPage() {
                     {planningServices.map((service, idx) => (
                       <li
                         key={service.title}
-                        className="flex gap-4 rounded-xl border border-gold-metallic/20 bg-black/40 p-4"
+                        className="flex gap-4 rounded-xl border border-gold-metallic/20 bg-[#333333]/40 p-4"
                       >
                         <div className="relative h-20 w-24 shrink-0 overflow-hidden rounded-lg sm:h-24 sm:w-28">
                           <Image
@@ -265,7 +265,7 @@ export default function TravelPage() {
                     {bookingServices.map((service, idx) => (
                       <li
                         key={service.title}
-                        className="flex gap-4 rounded-xl border border-gold-metallic/20 bg-black/40 p-4"
+                        className="flex gap-4 rounded-xl border border-gold-metallic/20 bg-[#333333]/40 p-4"
                       >
                         <div className="relative h-20 w-24 shrink-0 overflow-hidden rounded-lg sm:h-24 sm:w-28">
                           <Image
@@ -304,7 +304,7 @@ export default function TravelPage() {
               {whyChooseFeatures.map((feature) => (
                 <article
                   key={feature.title}
-                  className="overflow-hidden rounded-xl border border-gold-metallic/30 bg-gradient-to-br from-black/80 to-black/60 shadow-lg transition-all hover:border-gold-metallic/60"
+                  className="overflow-hidden rounded-xl border border-gold-metallic/30 bg-gradient-to-br from-[#333333]/80 to-[#333333]/60 shadow-lg transition-all hover:border-gold-metallic/60"
                 >
                   <div className="relative h-40 w-full">
                     <Image
@@ -313,7 +313,7 @@ export default function TravelPage() {
                       fill
                       className="object-cover"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#333333]/70 via-[#333333]/20 to-transparent" />
                   </div>
                   <div className="p-6">
                     <h3 className="mb-3 text-lg font-bold text-gold-metallic">{feature.title}</h3>

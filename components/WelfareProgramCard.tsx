@@ -48,7 +48,7 @@ export default function WelfareProgramCard({
   return (
     <article
       id={id}
-      className="group flex h-full flex-col overflow-hidden rounded-2xl border border-gold-metallic/35 bg-black/80 shadow-xl transition-colors hover:border-gold-metallic/65 scroll-mt-20"
+      className="group flex flex-col overflow-hidden rounded-2xl border border-gold-metallic/35 bg-[#333333]/80 shadow-xl transition-colors hover:border-gold-metallic/65 scroll-mt-20"
     >
       <div
         className="relative h-52 md:h-56 cursor-pointer"
@@ -69,7 +69,7 @@ export default function WelfareProgramCard({
           className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
           loading="lazy"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/45 to-black/10" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#333333]/90 via-[#333333]/45 to-[#333333]/10" />
         <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-4 p-5 md:p-6">
           <div className="min-w-0">
             <p className="mb-2 text-xs font-semibold uppercase tracking-[0.18em] text-gold-metallic/85">
@@ -100,7 +100,7 @@ export default function WelfareProgramCard({
         </div>
       ) : null}
 
-      <div className="flex flex-1 flex-col border-t border-gold-metallic/20 bg-black/75 p-6 md:p-8">
+      <div className="flex flex-col border-t border-gold-metallic/20 bg-[#333333]/75 p-5 sm:p-6 md:p-8">
         <h4 className="mb-3 text-xl font-semibold text-gold-metallic md:text-2xl">{title}</h4>
         <p className="text-on-dark mb-5 text-sm leading-relaxed md:text-base">{description}</p>
 
@@ -129,7 +129,7 @@ export default function WelfareProgramCard({
         <button
           type="button"
           onClick={onApplyToggle}
-          className={`mt-auto w-full rounded-lg px-4 py-3 font-semibold transition-all ${
+          className={`mt-6 w-full min-h-[3rem] rounded-lg px-4 py-3 text-base font-semibold transition-all sm:min-h-0 sm:py-3 ${
             isFormOpen
               ? 'border border-gold-metallic/50 bg-transparent text-gold-metallic hover:border-gold-metallic hover:text-gold-bright'
               : 'bg-gold-metallic text-black shadow-lg hover:bg-gold-bright'
@@ -138,7 +138,13 @@ export default function WelfareProgramCard({
           {isFormOpen ? closeLabel : applyLabel}
         </button>
 
-        {isFormOpen ? <div className="mt-6 border-t border-gold-metallic/20 pt-6">{form}</div> : null}
+        {isFormOpen ? (
+          <div className="mt-5 border-t border-gold-metallic/30 pt-5 sm:mt-6 sm:pt-6">
+            <div className="welfare-card-form rounded-xl border border-gold-metallic/30 bg-black/25 p-4 sm:p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]">
+              {form}
+            </div>
+          </div>
+        ) : null}
       </div>
     </article>
   )

@@ -179,7 +179,7 @@ export default function CoreServicesSection() {
                   className="absolute inset-0 h-full w-full object-cover"
                   loading="lazy"
                 />
-                <div className="absolute inset-0 bg-black/50" />
+                <div className="absolute inset-0 bg-[#333333]/50" />
                 <div className="absolute left-4 top-4 flex h-12 w-12 items-center justify-center rounded-full border-2 border-gold-metallic/50 bg-gold-metallic/20 backdrop-blur-md">
                   <ServiceIcon serviceId={service.id} />
                 </div>

@@ -33,7 +33,7 @@ export default function MigrationAdvicePage() {
               className="object-cover"
               priority
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/30 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-r from-[#333333]/60 via-[#333333]/30 to-transparent" />
             <div className="absolute inset-0 flex items-center">
               <div className="w-full px-8 md:px-12 max-w-7xl mx-auto">
                 <div className="inline-flex items-center gap-4 rounded-2xl px-6 py-5">
@@ -62,7 +62,7 @@ export default function MigrationAdvicePage() {
             </div>
 
             {/* Skilled Migration Explanation */}
-            <div className="rounded-2xl border border-gold-metallic/40 bg-black/70 backdrop-blur-sm shadow-xl p-8 md:p-12 mb-8">
+            <div className="rounded-2xl border border-gold-metallic/40 bg-[#333333]/70 backdrop-blur-sm shadow-xl p-8 md:p-12 mb-8">
               <div className="grid md:grid-cols-2 gap-8 items-center">
                 <div>
                   <h3 className="text-3xl font-bold text-white mb-6">What is Skilled Migration?</h3>
@@ -122,7 +122,7 @@ export default function MigrationAdvicePage() {
             </div>
 
             {/* Permanent Residency Explanation */}
-            <div className="rounded-2xl border border-gold-metallic/40 bg-black/70 backdrop-blur-sm shadow-xl p-8 md:p-12">
+            <div className="rounded-2xl border border-gold-metallic/40 bg-[#333333]/70 backdrop-blur-sm shadow-xl p-8 md:p-12">
               <div className="grid md:grid-cols-2 gap-8 items-center">
                 <div className="relative h-64 md:h-80 rounded-xl overflow-hidden order-2 md:order-1">
                   <Image
