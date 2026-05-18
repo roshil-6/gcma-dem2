@@ -7,12 +7,13 @@ import {
   isSubmissionType,
 } from '@/lib/submissions'
 import { cookies } from 'next/headers'
+import { getConfiguredAdminPassword } from '@/lib/admin-auth'
 
 // Simple authentication check
 async function isAuthenticated(request: NextRequest): Promise<boolean> {
   const cookieStore = await cookies()
   const authToken = cookieStore.get('admin-auth')
-  const adminPassword = process.env.ADMIN_PASSWORD?.trim() ?? ''
+  const adminPassword = getConfiguredAdminPassword()
   if (!adminPassword) return false
   return authToken?.value === adminPassword
 }
