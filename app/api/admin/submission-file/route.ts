@@ -3,11 +3,12 @@ import { cookies } from 'next/headers'
 import fs from 'fs/promises'
 import path from 'path'
 import { resolveSafeUploadFile } from '@/lib/upload-storage'
+import { getConfiguredAdminPassword } from '@/lib/admin-auth'
 
 async function isAuthenticated(): Promise<boolean> {
   const cookieStore = await cookies()
   const authToken = cookieStore.get('admin-auth')
-  const adminPassword = process.env.ADMIN_PASSWORD?.trim() ?? ''
+  const adminPassword = getConfiguredAdminPassword()
   if (!adminPassword) return false
   return authToken?.value === adminPassword
 }
