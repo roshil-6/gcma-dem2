@@ -2,6 +2,8 @@
 
 import { useState, useEffect, useRef } from 'react'
 import ExplanationPanel, { ExplanationBox } from './ExplanationPanel'
+import { SUBMISSION_FILE_ACCEPT, SUBMISSION_FILE_ACCEPT_HINT } from '@/lib/allowed-uploads'
+import { prepareSubmissionFormData } from '@/lib/prepare-submission-form-data'
 
 // API endpoint for form submission
 const API_ENDPOINT = '/api/submissions/immigration-fraud'
@@ -69,10 +71,12 @@ export default function ImmigrationFraudSection() {
       if (formData.evidence) {
         formDataToSend.append('evidence', formData.evidence)
       }
-      
+
+      const body = await prepareSubmissionFormData(formDataToSend, 'immigration-fraud')
+
       const response = await fetch(API_ENDPOINT, {
         method: 'POST',
-        body: formDataToSend
+        body,
       })
       
       const data = await response.json()
@@ -135,14 +139,14 @@ export default function ImmigrationFraudSection() {
             tabIndex={0}
             aria-label="Click to view details about Legal Protection & Justice"
           >
-            <div className="relative h-64 md:h-96">
+            <div className="relative h-64 overflow-hidden md:h-96">
               <img
                 src="/about/immigration-fraud.jpg"
                 alt="Legal Protection & Justice - Immigration Fraud Complaint"
-                className="absolute inset-0 w-full h-full object-cover"
+                className="absolute left-0 right-0 top-0 h-[calc(100%+3px)] w-full object-cover"
                 loading="lazy"
               />
-              <div className="absolute inset-0 bg-[#333333]/50 flex items-center justify-center">
+              <div className="absolute -bottom-px left-0 right-0 top-0 flex items-center justify-center bg-[#333333]/50">
                 <div className="text-center p-8">
                   <div className="w-24 h-24 mx-auto mb-4 rounded-full bg-gold-metallic/20 flex items-center justify-center border-2 border-gold-metallic/50 backdrop-blur-sm">
                     <svg className="w-12 h-12 text-gold-metallic" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -321,14 +325,12 @@ export default function ImmigrationFraudSection() {
                 type="file"
                 id="evidence"
                 name="evidence"
-                accept=".pdf,.jpg,.jpeg,.png,.doc,.docx"
+                accept={SUBMISSION_FILE_ACCEPT}
                 onChange={handleFileChange}
                 className="form-input file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-gold-metallic file:text-black hover:file:bg-gold-bright"
                 disabled={submitSuccess}
               />
-              <p className="text-xs text-gray-400 mt-2">
-                Accepted formats: PDF, JPG, PNG, DOC, DOCX (Max 10MB)
-              </p>
+              <p className="text-xs text-gray-400 mt-2">{SUBMISSION_FILE_ACCEPT_HINT}</p>
             </div>
 
             <div className="bg-[#333333]/30 border border-gold-metallic/30 rounded-lg p-4 text-sm text-white">

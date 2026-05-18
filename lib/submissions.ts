@@ -56,14 +56,27 @@ function normalizeSubmissionsFromFile(
 const sortBySubmittedDesc = (a: Submission, b: Submission) =>
   new Date(b.submittedAt).getTime() - new Date(a.submittedAt).getTime()
 
+function parseSubmissionData(raw: unknown): Record<string, any> {
+  if (raw && typeof raw === 'object' && !Array.isArray(raw)) {
+    return { ...(raw as Record<string, any>) }
+  }
+  if (typeof raw === 'string') {
+    try {
+      const parsed = JSON.parse(raw)
+      if (parsed && typeof parsed === 'object' && !Array.isArray(parsed)) {
+        return parsed as Record<string, any>
+      }
+    } catch {
+      /* ignore */
+    }
+  }
+  return {}
+}
+
 function mapDbRow(r: Record<string, unknown>): Submission {
   const id = String(r.id ?? '')
   const type = String(r.type ?? '') as SubmissionType
-  const rawData = r.data
-  const data =
-    rawData && typeof rawData === 'object' && !Array.isArray(rawData)
-      ? (rawData as Record<string, any>)
-      : {}
+  const data = parseSubmissionData(r.data)
   const st = r.submitted_at
   const submittedAt =
     st instanceof Date ? st.toISOString() : String(st ?? new Date().toISOString())
@@ -139,37 +152,56 @@ export async function saveSubmission(
   return submission
 }
 
-export async function getSubmissions(type?: SubmissionType): Promise<Submission[]> {
+export type GetSubmissionsResult = {
+  submissions: Submission[]
+  storageBackend: 'postgres' | 'local_json'
+}
+
+export async function getSubmissions(type?: SubmissionType): Promise<GetSubmissionsResult> {
   const db = getSql()
   if (db) {
-    await ensureSubmissionsSchema(db)
-    const rows = type
-      ? await db`
-          SELECT id, type, data, submitted_at, status
-          FROM submissions
-          WHERE type = ${type}
-          ORDER BY submitted_at DESC
-        `
-      : await db`
-          SELECT id, type, data, submitted_at, status
-          FROM submissions
-          ORDER BY submitted_at DESC
-        `
-    return rows.map((r) => mapDbRow(r as Record<string, unknown>))
+    try {
+      await ensureSubmissionsSchema(db)
+      const rows = type
+        ? await db`
+            SELECT id, type, data, submitted_at, status
+            FROM submissions
+            WHERE type = ${type}
+            ORDER BY submitted_at DESC
+          `
+        : await db`
+            SELECT id, type, data, submitted_at, status
+            FROM submissions
+            ORDER BY submitted_at DESC
+          `
+      return {
+        submissions: rows.map((r) => mapDbRow(r as Record<string, unknown>)),
+        storageBackend: 'postgres',
+      }
+    } catch (err) {
+      console.error('Postgres getSubmissions error:', err)
+      if (process.env.VERCEL === '1') {
+        throw err
+      }
+      /* Local dev: unreachable DB (e.g. railway.internal) — show admin data from JSON files */
+    }
   }
 
   if (type) {
     const filePath = getFilePath(type)
     if (!fs.existsSync(filePath)) {
-      return []
+      return { submissions: [], storageBackend: 'local_json' }
     }
     try {
       const fileContent = fs.readFileSync(filePath, 'utf-8')
       const parsed = JSON.parse(fileContent)
-      return normalizeSubmissionsFromFile(type, parsed).sort(sortBySubmittedDesc)
+      return {
+        submissions: normalizeSubmissionsFromFile(type, parsed).sort(sortBySubmittedDesc),
+        storageBackend: 'local_json',
+      }
     } catch (error) {
       console.error('Error reading submissions file:', error)
-      return []
+      return { submissions: [], storageBackend: 'local_json' }
     }
   }
 
@@ -186,7 +218,10 @@ export async function getSubmissions(type?: SubmissionType): Promise<Submission[
       }
     }
   })
-  return allSubmissions.sort(sortBySubmittedDesc)
+  return {
+    submissions: allSubmissions.sort(sortBySubmittedDesc),
+    storageBackend: 'local_json',
+  }
 }
 
 export async function updateSubmissionStatus(

@@ -34,8 +34,8 @@ export async function GET(request: NextRequest) {
     const type: SubmissionType | undefined =
       raw && isSubmissionType(raw) ? raw : undefined
 
-    const submissions = await getSubmissions(type)
-    return NextResponse.json({ submissions })
+    const { submissions, storageBackend } = await getSubmissions(type)
+    return NextResponse.json({ submissions, storageBackend })
   } catch (error) {
     console.error('Error fetching submissions:', error)
     return NextResponse.json(
