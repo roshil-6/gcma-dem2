@@ -45,13 +45,13 @@ export default function BreakTheSilenceSection() {
               A social initiative focused on improving English communication skills through subsided, volunteer-based teaching. We empower individuals through language and confidence.
             </p>
             <div className="flex flex-wrap gap-4">
-              <Link href="/break-the-silence" className="inline-flex items-center gap-2 bg-gold-metallic hover:bg-[#b8860b] text-black font-semibold py-3 px-6 rounded-xl transition-all shadow-md hover:shadow-lg hover:-translate-y-0.5">
+              <Link href="/break-the-silence/student-tutor" className="inline-flex items-center gap-2 bg-gold-metallic hover:bg-[#b8860b] text-black font-semibold py-3 px-6 rounded-xl transition-all shadow-md hover:shadow-lg hover:-translate-y-0.5">
                 <span>Join as a Student</span>
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 14l9-5-9-5-9 5 9 5z" />
                 </svg>
               </Link>
-              <Link href="/break-the-silence" className="inline-flex items-center gap-2 bg-white border-2 border-gold-metallic hover:bg-gold-metallic/10 text-[#6e531d] font-semibold py-3 px-6 rounded-xl transition-all hover:-translate-y-0.5">
+              <Link href="/break-the-silence/student-tutor" className="inline-flex items-center gap-2 bg-white border-2 border-gold-metallic hover:bg-gold-metallic/10 text-[#6e531d] font-semibold py-3 px-6 rounded-xl transition-all hover:-translate-y-0.5">
                 <span>Volunteer to Teach</span>
               </Link>
             </div>
