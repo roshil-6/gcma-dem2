@@ -985,7 +985,8 @@ body.theme-light .btn-gold-outline {
 body.theme-light .form-input {
   background: var(--light-input) !important;
   border: 1px solid var(--light-input-border) !important;
-  color: var(--light-text) !important;
+  color: #1a1a1a !important;
+  -webkit-text-fill-color: #1a1a1a !important;
 }
 
 .form-input:focus {
