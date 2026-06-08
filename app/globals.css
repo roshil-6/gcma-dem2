@@ -983,9 +983,9 @@ body.theme-light .btn-gold-outline {
 }
 
 body.theme-light .form-input {
-  background: var(--light-input);
-  border: 1px solid var(--light-input-border);
-  color: var(--light-text);
+  background: var(--light-input) !important;
+  border: 1px solid var(--light-input-border) !important;
+  color: var(--light-text) !important;
 }
 
 .form-input:focus {
@@ -1005,7 +1005,7 @@ body.theme-light .form-input:focus {
 }
 
 body.theme-light .form-input::placeholder {
-  color: var(--light-placeholder);
+  color: var(--light-placeholder) !important;
 }
 
 /* Dark welfare card forms sit on light site theme — override light form-input */
